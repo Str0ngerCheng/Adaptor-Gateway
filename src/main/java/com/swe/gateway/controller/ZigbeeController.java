@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 
@@ -18,7 +17,7 @@ import java.util.Map;
 public class ZigbeeController {
     static Logger logger = LogManager.getLogger(ZigbeeController.class.getName());
     @RequestMapping(value = "/zigbee", method = RequestMethod.POST)
-    public Map getByRequest(HttpServletRequest request) {
+    public Map getByRequest() {
         return null;
     }
 }
