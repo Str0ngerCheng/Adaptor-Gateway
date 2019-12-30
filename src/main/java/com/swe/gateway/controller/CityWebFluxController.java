@@ -4,6 +4,8 @@ package com.swe.gateway.controller;
 import com.swe.gateway.model.City;
 import com.swe.gateway.service.CityHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -29,19 +31,21 @@ public class CityWebFluxController {
         return cityHandler.findAllCity();
     }
 
-    @PostMapping(value="/set")
-    public Mono<Long> saveCity() {
-        City city=new City ();
-        city.setId (1L);
-        city.setProvinceId (2L);
-        city.setCityName ("Wuhan");
-        city.setDescription ("Different Every Day");
-        return cityHandler.save(city);
+    @PostMapping(value="/set", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    public Mono<Long> saveCity(ServerHttpRequest serverHttpRequest) {
+       serverHttpRequest.getBody().subscribe(
+               value -> System.out.println(value.read()),
+               error -> error.printStackTrace());
+        //获取request body
+        return  null;
+       // return cityHandler.save(city);
     }
 
     @PutMapping()
     public Mono<Long> modifyCity(@RequestBody City city) {
-        return cityHandler.modifyCity(city);
+        System.out.println();
+
+        return null;
     }
 
     @DeleteMapping(value = "/{id}")

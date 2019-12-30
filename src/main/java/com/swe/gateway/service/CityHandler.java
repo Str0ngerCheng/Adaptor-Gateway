@@ -1,13 +1,16 @@
 package com.swe.gateway.service;
 
 
-
 import com.swe.gateway.dao.CityRepository;
 import com.swe.gateway.model.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.server.ServerRequest;
+import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 /**
  * 城市处理器
@@ -79,6 +82,22 @@ public class CityHandler {
      */
     public Mono<Long> deleteCity(Long id) {
         return Mono.create(cityMonoSink -> cityMonoSink.success(cityRepository.deleteCity(id)));
+    }
+
+    //查询出一个 city 集合 并将这个集合 序列化到响应体中
+    public Mono<ServerResponse> listCity(ServerRequest request) {
+        Mono <City> city = request.bodyToMono(City.class);
+        return city.flatMap(s-> {
+                    s.setCityName("wuhan");
+                    cityRepository.save(s);
+                    Flux<City> cityFlux = findAllCity();
+                    return ServerResponse.ok().contentType(APPLICATION_JSON).body(cityFlux, City.class);
+                }
+        );
+
+
+
+
     }
 
 }
