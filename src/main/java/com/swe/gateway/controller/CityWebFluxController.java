@@ -33,11 +33,15 @@ public class CityWebFluxController {
 
     @PostMapping(value="/set", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Mono<Long> saveCity(ServerHttpRequest serverHttpRequest) {
-       serverHttpRequest.getBody().subscribe(
-               value -> System.out.println(value.read()),
-               error -> error.printStackTrace());
+        serverHttpRequest.getBody().flatMap(s->{
+                    System.out.println("123");
+                   System.out.println(s.getByte(0));
+                   return Mono.empty();
+               }
+             );
+        return null;
         //获取request body
-        return  null;
+
        // return cityHandler.save(city);
     }
 

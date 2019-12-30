@@ -17,4 +17,10 @@ public class CityRouter {
         return RouterFunctions.route(RequestPredicates.POST("/test/listCity")
                 .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)),handler::listCity);
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> postroute1(CityHandler handler) {
+        return RouterFunctions.route(RequestPredicates.POST("/test/1")
+                .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)),handler::test);
+    }
 }

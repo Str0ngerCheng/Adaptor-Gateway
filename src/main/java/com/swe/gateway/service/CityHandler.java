@@ -1,6 +1,7 @@
 package com.swe.gateway.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.swe.gateway.dao.CityRepository;
 import com.swe.gateway.model.City;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,10 +95,19 @@ public class CityHandler {
                     return ServerResponse.ok().contentType(APPLICATION_JSON).body(cityFlux, City.class);
                 }
         );
+    }
 
+    //测试数据：{"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+    public Mono<ServerResponse> test(ServerRequest request) {
+        Mono <String> str = request.bodyToMono(String.class);
+        return str.flatMap(s-> {
+            System.out.println(s);
+            JSONObject json = JSONObject.parseObject(s);//能够解析整个json串
+            System.out.println(json.getJSONObject("description").getString("text"));
 
-
-
+            return ServerResponse.ok().contentType(APPLICATION_JSON).body(Mono.just(s),String.class);
+                }
+        );
     }
 
 }
