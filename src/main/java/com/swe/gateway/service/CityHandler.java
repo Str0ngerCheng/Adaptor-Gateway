@@ -2,10 +2,14 @@ package com.swe.gateway.service;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.swe.gateway.controller.ZigbeeController;
 import com.swe.gateway.dao.CityRepository;
 import com.swe.gateway.model.City;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
@@ -26,6 +30,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
  */
 @Component
 public class CityHandler {
+
+    private static Logger logger = LogManager.getLogger(ZigbeeController.class.getName());
 
     /**
      * 数据操作的dao层的bean
@@ -89,10 +95,11 @@ public class CityHandler {
     public Mono<ServerResponse> listCity(ServerRequest request) {
         Mono <City> city = request.bodyToMono(City.class);
         return city.flatMap(s-> {
-                    s.setCityName("wuhan");
-                    cityRepository.save(s);
-                    Flux<City> cityFlux = findAllCity();
-                    return ServerResponse.ok().contentType(APPLICATION_JSON).body(cityFlux, City.class);
+            s.setCityName("wuhan");
+            logger.info(s.getCityName());
+            cityRepository.save(s);
+            Flux<City> cityFlux = findAllCity();
+            return ServerResponse.ok().contentType(APPLICATION_JSON).body(cityFlux, City.class);
                 }
         );
     }
@@ -101,15 +108,29 @@ public class CityHandler {
     public Mono<ServerResponse> test(ServerRequest request) {
         Mono <String> str = request.bodyToMono(String.class);
         return str.flatMap(s-> {
-            System.out.println(s);
+            logger.info(s);
             JSONObject json = JSONObject.parseObject(s);//能够解析整个json串
-            System.out.println(json.getJSONObject("description").getString("text"));
-
+            logger.info(json.getJSONObject("description").getString("text"));
             return ServerResponse.ok().contentType(APPLICATION_JSON).body(Mono.just(s),String.class);
-                }
-        );
+        });
     }
 
+    public static void main(String[] args) {
+        final City city = new City();
+        city.setId(1L);
+        city.setProvinceId(1L);
+        city.setCityName("111");
+        city.setDescription("222");
+        final WebClient webClient = WebClient.create();
+        final Mono<String> createdCity=webClient.get()
+                .uri("https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=15527972204")
+                .exchange()
+                .flatMap(clientResponse -> clientResponse.bodyToMono(String.class));
+        createdCity.flatMap(res->{
+            logger.info(res);
+            return Mono.just(res);
+        });
+    }
 }
 
 
