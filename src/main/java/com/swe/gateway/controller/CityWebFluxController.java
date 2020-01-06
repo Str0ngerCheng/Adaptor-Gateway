@@ -9,7 +9,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * create by jack 2018/4/21
  * webflux基于注解的控制器
  */
 @RestController
