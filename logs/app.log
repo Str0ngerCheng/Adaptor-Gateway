@@ -1,0 +1,415 @@
+2019.12.31 at 11:34:04 CST INFO  org.springframework.boot.StartupInfoLogger logStarting() @50 - Starting GateWayApplication on MI-201907021631 with PID 34228 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 at 11:34:04 CST INFO  org.springframework.boot.SpringApplication logStartupProfileInfo() @675 - No active profile set, falling back to default profiles: default
+2019.12.31 at 11:34:06 CST INFO  org.springframework.boot.web.embedded.netty.NettyWebServer start() @77 - Netty started on port(s): 8081
+2019.12.31 at 11:34:06 CST INFO  org.springframework.boot.StartupInfoLogger logStarted() @59 - Started GateWayApplication in 1.411 seconds (JVM running for 3.357)
+2019.12.31 at 11:34:46 CST INFO  com.swe.gateway.service.CityHandler lambda$test$4() @109 - {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 at 11:34:46 CST INFO  com.swe.gateway.service.CityHandler lambda$test$4() @111 - test
+2019.12.31 at 11:34:53 CST INFO  com.swe.gateway.service.CityHandler lambda$test$4() @109 - {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 at 11:34:53 CST INFO  com.swe.gateway.service.CityHandler lambda$test$4() @111 - test
+2019.12.31 at 11:41:23 CST INFO  org.springframework.boot.StartupInfoLogger logStarting() @50 - Starting GateWayApplication on MI-201907021631 with PID 36288 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 at 11:41:23 CST INFO  org.springframework.boot.SpringApplication logStartupProfileInfo() @675 - No active profile set, falling back to default profiles: default
+2019.12.31 at 11:41:24 CST INFO  org.springframework.boot.web.embedded.netty.NettyWebServer start() @77 - Netty started on port(s): 8081
+2019.12.31 at 11:41:24 CST INFO  org.springframework.boot.StartupInfoLogger logStarted() @59 - Started GateWayApplication in 1.305 seconds (JVM running for 3.51)
+2019.12.31 at 11:48:43 CST INFO  com.swe.gateway.service.CityHandler lambda$test$4() @109 - {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 at 11:48:43 CST INFO  com.swe.gateway.service.CityHandler lambda$test$4() @111 - test
+2019.12.31.470 12:06:57 CST INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 25192 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31.473 12:06:57 CST INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31.630 12:06:58 CST INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31.634 12:06:58 CST INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.471 seconds (JVM running for 3.329)
+2019.12.31.059 12:07:17 CST INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31.097 12:07:17 CST INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:08:06.180 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 23900 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 12:08:06.184 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 12:08:07.290 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 12:08:07.293 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.391 seconds (JVM running for 2.992)
+2019.12.31 12:08:33.013 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 35776 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 12:08:33.017 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 12:08:34.104 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 12:08:34.107 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.63 seconds (JVM running for 3.557)
+2019.12.31 12:09:58.294 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:09:58.335 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:10:34.538 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":"1"}
+2019.12.31 12:10:34.546 ERROR - [reactor-http-nio-2] org.springframework.core.log.CompositeLog error() : [4b02f18a] 500 Server Error for HTTP POST "/test/1"
+com.alibaba.fastjson.JSONException: can not cast to JSONObject.
+	at com.alibaba.fastjson.JSON.parseObject(JSON.java:244) ~[fastjson-1.2.58.jar:?]
+	at com.alibaba.fastjson.JSONObject.getJSONObject(JSONObject.java:127) ~[fastjson-1.2.58.jar:?]
+	at com.swe.gateway.service.CityHandler.lambda$test$4(CityHandler.java:111) ~[classes/:?]
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:118) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:73) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:73) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:121) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxContextStart$ContextStartSubscriber.onNext(FluxContextStart.java:103) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:287) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:331) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1505) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.MonoCollectList$MonoBufferAllSubscriber.onComplete(MonoCollectList.java:118) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:136) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:252) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:136) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.netty.channel.FluxReceive.terminateReceiver(FluxReceive.java:372) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.channel.FluxReceive.drainReceiver(FluxReceive.java:196) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:337) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:334) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:453) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:141) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:191) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:438) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:323) [netty-codec-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:297) [netty-codec-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:253) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1408) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:930) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:677) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:612) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:529) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:491) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:905) [netty-common-4.1.33.Final.jar:4.1.33.Final]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+Caused by: java.lang.ClassCastException: java.lang.Integer cannot be cast to com.alibaba.fastjson.JSONObject
+	at com.alibaba.fastjson.JSON.parseObject(JSON.java:242) ~[fastjson-1.2.58.jar:?]
+	... 45 more
+2019.12.31 12:24:15.976 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 32688 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 12:24:15.979 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 12:24:16.832 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 12:24:16.834 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.102 seconds (JVM running for 2.458)
+2019.12.31 12:24:50.934 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:24:50.973 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:25:02.490 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{tet:"test"}}
+2019.12.31 12:25:02.491 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : null
+2019.12.31 12:25:21.088 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{tet:"test"}}
+2019.12.31 12:25:21.089 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : null
+2019.12.31 12:25:21.290 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{tet:"test"}}
+2019.12.31 12:25:21.291 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : null
+2019.12.31 12:26:57.911 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 15236 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 12:26:57.914 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 12:26:59.392 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 12:26:59.395 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.939 seconds (JVM running for 5.575)
+2019.12.31 12:27:04.427 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:27:04.471 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:27:37.566 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:27:37.566 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:27:39.007 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:27:39.007 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:28:59.812 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:28:59.812 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:29:01.506 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:29:01.506 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:30:16.802 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:30:16.802 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:30:18.577 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:30:18.577 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:30:41.671 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:30:41.671 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:30:42.834 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:30:42.834 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:31:20.676 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:31:20.676 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:31:22.062 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:31:22.063 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:31:34.587 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:31:34.587 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 12:31:35.236 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 12:31:35.236 INFO  - [reactor-http-nio-3] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2019.12.31 16:33:43.229 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 34124 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:33:43.232 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:33:44.118 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:33:44.121 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.143 seconds (JVM running for 2.462)
+2019.12.31 16:33:57.330 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:33:57.368 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : test
+2019.12.31 16:35:43.241 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 11740 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:35:43.245 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:35:44.244 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:35:44.246 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.636 seconds (JVM running for 3.28)
+2019.12.31 16:35:51.461 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:35:51.505 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : test
+2019.12.31 16:36:01.541 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:36:01.542 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : test
+2019.12.31 16:36:35.955 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 34224 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:36:35.957 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:36:36.800 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:36:36.803 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.072 seconds (JVM running for 3.244)
+2019.12.31 16:36:46.998 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:36:47.053 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : test
+2019.12.31 16:36:51.260 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:36:51.261 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : test
+2019.12.31 16:40:02.030 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 34904 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:40:02.033 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:40:03.017 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:40:03.020 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.224 seconds (JVM running for 2.727)
+2019.12.31 16:40:11.054 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:40:11.095 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : test
+2019.12.31 16:41:22.473 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 34084 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:41:22.477 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:41:23.564 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:41:23.567 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.479 seconds (JVM running for 2.86)
+2019.12.31 16:41:32.023 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:41:32.054 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : test
+2019.12.31 16:45:06.601 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 35736 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:45:06.604 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:45:07.657 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:45:07.661 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.326 seconds (JVM running for 2.91)
+2019.12.31 16:45:16.923 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$5() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:45:16.959 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$5() : test
+2019.12.31 16:45:17.001 ERROR - [reactor-http-nio-2] org.springframework.core.log.CompositeLog error() : [c69b866f] 500 Server Error for HTTP POST "/test/1"
+java.lang.IllegalStateException: block()/blockFirst()/blockLast() are blocking, which is not supported in thread reactor-http-nio-2
+	at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:77) ~[reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.Mono.block(Mono.java:1494) ~[reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at com.swe.gateway.service.CityHandler.lambda$test$5(CityHandler.java:128) ~[classes/:?]
+	at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:118) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:73) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxOnErrorResume$ResumeSubscriber.onNext(FluxOnErrorResume.java:73) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:121) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxContextStart$ContextStartSubscriber.onNext(FluxContextStart.java:103) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxMapFuseable$MapFuseableConditionalSubscriber.onNext(FluxMapFuseable.java:287) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxFilterFuseable$FilterFuseableConditionalSubscriber.onNext(FluxFilterFuseable.java:331) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1505) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.MonoCollectList$MonoBufferAllSubscriber.onComplete(MonoCollectList.java:118) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:136) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:252) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:136) [reactor-core-3.2.6.RELEASE.jar:3.2.6.RELEASE]
+	at reactor.netty.channel.FluxReceive.terminateReceiver(FluxReceive.java:372) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.channel.FluxReceive.drainReceiver(FluxReceive.java:196) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:337) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:334) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.http.server.HttpServerOperations.onInboundNext(HttpServerOperations.java:453) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:141) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at reactor.netty.http.server.HttpTrafficHandler.channelRead(HttpTrafficHandler.java:191) [reactor-netty-0.8.5.RELEASE.jar:0.8.5.RELEASE]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:438) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:323) [netty-codec-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:297) [netty-codec-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:253) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1408) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:930) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:677) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:612) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:529) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:491) [netty-transport-4.1.33.Final.jar:4.1.33.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:905) [netty-common-4.1.33.Final.jar:4.1.33.Final]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2019.12.31 16:45:17.068 INFO  - [reactor-http-nio-7] com.swe.gateway.service.CityHandler lambda$listCity$3() : null
+2019.12.31 16:50:13.465 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 38188 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:50:13.468 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:50:14.597 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:50:14.599 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.424 seconds (JVM running for 3.337)
+2019.12.31 16:50:20.375 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:50:20.420 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$6() : test
+2019.12.31 16:55:11.815 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 12736 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:55:11.840 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:55:12.714 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:55:12.716 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.112 seconds (JVM running for 2.544)
+2019.12.31 16:57:43.943 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 17712 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2019.12.31 16:57:43.946 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2019.12.31 16:57:44.936 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2019.12.31 16:57:44.939 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.233 seconds (JVM running for 2.786)
+2019.12.31 16:59:40.379 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : {"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
+2019.12.31 16:59:40.420 INFO  - [reactor-http-nio-2] com.swe.gateway.service.CityHandler lambda$test$4() : test
+2020.01.02 09:48:25.285 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":500,"message":"用户名不存在"}
+
+2020.01.02 09:50:44.660 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTI5ODQ0LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5MzcwNDR9.spA4CBR-L5sRv1nZuBC41PDeLcuEsTOhctYe1FtVQHXiYuTwm73o31s3Qt22S__TYHO1ZvFNTu9OE7YJfKx5zw"}
+
+2020.01.02 10:03:09.536 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMwNTg5LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzc3ODl9.QMofZu29YkvRm_6-lNRpr5RrKWUC_zncELWv71eiy2__1kSL6jX7PjldveEJynECuyAS8Tz9HTQVWfMbMUyfMA"}
+
+2020.01.02 10:03:21.237 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMwNjAxLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzc4MDF9.y9F2vQ9BHcUOg0Kj4NNi6-iQk3NXjk5LEesaQmWWH3lCTOyJ7OFOJ3jzGJ5q5N4oP0HBlr7RdiNdyxNUYa8HYw"}
+
+2020.01.02 10:03:36.912 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMwNjE2LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzc4MTZ9.hfzNXdf-HF9pUkwgV3QGrrSUTfd13uIWMvJN2ZDJtQp_N24F3fxGxYM_p_WBzZqUvBF1HuRU7IIkkOILUT13jg"}
+
+2020.01.02 10:14:50.694 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMxMjkwLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzg0OTB9.juNCA2IWxMSna8CeESHY_aSF5SwryTkVRQwqI8ltK2ug5wiZLsumLMdmrbzq8YZ5__Ho-aHEZLuH8kyyVq8PQg"}
+
+2020.01.02 10:16:01.133 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMxMzYxLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzg1NjF9.PPoRrLh_bEpyLh6YEdGdxECAFcrcpn6wT-uzsYeHvb_bwPUdh1WSAK3moXAxrXxtSZId7WDkPylyoxC8cmeRQA"}
+
+2020.01.02 10:16:01.135 INFO  - [main] com.swe.gateway.service.CityHandler main() : 123
+2020.01.02 10:16:26.368 INFO  - [main] com.swe.gateway.service.CityHandler main() : 123
+2020.01.02 10:16:45.983 INFO  - [main] com.swe.gateway.service.CityHandler main() : 123
+2020.01.02 10:18:14.916 INFO  - [main] com.swe.gateway.service.CityHandler main() : 123
+2020.01.02 10:23:14.880 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMxNzk0LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzg5OTR9.Tq_4lfGWFvMu7Efx32BChCfeY826XIuNF67V71xPVZPcxdp1FQlu-RK3Y79ls5Q4CTaItNt4oBLWW9lROepdBQ"}
+
+2020.01.02 10:24:12.789 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMxODUyLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5MzkwNTJ9.gou2ctHMOLwqx-ZfeYEDWhHvvwIZlvO3ujGYUCbqhM6PVppSXAEqd4d4RY02LqBFMjyM3SSmMiuHJP0_wMB6Xw"}
+
+2020.01.02 10:24:12.807 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:25:15.735 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMxOTE1LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5MzkxMTV9.AfKbgdYG1g-38VQrBjx73iIpEYWPvLr60xpZwwU1rvPGRdqPJM01BvGfE_N3goPNyyv8G7rfzNPhG1feRh7qow"}
+
+2020.01.02 10:25:15.815 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMxOTE1LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5MzkxMTV9.AfKbgdYG1g-38VQrBjx73iIpEYWPvLr60xpZwwU1rvPGRdqPJM01BvGfE_N3goPNyyv8G7rfzNPhG1feRh7qow"}
+
+2020.01.02 10:25:15.821 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:30:47.367 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMyMjQ1LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzk0NDV9.Q1JaNTuPi2mtkgm7yPfSknZfKOvc3UNPjKqGNMiJfQnUrY-F_l49QNCbzjcXX8D6emZ-p-VWSJOBP58B_5hi4w"}
+
+2020.01.02 10:30:49.445 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMyMjQ3LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzk0NDd9.xj2c4ruNgbaz70Nt2h2dYP2esiQAAZFcnzq48A2CYphdok9oTJztsKak7-cVQ6KyM3ShHtnOPCZnd1ctv_mIOw"}
+
+2020.01.02 10:30:49.452 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:31:26.389 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:31:28.485 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMyMjg2LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzk0ODZ9.UGFHumDjOPIfM_Im9h9VUvkpZcZ3m-mB1ToKxMQBjgbLe84Ar0EjFgBGBA5ihGfov4ATjY8eVi9rb6fcvDs1BQ"}
+
+2020.01.02 10:39:38.721 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : resp
+2020.01.02 10:39:38.724 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMyNzc4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzk5Nzh9.yYpRee9Ai0-D6TtXWGNeAgoLk7zK9P0dPLT6qX7pO03caazxap7_s96rB-cMo6qao42J1MpBvOfzFz74pkidEQ"}
+
+2020.01.02 10:39:38.735 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : resp1
+2020.01.02 10:39:38.735 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:40:11.329 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : resp
+2020.01.02 10:40:11.332 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMyODExLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDAwMTF9.bgnt0NcSLEODna05ofLFy1PObC-glu3z5x4gjMjpUJRuGOpKfOXdhDFdCi48WQhgTMO-47FRi3JNDrLBCpFYyg"}
+
+2020.01.02 10:40:11.339 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : resp1
+2020.01.02 10:40:11.340 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:42:09.610 INFO  - [main] com.swe.gateway.service.CityHandler main() : Thu Jan 02 10:42:09 CST 2020
+2020.01.02 10:42:09.911 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : resp
+2020.01.02 10:42:09.912 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMyOTI5LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDAxMjl9.fTe6JeZyJOCTnUAlj6vSSquS2S7pqVSNfK0tnV4rN5SuFu94Qfooh0KeciMJ2EJZ3uuOgsvaRD3OhlCFMT7uBQ"}
+
+2020.01.02 10:42:09.918 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : resp1
+2020.01.02 10:42:09.919 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:43:54.190 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : resp
+2020.01.02 10:43:54.193 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMzMDMyLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDAyMzJ9.Fpzs4O9fJaqbXMohp5rchvhgJ2J5_qLYvqJjqq4aZgLSC5PRYdZRSs-TbokdHxpm6mV7UWv-HZ-TRpocid_88A"}
+
+2020.01.02 10:43:54.203 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : resp1
+2020.01.02 10:43:54.204 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:44:32.493 INFO  - [main] com.swe.gateway.service.CityHandler main() : test
+2020.01.02 10:44:34.803 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : resp
+2020.01.02 10:44:34.803 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMzMDcyLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDAyNzJ9.A4adYBeKl5RJ_YOddhWLgdkOZbGpbiNe7wbffS7r_fW76YSJucZHIHavw6c36bzWczALWGogNKA4g6Y3XM-mjw"}
+
+2020.01.02 10:44:34.811 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : resp1
+2020.01.02 10:44:34.812 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 10:45:41.816 INFO  - [main] com.swe.gateway.service.CityHandler main() : test
+2020.01.02 10:45:44.143 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : resp
+2020.01.02 10:45:44.143 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMzMTQyLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDAzNDJ9.bXJO2gcJvY-8W-26uM7r6qSaoAff_aHjwZzJ3qiwCajNwA2ZrcMhaYxkJM2qwc6G7-maHE03ZnArWqe7Maxb5g"}
+
+2020.01.02 10:45:45.150 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : resp1
+2020.01.02 10:45:45.151 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 11:12:07.845 INFO  - [main] com.swe.gateway.service.CityHandler main() : test
+2020.01.02 11:12:10.173 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : resp
+2020.01.02 11:12:10.173 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTM0NzI4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDE5Mjh9._nCMwIMaaICA36xLdDjkp9p5hQZKlabTfxPlP_3cFGbfBJ8PA8MH7hT0DHk-jUApC-G_rHMKSVxzTqP0AQjMjg"}
+
+2020.01.02 11:12:10.180 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : resp1
+2020.01.02 11:12:10.181 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 11:35:40.862 INFO  - [main] com.swe.gateway.service.CityHandler main() : test
+2020.01.02 11:35:41.054 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTM2MTQxLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDMzNDF9.mVS9YqHBCRRY4g-tZkOM_zSzSwtu_u2zqIuP5HTgsyj5qw00HR5rj0zX7XOoUx3TrlvP-OCj_cgvirG4wa6OUg"}
+
+2020.01.02 11:35:41.063 INFO  - [main] com.swe.gateway.service.CityHandler main() : {"code":403,"message":"未授权"}
+
+2020.01.02 11:45:38.330 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"code":403,"message":"未授权"}
+
+2020.01.02 11:45:38.380 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTM2NzM4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDM5Mzh9.d1qi51N5XzFcJ0Dzz2_T_f9M6pFTyU8S-J5uM0kciXts9BMeKWOxbhO8DV_94vOHjsIJ1uavaOtpiD0fJoGpUQ"}
+
+2020.01.02 11:53:37.627 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"code":403,"message":"未授权"}
+2020.01.02 11:53:37.710 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTM3MjE3LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NDQ0MTd9.FUZestScG874ocwBt8b0SsycfW5cz0Lbqx2Hrq3r3jEUjrgt_py5ldmB03bRMHm_ACSI2f8GSZwOvMC-T61cNA"}
+
+2020.01.02 14:30:38.895 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"code":401,"message":"未登录"}
+
+2020.01.02 14:30:38.895 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTQ2NjM4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTM4Mzh9.4aj-xRnuBNE_XpBSZ38hP0ZHsKOe03YU7RehB9J8OLlsU9TQl0NpIPh4KJz338b4mvkv72Fgn03TLUloMC3qbA"}
+
+2020.01.02 15:29:53.273 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"code":401,"message":"未登录"}
+
+2020.01.02 15:29:53.273 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUwMTkzLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTczOTN9.ftXndtf6oAEtE3V34-K87MlBIrOqf-0YN1Ja4m51EVmrSg5zsaLLUYhXw2O3sw6W-ee4uDsi3SqoxPv5o_CkVA"}
+
+2020.01.02 15:31:10.839 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : {"code":401,"message":"未登录"}
+
+2020.01.02 15:36:51.231 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUwNjExLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTc4MTF9.Z9GSCIZxc2jLde4WmpEg0uVAR6QpnE2nk_rXyEM9NNdAUngzJGu7xDMu6qZcxKlp3nfjZYek4Ij67NZYw0toiQ"}
+2020.01.02 15:36:51.251 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$7() : {"code":401,"message":"未登录"}
+
+2020.01.02 15:43:04.139 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUwOTg0LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTgxODR9.Ooy6wCj25mMqg0wKctZ0BIsTQhliSXFzdIhgtV06TU6a9V6tsEioxs5VZjuFPvlH-5cyAlQkp8QL77an1uNBBg"}
+2020.01.02 15:43:52.811 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUxMDMyLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTgyMzJ9.ABBAVkwDjgBkN43AtxtdiK8ytjGwz1Gkjp8yq81fT4_tgGa0HEei-Gfo8Iy2HpOXe6uS8eM15tizMWzAzvCF1w"}
+2020.01.02 15:43:52.829 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$7() : {"code":401,"message":"未登录"}
+
+2020.01.02 15:49:40.563 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUxMzgwLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTg1ODB9.YsN3NrhoajHrq2nXVYshYz7S9UiOzCqwlXqYOy0qoLi9Qg8fa4hEYYcC3g0rXxICi0bpR3yrm_39pKEkurkZTQ"}
+2020.01.02 15:58:42.314 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"code":401,"message":"未登录"}
+
+2020.01.02 15:58:42.369 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUxOTIyLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTkxMjJ9.aQemUSwALr-rrFAd0wvZSVGAwC50Djvkbcp0fVb6dEhAwQZObDsJL_eKNG019vdcshTa7_ULGgdVbFodkFyF8A"}
+
+2020.01.02 15:58:55.084 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"code":401,"message":"未登录"}
+
+2020.01.02 15:58:55.140 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUxOTM1LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTkxMzV9.gADA6mvC3A_WNDAiTgnZy7_DYasEVUNvNxqldeRinqf5POSfI7rStxZNldMs3-QIupWIiiWft1GGkaqvXAFnRg"}
+
+2020.01.02 15:59:34.260 INFO  - [reactor-http-nio-8] com.swe.gateway.service.CityHandler lambda$main$7() : {"code":401,"message":"未登录"}
+
+2020.01.02 15:59:34.317 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUxOTc0LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTkxNzR9.1ewR8mZqDvGkR5oD8ntW5b0tiULLI_z1kOrCd13PKFnpUDgWBJdu17fHTDL6qa_B6zcY1JN1GfB1UhMyuoceGg"}
+
+2020.01.02 15:59:34.321 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUxOTc0LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTkxNzR9.1ewR8mZqDvGkR5oD8ntW5b0tiULLI_z1kOrCd13PKFnpUDgWBJdu17fHTDL6qa_B6zcY1JN1GfB1UhMyuoceGg"}
+
+2020.01.02 16:02:15.061 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUyMTM1LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTkzMzV9.TJgh97QAOj-WdxyvRjWEPlW2pO7Yu8kk6ynX0dy1y4IZJohQrFhilaKJaHwyZpAK-3mNMNDf6nwDUsDV-enK2A"}
+
+2020.01.02 16:02:15.894 INFO  - [reactor-http-nio-7] com.swe.gateway.service.CityHandler lambda$main$7() : {"code":401,"message":"未登录"}
+
+2020.01.02 16:02:15.968 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUyMTM1LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTkzMzV9.TJgh97QAOj-WdxyvRjWEPlW2pO7Yu8kk6ynX0dy1y4IZJohQrFhilaKJaHwyZpAK-3mNMNDf6nwDUsDV-enK2A"}
+
+2020.01.02 16:04:48.070 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUyMjg3LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTk0ODd9.8nXSb3JSdWBTWCSpONctyIiUw0V60kcm9p9Tq-0Se6u5AtcpdTybK6UuOVCTRxdkXoO1Cvr6EyNCaPMrk_Gafw"}
+
+2020.01.02 16:04:48.436 INFO  - [reactor-http-nio-7] com.swe.gateway.service.CityHandler lambda$main$7() : {"code":401,"message":"未登录"}
+
+2020.01.02 16:04:48.475 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUyMjg4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTk0ODh9.hjeepbRDj-ODphRc6xfPQrM36SvLbpnowDfSIu8njSw7Id8Z9HGXv3wabP5yfVeYGoL4C8xTJtXig8r52w_ncQ"}
+
+2020.01.02 16:05:31.291 INFO  - [reactor-http-nio-8] com.swe.gateway.service.CityHandler lambda$main$7() : {"code":401,"message":"未登录"}
+
+2020.01.02 16:05:31.343 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUyMzMxLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTk1MzF9.HEpWLIzGtCgPoZO1_WqKUaQxJfd537IjmiYCZS5Ifw0jqvZ5aAgreWOiSdUSzHrmU7wr6Evm0Y35bR4TuTW1Rw"}
+
+2020.01.02 16:05:31.345 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTUyMzMxLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5NTk1MzF9.HEpWLIzGtCgPoZO1_WqKUaQxJfd537IjmiYCZS5Ifw0jqvZ5aAgreWOiSdUSzHrmU7wr6Evm0Y35bR4TuTW1Rw"}
+
+2020.01.03 14:19:48.540 INFO  - [reactor-http-nio-8] com.swe.gateway.service.CityHandler lambda$main$7() : {"code":401,"message":"未登录"}
+
+2020.01.03 14:19:48.780 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMyMzg4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwMzk1ODh9.IEQEo_7_igXSZIWKmPsk8GRTbZKgVZmdZZLpu4c_qSB0ypaHzfKJEsc3b0etw6MqCJidVx-T6mqj9PvW055U6w"}
+
+2020.01.03 14:19:48.780 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$5() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMyMzg4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwMzk1ODh9.IEQEo_7_igXSZIWKmPsk8GRTbZKgVZmdZZLpu4c_qSB0ypaHzfKJEsc3b0etw6MqCJidVx-T6mqj9PvW055U6w"}
+
+2020.01.03 14:22:28.288 INFO  - [reactor-http-nio-8] com.swe.gateway.service.CityHandler lambda$main$8() : {"code":401,"message":"未登录"}
+
+2020.01.03 14:22:28.396 INFO  - [reactor-http-nio-4] com.swe.gateway.service.CityHandler lambda$main$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMyNTQ4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwMzk3NDh9.r8zsfOVHPMTq3zAV4Z4RPzTI4WHLifvIgSDIKTpSKw-u8NpV4YaFn7dY0gMeyH1enHRnpfPCYloneC1QfKxkOg"}
+
+2020.01.03 14:22:28.396 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$main$7() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMyNTQ4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwMzk3NDh9.r8zsfOVHPMTq3zAV4Z4RPzTI4WHLifvIgSDIKTpSKw-u8NpV4YaFn7dY0gMeyH1enHRnpfPCYloneC1QfKxkOg"}
+
+2020.01.03 14:30:24.446 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 4704 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2020.01.03 14:30:24.449 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2020.01.03 14:30:26.020 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2020.01.03 14:30:26.023 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 2.029 seconds (JVM running for 4.792)
+2020.01.03 14:31:11.955 INFO  - [reactor-http-nio-10] com.swe.gateway.service.CityHandler lambda$testWebClient$8() : {"code":401,"message":"未登录"}
+
+2020.01.03 14:31:12.028 INFO  - [reactor-http-nio-8] com.swe.gateway.service.CityHandler lambda$testWebClient$7() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMzMDcyLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwNDAyNzJ9.QQ45pUF0FT3km3hzrRGn1jeVDHKw-NQvOc1NVBe6uwMWeZfSmtCTIJIu3K7lroM_fHcm0W8OfsTuP9aXMjCumA"}
+
+2020.01.03 14:31:12.028 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$testWebClient$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMzMDcyLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwNDAyNzJ9.QQ45pUF0FT3km3hzrRGn1jeVDHKw-NQvOc1NVBe6uwMWeZfSmtCTIJIu3K7lroM_fHcm0W8OfsTuP9aXMjCumA"}
+
+2020.01.03 14:32:05.959 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarting() : Starting GateWayApplication on MI-201907021631 with PID 32024 (D:\Projects\Adaptor-Gateway\target\classes started by mi in D:\Projects\Adaptor-Gateway)
+2020.01.03 14:32:05.962 INFO  - [main] org.springframework.boot.SpringApplication logStartupProfileInfo() : No active profile set, falling back to default profiles: default
+2020.01.03 14:32:07.022 INFO  - [main] org.springframework.boot.web.embedded.netty.NettyWebServer start() : Netty started on port(s): 8081
+2020.01.03 14:32:07.025 INFO  - [main] org.springframework.boot.StartupInfoLogger logStarted() : Started GateWayApplication in 1.4 seconds (JVM running for 2.716)
+2020.01.03 14:32:11.246 INFO  - [reactor-http-nio-10] com.swe.gateway.service.CityHandler lambda$testWebClient$8() : {"code":401,"message":"未登录"}
+
+2020.01.03 14:32:11.308 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$testWebClient$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMzMTMxLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwNDAzMzF9.tv9PQfnQC2YVbG_sAD3zSyK3RmWebqpJqez_JSOCvIrD_4xDl05bJFi3BpbQsSagtmHlIGEYZZV6jg19hrj4Ug"}
+
+2020.01.03 14:32:11.313 INFO  - [reactor-http-nio-8] com.swe.gateway.service.CityHandler lambda$testWebClient$7() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMzMTMxLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwNDAzMzF9.tv9PQfnQC2YVbG_sAD3zSyK3RmWebqpJqez_JSOCvIrD_4xDl05bJFi3BpbQsSagtmHlIGEYZZV6jg19hrj4Ug"}
+
+2020.01.03 14:32:18.109 INFO  - [reactor-http-nio-8] com.swe.gateway.service.CityHandler lambda$testWebClient$8() : {"code":401,"message":"未登录"}
+
+2020.01.03 14:32:18.207 INFO  - [reactor-http-nio-6] com.swe.gateway.service.CityHandler lambda$testWebClient$7() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMzMTM4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwNDAzMzh9.NKDsF0M0RV69xy8F3KaXhF7KsGhSXYHEDKjJlZwnrTjxV50ra4GFGaczwDtzF4wc9vLX3Nazw4DN4xBzFq97hA"}
+
+2020.01.03 14:32:18.210 INFO  - [reactor-http-nio-10] com.swe.gateway.service.CityHandler lambda$testWebClient$6() : {"msg":"登录成功","code":"200","token":"swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc4MDMzMTM4LCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1NzgwNDAzMzh9.NKDsF0M0RV69xy8F3KaXhF7KsGhSXYHEDKjJlZwnrTjxV50ra4GFGaczwDtzF4wc9vLX3Nazw4DN4xBzFq97hA"}
+
