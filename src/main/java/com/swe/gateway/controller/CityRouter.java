@@ -23,6 +23,6 @@ public class CityRouter {
     @Bean
     public RouterFunction<ServerResponse> postroute1(CityHandler handler) {
         return RouterFunctions.route(RequestPredicates.POST("/test/1").and(accept(MediaType.APPLICATION_JSON)),handler::test)
-                .and(RouterFunctions.route(RequestPredicates.POST("/test/2").and(accept(MediaType.APPLICATION_JSON)),handler::listCity));
+                .and(RouterFunctions.route(RequestPredicates.GET("/test/2"),handler::testWebClient));
     }
 }

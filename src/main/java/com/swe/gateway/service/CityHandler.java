@@ -8,6 +8,7 @@ import com.swe.gateway.model.City;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -95,11 +96,11 @@ public class CityHandler {
     public Mono<ServerResponse> listCity(ServerRequest request) {
         Mono <City> city = request.bodyToMono(City.class);
         return city.flatMap(s-> {
-            s.setCityName("wuhan");
-            logger.info(s.getCityName());
-            cityRepository.save(s);
-            Flux<City> cityFlux = findAllCity();
-            return ServerResponse.ok().contentType(APPLICATION_JSON).body(cityFlux, City.class);
+                    s.setCityName("wuhan");
+                    logger.info(s.getCityName());
+                    cityRepository.save(s);
+                    Flux<City> cityFlux = findAllCity();
+                    return ServerResponse.ok().contentType(APPLICATION_JSON).body(cityFlux, City.class);
                 }
         );
     }
@@ -115,22 +116,38 @@ public class CityHandler {
         });
     }
 
-    public static void main(String[] args) {
-        final City city = new City();
-        city.setId(1L);
-        city.setProvinceId(1L);
-        city.setCityName("111");
-        city.setDescription("222");
-        final WebClient webClient = WebClient.create();
-        final Mono<String> createdCity=webClient.get()
-                .uri("https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=15527972204")
-                .exchange()
-                .flatMap(clientResponse -> clientResponse.bodyToMono(String.class));
-        createdCity.flatMap(res->{
-            logger.info(res);
-            return Mono.just(res);
-        });
+    public Mono<ServerResponse> testWebClient(ServerRequest request) {
+        final WebClient webClient =WebClient.builder().baseUrl("http://localhost:8764").build();
+        Mono<String> resp=webClient.post()
+                .uri("/login/userLogin")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(Mono.just("{username:\"cbw\",password:\"cbw\"}"),String.class)
+                .retrieve().bodyToMono(String.class);
+        Mono<String> resp1=webClient.get()
+                .uri("/admin/info")
+                .header("token","swe-eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiIzIiwic3ViIjoiY2J3IiwiaWF0IjoxNTc3OTMxMzYxLCJpc3MiOiJjYnciLCJhdXRob3JpdGllcyI6Ilt7XCJhdXRob3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJleHAiOjE1Nzc5Mzg1NjF9.PPoRrLh_bEpyLh6YEdGdxECAFcrcpn6wT-uzsYeHvb_bwPUdh1WSAK3moXAxrXxtSZId7WDkPylyoxC8cmeRQA")
+                .retrieve().bodyToMono(String.class);
+        //通过订阅的方式异步获取响应结果
+        resp.subscribe(s->logger.info(s));
+        resp.subscribe(s->logger.info(s));
+        resp1.subscribe(s-> logger.info(s));
+
+        //block是阻塞获取方式，能够在当前线程拿到响应值,并且控制请求顺序逻辑 ====> 异步并不代表并发，block无法实现并发执行
+        // 不要为每一个响应单独添加block，这样会影响性能，好的处理方式是避免单独阻塞每个响应，而是组合响应结果zip
+       /* logger.info("test");
+        logger.info(resp.block());
+        logger.info(resp1.block());*/
+
+       /* Map map = Mono.zip(resp, resp1, (result1, result2) -> {
+            Map arrayList = new HashMap<>();
+            arrayList.put("result1", result1);
+            arrayList.put("result2", result2);
+            return arrayList;
+        }).block();*/
+
+        return ServerResponse.ok().build();
     }
+
 }
 
 

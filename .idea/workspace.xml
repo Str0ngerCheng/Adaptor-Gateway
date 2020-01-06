@@ -3,15 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="318652ad-7c30-4e94-acc9-b5feb49104c7" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swe/gateway/controller/CityRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swe/gateway/controller/CityRouter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/swe/gateway/service/CityHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swe/gateway/service/CityHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/swe/gateway/controller/CityRouter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swe/gateway/controller/CityRouter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/swe/gateway/service/CityHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swe/gateway/service/CityHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j2.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +90,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CityHandler">
+  <component name="RunManager" selected="Spring Boot.GateWayApplication">
     <configuration name="CityHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.swe.gateway.service.CityHandler" />
       <module name="Adaptor-Gateway" />
@@ -136,8 +132,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CityHandler" />
         <item itemvalue="Spring Boot.GateWayApplication" />
+        <item itemvalue="Application.CityHandler" />
         <item itemvalue="Application.FileUtil" />
       </list>
     </recent_temporary>
@@ -156,7 +152,10 @@
       <workItem from="1577515574038" duration="4699000" />
       <workItem from="1577526036673" duration="5063000" />
       <workItem from="1577694341759" duration="1716000" />
-      <workItem from="1577696166554" duration="28144000" />
+      <workItem from="1577696166554" duration="37557000" />
+      <workItem from="1577946456121" duration="635000" />
+      <workItem from="1577947298129" duration="108000" />
+      <workItem from="1577947497740" duration="11457000" />
     </task>
     <servers />
   </component>
