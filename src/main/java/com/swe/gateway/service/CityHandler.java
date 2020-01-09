@@ -2,7 +2,6 @@ package com.swe.gateway.service;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.swe.gateway.controller.ZigbeeController;
 import com.swe.gateway.dao.CityRepository;
 import com.swe.gateway.model.City;
 import org.apache.logging.log4j.LogManager;
@@ -32,7 +31,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 @Component
 public class CityHandler {
 
-    private static Logger logger = LogManager.getLogger(ZigbeeController.class.getName());
+    private static Logger logger = LogManager.getLogger(CityHandler.class.getName());
 
     /**
      * 数据操作的dao层的bean

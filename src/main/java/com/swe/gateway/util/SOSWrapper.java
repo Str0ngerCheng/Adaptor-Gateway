@@ -1,23 +1,26 @@
 package com.swe.gateway.util;
 
 import com.swe.gateway.model.StructObservation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
-import org.joda.time.DateTime;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.swe.gateway.util.FileUtil.formatXml;
 
 /**
  * @author cbw
@@ -29,6 +32,8 @@ public class SOSWrapper {
     private double latitude;
     private List<StructObservation> structObservations;
     private String sosAddress;
+    final private WebClient webClient =WebClient.create ();
+    private  Logger logger = LogManager.getLogger(SOSWrapper.class.getName());
 
     public SOSWrapper(String sensorID, String samplingTime, double longitude, double latitude, List<StructObservation> structObservations, String sosAddress) {
         this.sensorID = sensorID;
@@ -87,36 +92,28 @@ public class SOSWrapper {
         this.structObservations = structObservations;
     }
 
-    public String insertSOS()
+    public void insertSOS()
     {
         //构造SOS InsertObservation操作所需的O&M文档
         String requestContent="";
         try {
             requestContent = createSOSInsertObservationRequestXml ();
+            System.out.println (formatXml(requestContent) );
         }catch (Exception e){
             e.printStackTrace ();
         }
-        //响应数据
-        String responseXml = sendRequest(sosAddress, requestContent);
+       sendRequest(sosAddress, requestContent);
 
-        return responseXml;
     }
 
-    public String sendRequest(String URLString, String requestContent){
-        String resp = null;
-        String resultJudge="";
-        try {
-            resp = Jsoup.connect (URLString).method (
-                    Connection.Method.POST).data ("request", requestContent)
-                    .timeout (30000).ignoreContentType (true).header (
-                            "Content-Type", "application/xml; charset=UTF-8")
-                    .execute ( ).body ( );
+    public void sendRequest(String URLString, String requestContent){
 
-            resultJudge=FileUtil.formatXml(resp);
-        } catch (Exception e) {
-            e.printStackTrace ( );
-        }
-        return resultJudge;
+        Mono<String> resp=webClient.post()
+                .uri(URLString)
+                .contentType(MediaType.APPLICATION_XML)
+                .body(Mono.just(requestContent),String.class)
+                .retrieve().bodyToMono(String.class);
+        resp.subscribe(s->logger.info(s));
     }
 
     public String createSOSInsertObservationRequestXml (){
