@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.channels.FileLock;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class SOSWrapper {
     private String sosAddress;
     final private WebClient webClient = WebClient.create();
     private Logger logger = LogManager.getLogger(SOSWrapper.class.getName());
-
+    private FileLock lock = null;
     public SOSWrapper(String sensorID, String samplingTime, double longitude, double latitude, List<StructObservation> structObservations, String sosAddress) {
         this.sensorID = sensorID;
         this.samplingTime = samplingTime;
@@ -118,7 +119,6 @@ public class SOSWrapper {
     public String createSOSInsertObservationRequestXml() {
         String instantFilePath = FileUtil.getInstantFile();
         String tempFilePath = FileUtil.getTemporaryFile();
-
         FileInputStream fin = null;
         FileWriter fw = null;
         XMLWriter writer = null;
@@ -182,13 +182,14 @@ public class SOSWrapper {
             fw = new FileWriter(tempFilePath);
             writer = new XMLWriter(fw, format);//重新写回到原来的xml文件中
             writer.write(doc);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (DocumentException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             try {
                 writer.close();
                 fw.close();
@@ -201,5 +202,6 @@ public class SOSWrapper {
 
         return requestContent;
     }
+
 
 }

@@ -3,7 +3,6 @@ package com.swe.gateway.dao;
 import com.swe.gateway.config.NBIOTConfig;
 import com.swe.gateway.model.NBIOT;
 import com.swe.gateway.model.StructObservation;
-import com.swe.gateway.util.NBIOTUtil;
 import com.swe.gateway.util.SOSWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,11 +46,11 @@ public class NBIOTRepository {
             for (SOSWrapper sosWrapper : sosWrappers) {
                 if (sosWrapper != null) {
                     try {
-                        NBIOTUtil.formatXml(sosWrapper.createSOSInsertObservationRequestXml());
+                        sosWrapper.insertSOS();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    sosWrapper.insertSOS();
+
                 }
             }
         }

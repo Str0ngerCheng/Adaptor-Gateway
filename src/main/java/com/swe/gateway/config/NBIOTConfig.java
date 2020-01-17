@@ -11,8 +11,8 @@ public class NBIOTConfig {
     public static final String Starting_Address = "0";
     public static final String Slave_Address = "1";
     public static final int Socket_TimeOut = 200000;
-    public static final String SOS_Url = "http://gsw.whu.edu.cn:8080/MongoSOS/sos";
-
+    public static final String SOS_Url = "http://202.114.118.60:8000/SOSonCluster/sos";
+    //public static final String SOS_Url = "http://gsw.whu.edu.cn:8080/MongoSOS/sos";
     public static final String Platform_ID="urn:ogc:feature:insitusensor:platform:Node001";
     public static final double Latitude=30.46921;
     public static final double Longitude=114.35593;
@@ -63,9 +63,4 @@ public class NBIOTConfig {
     public static final String SoilHumidity_ObsResultName="土壤湿度";
     public static final String SoilHumidity_ObsResultUom="%";
 
-//public static void main(String [] args){
-//    long time1 = 1627767665;
-//    String result1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(time1 * 1000));
-//    System.out.println("10位数的时间戳（秒）--->Date:" + result1);
-//}
 }
