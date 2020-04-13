@@ -38,6 +38,11 @@
             <swe:field name="Time">
               <swe:Time definition="http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"/>
             </swe:field>
+            <swe:field name="风速">
+              <swe:Quantity definition="urn:ogc:def:property:OGC:1.0:WindSpeed">
+                <swe:uom code="m/s"/>
+              </swe:Quantity>
+            </swe:field>
           </swe:DataRecord>
         </swe:elementType>
         <swe:encoding>

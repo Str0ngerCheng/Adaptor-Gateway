@@ -4,14 +4,12 @@ package com.swe.gateway.service;
 import com.alibaba.fastjson.JSONObject;
 import com.swe.gateway.config.SOSConfig;
 import com.swe.gateway.config.ZigbeeConfig;
-import com.swe.gateway.dao.CityRepository;
 import com.swe.gateway.model.StructObservation;
 import com.swe.gateway.util.ConvertUtil;
 import com.swe.gateway.util.SOSWrapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -38,21 +36,6 @@ public class ZigbeeHandler {
 
     private static Logger logger = LogManager.getLogger(ZigbeeHandler.class.getName());
 
-    /**
-     * 数据操作的dao层的bean
-     */
-    private final CityRepository cityRepository;
-
-    /**
-     * 通过构造器注入初始化属性cityRepository
-     * @param cityRepository
-     */
-    @Autowired
-    public ZigbeeHandler(CityRepository cityRepository) {
-        this.cityRepository = cityRepository;
-    }
-
-
     //测试数据：{"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
     public Mono<ServerResponse> parseAndSendZigbeeData(ServerRequest request) {
         Mono <String> str = request.bodyToMono(String.class);
@@ -63,8 +46,6 @@ public class ZigbeeHandler {
             byte[] r_buffer=new byte[datas.length];
             for(int i=0;i<datas.length;i++)
                 r_buffer[i]=Byte.parseByte (datas[i]);
-
-
             List<SOSWrapper> sosWrappers = new ArrayList<SOSWrapper>();//传感器SOS封装类对象列表
             List<StructObservation> lstStructObs01;//传感器观测信息结构体列表
             List<StructObservation> lstStructObs02;//传感器观测信息结构体列表
