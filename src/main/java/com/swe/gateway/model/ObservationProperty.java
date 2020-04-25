@@ -22,8 +22,10 @@ public class ObservationProperty implements Serializable {
     private Integer obsPropId;
     @TableField("obs_prop_name")
     private String obsPropName;
-    @TableField("value_tpye")
-    private Integer valueTpye;
+    @TableField("value_type")
+    private Integer valueType;
+    @TableField("uom")
+    private String uom;
     @TableField("decription")
     private String decription;
 
@@ -44,12 +46,20 @@ public class ObservationProperty implements Serializable {
         this.obsPropName = obsPropName;
     }
 
-    public Integer getValueTpye() {
-        return valueTpye;
+    public Integer getValueType() {
+        return valueType;
     }
 
-    public void setValueTpye(Integer valueTpye) {
-        this.valueTpye = valueTpye;
+    public void setValueType(Integer valueType) {
+        this.valueType = valueType;
+    }
+
+    public String getUom() {
+        return uom;
+    }
+
+    public void setUom(String uom) {
+        this.uom = uom;
     }
 
     public String getDecription() {
@@ -63,10 +73,11 @@ public class ObservationProperty implements Serializable {
     @Override
     public String toString() {
         return "ObservationProperty{" +
-        "obsPropId=" + obsPropId +
-        ", obsPropName=" + obsPropName +
-        ", valueTpye=" + valueTpye +
-        ", decription=" + decription +
-        "}";
+                "obsPropId=" + obsPropId +
+                ", obsPropName=" + obsPropName +
+                ", valueType=" + valueType +
+                ", uom=" + uom +
+                ", decription=" + decription +
+                "}";
     }
 }

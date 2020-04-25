@@ -6,13 +6,14 @@
     <resultMap id="BaseResultMap" type="com.swe.gateway.model.ObservationProperty">
         <id column="obs_prop_id" property="obsPropId" />
         <result column="obs_prop_name" property="obsPropName" />
-        <result column="value_tpye" property="valueTpye" />
+        <result column="value_type" property="valueType" />
+        <result column="uom" property="uom" />
         <result column="decription" property="decription" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        obs_prop_id, obs_prop_name, value_tpye, decription
+        obs_prop_id, obs_prop_name, value_type, uom, decription
     </sql>
 
     <select id="getTypesBySensorId" resultType="java.lang.String">
@@ -20,4 +21,14 @@
           ( select distinct obs_prop_id from `sensor_obs_prop` where sensor_id=#{sensorId})
     </select>
 
+    <select id="getTypeIdsByTypes" resultType="java.lang.String">
+         select distinct obs_prop_id from `observation_property` where obs_prop_name in
+        <foreach collection="types" open="(" separator="," close=")" item="type">
+            #{type}
+        </foreach>
+    </select>
+
+    <select id="getObsPropByType" resultMap="BaseResultMap">
+         select * from `observation_property` where obs_prop_name=#{type}
+    </select>
 </mapper>

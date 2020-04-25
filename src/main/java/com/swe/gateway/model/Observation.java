@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -28,10 +29,10 @@ public class Observation implements Serializable {
     private Integer day;
     @TableField("hour")
     private Integer hour;
-    @TableField("timestamp")
-    private Integer timestamp;
     @TableField("obs_value")
     private String obsValue;
+    @TableField("timestamp")
+    private Date timestamp;
 
 
     public Integer getObservationId() {
@@ -74,20 +75,20 @@ public class Observation implements Serializable {
         this.hour = hour;
     }
 
-    public Integer getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Integer timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public String getObsValue() {
         return obsValue;
     }
 
     public void setObsValue(String obsValue) {
         this.obsValue = obsValue;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
     @Override
@@ -98,8 +99,8 @@ public class Observation implements Serializable {
         ", obsPropId=" + obsPropId +
         ", day=" + day +
         ", hour=" + hour +
-        ", timestamp=" + timestamp +
         ", obsValue=" + obsValue +
+        ", timestamp=" + timestamp +
         "}";
     }
 }

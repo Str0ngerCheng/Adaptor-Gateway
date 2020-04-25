@@ -9,13 +9,17 @@
         <result column="obs_prop_id" property="obsPropId" />
         <result column="day" property="day" />
         <result column="hour" property="hour" />
-        <result column="timestamp" property="timestamp" />
         <result column="obs_value" property="obsValue" />
+        <result column="timestamp" property="timestamp" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        observation_id, sensor_id, obs_prop_id, day, hour, timestamp, obs_value
+        observation_id, sensor_id, obs_prop_id, day, hour, obs_value, timestamp
     </sql>
+
+    <select id="getHistoryData" resultMap="BaseResultMap">
+         select * from `observation` where sensor_id=#{sensorId} and obs_prop_id=#{typeId} and day between #{start} and #{end}
+    </select>
 
 </mapper>

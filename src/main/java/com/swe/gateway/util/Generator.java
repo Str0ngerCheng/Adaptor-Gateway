@@ -14,7 +14,7 @@ public class Generator {
 
     public static void main(String[] args) {
         Generator.generateByTables (false,"com.swe.gateway"
-                ,"cbw", "adapter","sensor_obs_prop");
+                ,"cbw", "adapter","observation");
 
     }
 

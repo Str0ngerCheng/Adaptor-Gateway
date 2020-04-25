@@ -19,4 +19,10 @@ import java.util.List;
 public interface ObservationPropertyMapper extends BaseMapper<ObservationProperty> {
     List<String> getTypesBySensorId(@Param("sensorId")Integer sensorId);
 
+    List<String> getTypeIdsByTypes(@Param("types")List<String> types);
+
+    ObservationProperty getObsPropByType(@Param("type")String type);
+
+
+
 }

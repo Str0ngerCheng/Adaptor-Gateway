@@ -5,6 +5,8 @@ import com.swe.gateway.model.Sensor;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -15,6 +17,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SensorMapper extends BaseMapper<Sensor> {
-    Sensor getSensorsByName(@Param("name") String name, @Param("protocol") String protocol);
+    Sensor getSensorByName(@Param("name") String name);
+
+    List<Sensor> getSensorsByType(@Param("typeId") String typeId, @Param("protocol") String protocol);
+
 
 }

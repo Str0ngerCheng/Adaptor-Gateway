@@ -17,8 +17,13 @@
     <sql id="Base_Column_List">
         sensor_id, sensor_name, is_insitu, location, status, protocol, decription
     </sql>
-    <select id="getSensorsByName" resultMap="BaseResultMap">
-         select * from `sensor` where sensor_name=#{name} and protocol=#{protocol}
- </select>
+    <select id="getSensorByName" resultMap="BaseResultMap">
+         select * from `sensor` where sensor_name=#{name}
+    </select>
+    <select id="getSensorsByType" resultMap="BaseResultMap">
+         select * from `sensor` where sensor_id in
+         (select distinct sensor_id from `sensor_obs_prop` where obs_prop_id=#{typeId})
+         and protocol=#{protocol}
+    </select>
 
 </mapper>

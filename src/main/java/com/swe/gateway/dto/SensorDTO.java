@@ -4,37 +4,37 @@ import com.swe.gateway.model.Sensor;
 
 import java.io.Serializable;
 
-public class SensorDTO implements Serializable {
+public class SensorDTO implements Serializable , Comparable<SensorDTO> {
     private static final long serialVersionUID = 1L;
-    private Integer sensorId;
-    private String sensorName;
+    private Integer id;
+    private String name;
     private String location;
     private Integer status;
     private String protocol;
     private String type;
     public SensorDTO(Sensor sensor, String type){
-        this.sensorId=sensor.getSensorId();
-        this.sensorName=sensor.getSensorName();
-        this.location=sensor.getLocation();
+        this.id=sensor.getSensorId();
+        this.name=sensor.getSensorName();
+        this.location=sensor.getLocation().replaceFirst(","," ");
         this.status=sensor.getStatus();
         this.protocol=sensor.getProtocol();
         this.type=type;
     }
 
-    public Integer getSensorId() {
-        return sensorId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSensorId(Integer sensorId) {
-        this.sensorId = sensorId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getSensorName() {
-        return sensorName;
+    public String getName() {
+        return name;
     }
 
-    public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLocation() {
@@ -67,5 +67,11 @@ public class SensorDTO implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public int compareTo(SensorDTO o) {
+        int value=this.name.compareTo(o.name);
+        return value==0?this.type.compareTo(o.type):value;
     }
 }
