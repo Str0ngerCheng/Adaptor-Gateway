@@ -2,150 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="318652ad-7c30-4e94-acc9-b5feb49104c7" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swe/gateway/config/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swe/gateway/controller/LoginRouter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/swe/gateway/service/LoginHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/actions.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/apikey_manage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/batch.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/change_password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/deploy.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/device.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/devices_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/edit_action.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/edit_device.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/edit_product.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/edit_sensor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/framework-log.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/new_action.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/new_sensor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/notifications.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/product.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/product_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/css/framework.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/css/jquery.tagsinput.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/css/switch.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/basic.icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/basic.icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/basic.icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/basic.icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/icons.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/fonts/icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/arrow-white-l2r.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/avatar-default.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/bg-uniform.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/devicedomo01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/icon-sprite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/icon_search.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/icon_weibo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/loader-large-inverted.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/loader-large.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/loader-medium-inverted.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/loader-medium.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/loader-mini-inverted.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/loader-mini.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/loader-small-inverted.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/loader-small.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/logo_footer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/navbar_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/photo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/images/yeelink-avatar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/ZeroClipboard.swf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/alert.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/framework.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/jquery.tagsinput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/jquery.zclip.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/new_action.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/semantic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/semantic.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/resource/javascript/user_new_devices.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/user_profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/swe/gateway/config/CorsConfig$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/swe/gateway/config/CorsConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/swe/gateway/controller/LoginRouter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/swe/gateway/service/LoginHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/actions.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/apikey_manage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/batch.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/change_password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/deploy.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/device.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/devices_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/edit_action.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/edit_device.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/edit_product.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/edit_sensor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/framework-log.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/new_action.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/new_sensor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/notifications.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/product.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/product_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/css/framework.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/css/jquery.tagsinput.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/css/switch.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/basic.icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/basic.icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/basic.icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/basic.icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/arrow-white-l2r.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/avatar-default.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/bg-uniform.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/devicedomo01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/icon-sprite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/icon_search.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/icon_weibo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/loader-large-inverted.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/loader-large.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/loader-medium-inverted.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/loader-medium.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/loader-mini-inverted.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/loader-mini.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/loader-small-inverted.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/loader-small.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/logo_footer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/navbar_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/photo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/images/yeelink-avatar.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/ZeroClipboard.swf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/alert.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/framework.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/jquery.tagsinput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/jquery.zclip.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/new_action.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/semantic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/semantic.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/resource/javascript/user_new_devices.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/user_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/swe/gateway/controller/SensorRouter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/swe/gateway/service/ZigbeeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swe/gateway/service/ZigbeeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/Adaptor-Gateway.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/Adaptor-Gateway.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/swe/gateway/service/ZigbeeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swe/gateway/service/ZigbeeHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templateFile/InsertObservation_Instant.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templateFile/InsertObservation_Instant.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templateFile/InsertObservation_Temp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templateFile/InsertObservation_Temp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swe/gateway/GateWayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/swe/gateway/GateWayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/swe/gateway/dao/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/swe/gateway/GateWayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/swe/gateway/GateWayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/actions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/add.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/apikey_manage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/batch.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/change_password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/deploy.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/device.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/devices_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/edit_action.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/edit_device.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/edit_product.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/edit_sensor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/framework-log.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/new_action.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/new_sensor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/notifications.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/product.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/product_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/css/framework.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/css/jquery.tagsinput.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/css/switch.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/basic.icons.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/basic.icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/basic.icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/basic.icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/fonts/icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/arrow-white-l2r.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/avatar-default.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/bg-uniform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/devicedomo01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/icon-sprite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/icon_search.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/icon_weibo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/loader-large-inverted.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/loader-large.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/loader-medium-inverted.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/loader-medium.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/loader-mini-inverted.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/loader-mini.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/loader-small-inverted.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/loader-small.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/logo_footer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/navbar_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/photo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/images/yeelink-avatar.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/ZeroClipboard.swf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/alert.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/framework.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/jquery.tagsinput.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/jquery.zclip.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/new_action.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/semantic.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/semantic.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/resource/javascript/user_new_devices.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/user_profile.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +90,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Kotlin File" />
         <option value="Class" />
       </list>
     </option>
@@ -187,25 +117,43 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1578321485447" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Adaptor-Web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.swe.gateway.config" />
+      <recent name="com.swe.gateway.util" />
       <recent name="com.swe.gateway.service" />
       <recent name="com.swe.gateway.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\学习\SensorWeb\swe_project\Adaptor-Gateway\src\main\resources" />
       <recent name="E:\学习\SensorWeb\swe_project\Adaptor-Gateway\src\main\resources\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.GateWayApplication">
+  <component name="RunManager" selected="Application.Generator">
     <configuration name="FileUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.swe.gateway.util.FileUtil" />
+      <module name="Adaptor-Gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.swe.gateway.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.swe.gateway.util.Generator" />
       <module name="Adaptor-Gateway" />
       <extension name="coverage">
         <pattern>
@@ -232,6 +180,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Generator" />
         <item itemvalue="Spring Boot.GateWayApplication" />
         <item itemvalue="Application.FileUtil" />
       </list>
@@ -257,7 +206,8 @@
       <workItem from="1586531230895" duration="1794000" />
       <workItem from="1586591724536" duration="6052000" />
       <workItem from="1586659491997" duration="5847000" />
-      <workItem from="1586741369108" duration="5695000" />
+      <workItem from="1586741369108" duration="7653000" />
+      <workItem from="1587729425128" duration="21912000" />
     </task>
     <servers />
   </component>
@@ -265,42 +215,62 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="458" y="105" key="FileChooserDialogImpl" timestamp="1586747201755">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1587750560806">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="458" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586747201755" />
-    <state width="1323" height="184" key="GridCell.Tab.0.bottom" timestamp="1586748121397">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1587750560806" />
+    <state x="458" y="105" key="FileChooserDialogImpl" timestamp="1587732737757">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586748121397" />
-    <state width="1323" height="184" key="GridCell.Tab.0.center" timestamp="1586748121397">
+    <state x="458" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587732737757" />
+    <state width="1323" height="184" key="GridCell.Tab.0.bottom" timestamp="1587782267521">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1586748121397" />
-    <state width="1323" height="184" key="GridCell.Tab.0.left" timestamp="1586748121397">
+    <state width="1323" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587782267521" />
+    <state width="1323" height="184" key="GridCell.Tab.0.center" timestamp="1587782267521">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1586748121397" />
-    <state width="1323" height="184" key="GridCell.Tab.0.right" timestamp="1586748121397">
+    <state width="1323" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587782267521" />
+    <state width="1323" height="184" key="GridCell.Tab.0.left" timestamp="1587782267521">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1586748121397" />
-    <state width="1323" height="184" key="GridCell.Tab.1.bottom" timestamp="1586748121397">
+    <state width="1323" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587782267521" />
+    <state width="1323" height="184" key="GridCell.Tab.0.right" timestamp="1587782267521">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="184" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1586748121397" />
-    <state width="1323" height="184" key="GridCell.Tab.1.center" timestamp="1586748121397">
+    <state width="1323" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587782267521" />
+    <state width="1323" height="184" key="GridCell.Tab.1.bottom" timestamp="1587781962825">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="184" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1586748121397" />
-    <state width="1323" height="184" key="GridCell.Tab.1.left" timestamp="1586748121397">
+    <state width="1323" height="184" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587781962825" />
+    <state width="1323" height="184" key="GridCell.Tab.1.center" timestamp="1587781962824">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="184" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1586748121397" />
-    <state width="1323" height="184" key="GridCell.Tab.1.right" timestamp="1586748121397">
+    <state width="1323" height="184" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1587781962824" />
+    <state width="1323" height="184" key="GridCell.Tab.1.left" timestamp="1587781962824">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="184" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1586748121397" />
+    <state width="1323" height="184" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1587781962824" />
+    <state width="1323" height="184" key="GridCell.Tab.1.right" timestamp="1587781962824">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="184" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1587781962824" />
+    <state width="1323" height="223" key="GridCell.Tab.2.bottom" timestamp="1587744750438">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587744750438" />
+    <state width="1323" height="223" key="GridCell.Tab.2.center" timestamp="1587744750438">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1587744750438" />
+    <state width="1323" height="223" key="GridCell.Tab.2.left" timestamp="1587744750438">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1587744750438" />
+    <state width="1323" height="223" key="GridCell.Tab.2.right" timestamp="1587744750438">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="223" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1587744750438" />
     <state x="74" y="12" key="SettingsEditor" timestamp="1586419941339">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
