@@ -1,5 +1,3 @@
-
-
 package com.swe.gateway.util;
 
 import com.swe.gateway.model.StructObservation;
@@ -19,9 +17,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.channels.FileLock;
 import java.util.Iterator;
 import java.util.List;
+
+import static com.swe.gateway.util.FileUtil.formatXml;
 
 /**
  * @author cbw
@@ -33,9 +32,9 @@ public class SOSWrapper {
     private double latitude;
     private List<StructObservation> structObservations;
     private String sosAddress;
-    final private WebClient webClient = WebClient.create();
-    private Logger logger = LogManager.getLogger(SOSWrapper.class.getName());
-    private FileLock lock = null;
+    final private WebClient webClient =WebClient.create ();
+    private  Logger logger = LogManager.getLogger(SOSWrapper.class.getName());
+
     public SOSWrapper(String sensorID, String samplingTime, double longitude, double latitude, List<StructObservation> structObservations, String sosAddress) {
         this.sensorID = sensorID;
         this.samplingTime = samplingTime;
@@ -93,115 +92,124 @@ public class SOSWrapper {
         this.structObservations = structObservations;
     }
 
-    public void insertSOS() {
+    public void insertSOS()
+    {
         //构造SOS InsertObservation操作所需的O&M文档
-        String requestContent = "";
+        String requestContent="";
         try {
-            requestContent = createSOSInsertObservationRequestXml();
-            //System.out.println(formatXml(requestContent));
-        } catch (Exception e) {
-            e.printStackTrace();
+            requestContent = createSOSInsertObservationRequestXml ();
+            System.out.println (formatXml(requestContent) );
+        }catch (Exception e){
+            e.printStackTrace ();
         }
-        sendRequest(sosAddress, requestContent);
+       sendRequest(sosAddress, requestContent);
 
     }
 
-    public void sendRequest(String URLString, String requestContent) {
+    public void sendRequest(String URLString, String requestContent){
 
-        Mono<String> resp = webClient.post()
+        Mono<String> resp=webClient.post()
                 .uri(URLString)
                 .contentType(MediaType.APPLICATION_XML)
-                .body(Mono.just(requestContent), String.class)
+                .body(Mono.just(requestContent),String.class)
                 .retrieve().bodyToMono(String.class);
-        resp.subscribe(s -> logger.info(s));
+        resp.subscribe(s->logger.info(s));
     }
 
-    public String createSOSInsertObservationRequestXml() {
-        String instantFilePath = FileUtil.getInstantFile();
-        String tempFilePath = FileUtil.getTemporaryFile();
+    public String createSOSInsertObservationRequestXml (){
+        String instantFilePath=FileUtil.getInstantFile ();
+        String tempFilePath=FileUtil.getTemporaryFile ();
+
         FileInputStream fin = null;
-        FileWriter fw = null;
-        XMLWriter writer = null;
+        FileWriter fw=null;
+        XMLWriter writer=null;
         try {
-            fin = new FileInputStream(instantFilePath);
+            fin = new FileInputStream (instantFilePath);
             SAXReader reader = new SAXReader();
-            reader.setEncoding("UTF-8");
+            reader.setEncoding ("UTF-8");
             Document doc = reader.read(fin, "UTF-8");
             // 获取根标签对象
             Element rootElement = doc.getRootElement();
             // 获取根标签下的子标签 默认获取的是第一个子标签
             Element IdElement = rootElement.element("AssignedSensorId");
-            IdElement.setText(sensorID);
+            IdElement.setText (sensorID);
             Element ObsElement = rootElement.element("Observation");
-            for (Iterator iter = ObsElement.elementIterator(); iter.hasNext(); ) {
-                Element element = (Element) iter.next(); // 获取标签对象
-                if (element.getQualifiedName().equals("om:samplingTime")) {
-                    Element timePositionElement = element.element("TimeInstant").element("timePosition");
-                    timePositionElement.setText(samplingTime);
-                } else if (element.getQualifiedName().equals("om:procedure")) {
-                    element.attribute("href").setValue(sensorID);
-                } else if (element.getQualifiedName().equals("om:observedProperty")) {
-                    Element compositePhenomenonElement = element.element("CompositePhenomenon");
+            for (Iterator iter = ObsElement.elementIterator(); iter.hasNext();) {
+                Element element = (Element) iter.next ( ); // 获取标签对象
+                if(element.getQualifiedName ().equals ("om:samplingTime")) {
+                    Element timePositionElement = element.element ("TimeInstant").element ("timePosition");
+                    timePositionElement.setText (samplingTime);
+                }
+                else if(element.getQualifiedName ().equals ("om:procedure")) {
+                    element.attribute ("href").setValue (sensorID);
+                }
 
-                    for (StructObservation structObservation : structObservations) {
-                        Element e_obsPropertyElement = compositePhenomenonElement.addElement("swe:component");
-                        String attrValue = "urn:ogc:def:property:OGC:1.0:" + structObservation.getObservedProperty();
-                        e_obsPropertyElement.addAttribute("xlink:href", attrValue);
+                else if(element.getQualifiedName ().equals ("om:observedProperty")) {
+                    Element compositePhenomenonElement = element.element ("CompositePhenomenon");
+
+                    for(StructObservation structObservation:structObservations) {
+                        Element e_obsPropertyElement = compositePhenomenonElement.addElement ("swe:component");
+                        String attrValue="urn:ogc:def:property:OGC:1.0:" + structObservation.getObservedProperty ();
+                        e_obsPropertyElement.addAttribute ("xlink:href", attrValue);
                     }
-                } else if (element.getQualifiedName().equals("om:featureOfInterest")) {
-                    Element samplingPointElement = element.element("SamplingPoint");
-                    samplingPointElement.attribute("id").setValue(latitude + " " + longitude);
-                    samplingPointElement.element("name").setText(latitude + " " + longitude);
-                    samplingPointElement.element("position").element("Point").element("pos").setText(latitude + " " + longitude);
-                } else if (element.getQualifiedName().equals("om:result")) {
-                    Element dataArrayElement = element.element("DataArray");
-                    String resultValue = "";
-                    for (StructObservation structObservation : structObservations) {
-                        Element fieldElement = dataArrayElement.element("elementType").element("DataRecord").addElement("swe:field");
-                        fieldElement.addAttribute("name", structObservation.getObservedResultName());
+                }
+                else if(element.getQualifiedName ().equals ("om:featureOfInterest")) {
+                    Element samplingPointElement = element.element ("SamplingPoint");
+                    samplingPointElement.attribute ("id").setValue (latitude + " " + longitude);
+                    samplingPointElement.element ("name").setText (latitude + " " + longitude);
+                    samplingPointElement.element ("position").element ("Point").element ("pos").setText (latitude + " " + longitude);
+                }
 
-                        Element quantityElement = fieldElement.addElement("swe:Quantity");
-                        String quantityAttr = "urn:ogc:def:property:OGC:1.0:" + structObservation.getObservedProperty();
-                        quantityElement.addAttribute("definition", quantityAttr);
+                else if(element.getQualifiedName ().equals ("om:result")) {
+                    Element dataArrayElement = element.element ("DataArray");
+                    String resultValue="";
+                    for(StructObservation structObservation:structObservations) {
+                        Element fieldElement=dataArrayElement.element ("elementType").element ("DataRecord").addElement ("swe:field");
+                        fieldElement.addAttribute ("name",structObservation.getObservedResultName ());
 
-                        Element uomElement = quantityElement.addElement("swe:uom");
-                        uomElement.addAttribute("code", structObservation.getUom());
+                        Element quantityElement=fieldElement.addElement ("swe:Quantity");
+                        String quantityAttr="urn:ogc:def:property:OGC:1.0:" + structObservation.getObservedProperty ();
+                        quantityElement.addAttribute ("definition",quantityAttr);
 
-                        if (structObservations.indexOf(structObservation) == structObservations.size() - 1) {
-                            resultValue += structObservation.getResultValue();
-                        } else {
-                            resultValue += structObservation.getResultValue() + ",";
+                        Element uomElement=quantityElement.addElement ("swe:uom");
+                        uomElement.addAttribute ("code",structObservation.getUom ());
+
+                        if (structObservations.indexOf(structObservation) == structObservations.size () - 1)
+                        {
+                            resultValue += structObservation.getResultValue ();
+                        }
+                        else
+                        {
+                            resultValue += structObservation.getResultValue ()+",";
                         }
                     }
-                    dataArrayElement.element("values").setText(samplingTime + "," + resultValue + ";");
+                    dataArrayElement.element ("values").setText (samplingTime+","+resultValue+";");
                 }
             }
             OutputFormat format = OutputFormat.createPrettyPrint();
-            format.setEncoding("UTF-8");
+            format.setEncoding ("UTF-8");
 
-            fw = new FileWriter(tempFilePath);
-            writer = new XMLWriter(fw, format);//重新写回到原来的xml文件中
+            fw=new FileWriter (tempFilePath);
+            writer= new XMLWriter(fw, format);//重新写回到原来的xml文件中
             writer.write(doc);
-
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            e.printStackTrace ( );
         } catch (DocumentException e) {
-            e.printStackTrace();
+            e.printStackTrace ( );
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace ( );
         }finally {
             try {
-                writer.close();
-                fw.close();
-                fin.close();
+                writer.close ();
+                fw.close ();
+                fin.close ();
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace ( );
             }
         }
-        String requestContent = FileUtil.readFileContent(tempFilePath, "UTF-8");
+        String requestContent=FileUtil.readFileContent(tempFilePath,"UTF-8");
 
         return requestContent;
     }
-
 
 }
