@@ -1,0 +1,28 @@
+server:
+  port: 8081
+logging:
+  config: classpath:log4j2.xml
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://175.24.66.249:3306/adapter?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: swe123,./
+    dbcp2:
+      validation-query: SELECT 1
+      time-between-eviction-runs-millis: 18800
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 5
+      maximum-pool-size: 12
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      auto-commit: true
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+
+mybatis-plus:
+  mapper-locations: classpath:/com/swe/gateway/dao/*.xml

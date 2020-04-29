@@ -17,9 +17,21 @@ import java.util.List;
  */
 @Repository
 public interface SensorMapper extends BaseMapper<Sensor> {
-    Sensor getSensorByName(@Param("name") String name);
+    Sensor getSensorByName(@Param("sensorName") String sensorName);
 
     List<Sensor> getSensorsByType(@Param("typeId") String typeId, @Param("protocol") String protocol);
+
+    int addSensor(Sensor sensor);
+
+    int deleteSensor(@Param("sensorName")String sensorName,@Param("protocol") String protocol);
+
+    int updateSensor(Sensor sensor);
+
+    List<Sensor> getAllSensor();
+
+    Sensor getSensorById(@Param("sensorId")Integer sensorId);
+
+    List<Sensor> getSensorsByProtocol( @Param("protocol") String protocol);
 
 
 }

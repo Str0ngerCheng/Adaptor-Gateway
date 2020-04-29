@@ -61,7 +61,7 @@ public class Generator {
 
         config.setActiveRecord(false)
                 .setAuthor(author)
-                .setOutputDir("E:\\学习\\SensorWeb\\swe_project\\Adaptor-Gateway\\src\\main\\java")
+                .setOutputDir("E:\\系统开发\\软网关\\java")
                 .setFileOverride(true)
                 .setEnableCache(false);
 

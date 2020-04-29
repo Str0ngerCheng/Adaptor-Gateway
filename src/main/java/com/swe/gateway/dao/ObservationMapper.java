@@ -20,4 +20,8 @@ public interface ObservationMapper extends BaseMapper<Observation> {
     List<Observation> getHistoryData(@Param("sensorId")int sensorId,@Param("typeId")int typeId,
                                      @Param("start")int start,@Param("end")int end);
 
+    int deleteObservation(@Param("sensorId")Integer sensorId, @Param("obsPropId")Integer obsPropId);
+
+    Observation getObservationByIds(@Param("sensorId")Integer sensorId, @Param("obsPropId")Integer obsPropId);
+
 }
