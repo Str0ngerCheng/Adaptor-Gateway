@@ -38,5 +38,9 @@
          select * from observation_property where obs_prop_id=#{obsPropId}
     </select>
 
+    <select id="getAllObsPropNames" resultType="java.lang.String">
+         select distinct obs_prop_name from observation_property
+    </select>
+
 
 </mapper>

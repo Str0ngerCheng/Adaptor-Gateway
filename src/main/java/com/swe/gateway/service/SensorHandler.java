@@ -201,7 +201,7 @@ public class SensorHandler {
             Integer sensorId=sensorObsProp.getSensorId();
             Integer obsPropId=sensorObsProp.getObsPropId();
             Sensor sensor=sensorMapper.getSensorById(sensorId);
-         //   Observation observation=observationMapper.getObservationByIds(sensorId,obsPropId);
+            /* Observation observation=observationMapper.getObservationByIds(sensorId,obsPropId); */
             ObservationProperty observationProperty=observationPropertyMapper.getObsPropById(obsPropId);
 
             SensorDTO sensorObservation=new SensorDTO(sensor,observationProperty.getObsPropName());
