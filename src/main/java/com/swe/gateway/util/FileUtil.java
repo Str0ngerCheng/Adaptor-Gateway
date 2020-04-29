@@ -32,6 +32,7 @@ public class FileUtil {
             while ((tempcontent = br.readLine()) != null) {
                 content += tempcontent;
             }
+            br.close();
             isr.close ();
         } catch (Exception e) {
 

@@ -15,7 +15,7 @@ public class LoginRouter {
 
     @Bean
     public RouterFunction<ServerResponse> loginRoute(LoginHandler handler) {
-        return RouterFunctions.route(RequestPredicates.POST("/Vue-Admin/login")
+        return RouterFunctions.route(RequestPredicates.POST("/login")
                 .and(accept(MediaType.APPLICATION_JSON)),handler::login);
     }
 }

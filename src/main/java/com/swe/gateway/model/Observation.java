@@ -34,6 +34,15 @@ public class Observation implements Serializable {
     @TableField("timestamp")
     private Date timestamp;
 
+    public Observation(Integer sensorId, Integer obsPropId, Integer day, Integer hour, String obsValue, Date timestamp) {
+        this.sensorId = sensorId;
+        this.obsPropId = obsPropId;
+        this.day = day;
+        this.hour = hour;
+        this.obsValue = obsValue;
+        this.timestamp = timestamp;
+    }
+    public Observation(){}
 
     public Integer getObservationId() {
         return observationId;

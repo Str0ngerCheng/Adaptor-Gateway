@@ -7,9 +7,9 @@ public class StructObservation {
     private String observedProperty;
     private String observedResultName;
     private String uom;
-    private String resultValue;
+    private double resultValue;
 
-    public StructObservation(String observedProperty, String observedResultName, String uom, String resultValue)
+    public StructObservation(String observedProperty, String observedResultName, String uom, double resultValue)
     {
         this.observedProperty = observedProperty;
         this.observedResultName = observedResultName;
@@ -41,11 +41,11 @@ public class StructObservation {
         this.uom = uom;
     }
 
-    public String getResultValue() {
+    public double getResultValue() {
         return resultValue;
     }
 
-    public void setResultValue(String resultValue) {
+    public void setResultValue(double resultValue) {
         this.resultValue = resultValue;
     }
 
