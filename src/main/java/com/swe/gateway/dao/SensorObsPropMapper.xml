@@ -16,4 +16,29 @@
         idsensor_obs_prop, sensor_id, obs_prop_id, dynamic_range, observation_accuracy
     </sql>
 
+   <insert id="addSenObsPro">
+      insert into sensor_obs_prop(sensor_id,obs_prop_id) values (#{sensorId},#{obsPropId})
+   </insert>
+
+    <delete id="deleteSenObsPro">
+        delete from sensor_obs_prop where sensor_id=#{sensorId} and obs_prop_id=#{obsPropId}
+    </delete>
+
+    <select id="getAllSensorObsProp" resultMap="BaseResultMap">
+        select * from sensor_obs_prop
+    </select>
+
+    <select id="getByObsPropId" resultMap="BaseResultMap">
+        select * from sensor_obs_prop where obs_prop_id=#{obsPropId}
+    </select>
+
+    <select id="getBySensorId" resultMap="BaseResultMap">
+        select * from sensor_obs_prop where sensor_id=#{sensorId}
+    </select>
+
+    <select id="getSenObsProByProtocol" resultMap="BaseResultMap">
+        select * from sensor_obs_prop where sensor_obs_prop.sensor_id=any(select sensor_id from sensor where protocol=#{protocol})
+    </select>
+
+
 </mapper>
