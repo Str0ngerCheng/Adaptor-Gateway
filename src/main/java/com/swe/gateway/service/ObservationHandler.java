@@ -18,15 +18,16 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 public class ObservationHandler {
     @Autowired
     ObservationMapper observationMapper;
+
     public Mono<ServerResponse> saveObsBatch(ServerRequest request) {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
-        DateTime dateTime=new DateTime();
+        DateTime dateTime = new DateTime();
         Random random = new Random();
-        for(int i=1;i<=30;i++){
-            Integer day=Integer.valueOf(df.format(dateTime.minusDays(i).toDate()));
-            int[] hours={8,18};
-            for(int j=0;j<hours.length;j++){
-                Observation obs=new Observation();
+        for (int i = 1; i <= 30; i++) {
+            Integer day = Integer.valueOf(df.format(dateTime.minusDays(i).toDate()));
+            int[] hours = {8, 18};
+            for (int j = 0; j < hours.length; j++) {
+                Observation obs = new Observation();
                 obs.setSensorId(3);
                 obs.setObsPropId(1);
                 obs.setDay(day);
@@ -37,8 +38,10 @@ public class ObservationHandler {
             }
         }
         return ServerResponse.ok().contentType(APPLICATION_JSON)
-                .header("Content-Type","application/json; charset=utf-8")
+                .header("Content-Type", "application/json; charset=utf-8")
                 .body(Mono.just(""),String.class);
     }
+
+
 
 }

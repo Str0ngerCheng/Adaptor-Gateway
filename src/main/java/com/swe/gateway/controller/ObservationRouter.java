@@ -15,6 +15,8 @@ public class ObservationRouter {
     @Bean
     public RouterFunction<ServerResponse> obsRoute(ObservationHandler handler) {
         return RouterFunctions.route(RequestPredicates.GET("/obs/saveBatch")
-                .and(accept(MediaType.ALL)),handler::saveObsBatch);
+                .and(accept(MediaType.ALL)), handler::saveObsBatch);
     }
+
+
 }

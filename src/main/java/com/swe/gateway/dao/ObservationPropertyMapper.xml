@@ -21,6 +21,7 @@
           ( select distinct obs_prop_id from `sensor_obs_prop` where sensor_id=#{sensorId})
     </select>
 
+
     <select id="getTypeIdsByTypes" resultType="java.lang.String">
          select distinct obs_prop_id from `observation_property` where obs_prop_name in
         <foreach collection="types" open="(" separator="," close=")" item="type">
@@ -31,4 +32,15 @@
     <select id="getObsPropByType" resultMap="BaseResultMap">
          select * from `observation_property` where obs_prop_name=#{type}
     </select>
+
+
+    <select id="getObsPropById" resultMap="BaseResultMap">
+         select * from observation_property where obs_prop_id=#{obsPropId}
+    </select>
+
+    <select id="getAllObsPropNames" resultType="java.lang.String">
+         select distinct obs_prop_name from observation_property
+    </select>
+
+
 </mapper>

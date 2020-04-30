@@ -23,6 +23,9 @@ public interface ObservationPropertyMapper extends BaseMapper<ObservationPropert
 
     ObservationProperty getObsPropByType(@Param("type")String type);
 
+    ObservationProperty getObsPropById(@Param("obsPropId")Integer obsPropId);
+
+    List<String> getAllObsPropNames();
 
 
 }

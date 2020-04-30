@@ -80,13 +80,13 @@ public class ZigbeeHandler {
 
 
             //从上到下依次为各个观测值的结构体
-            StructObservation _structObsTemperature = new StructObservation(SOSConfig.Temperature_ObsProperty, SOSConfig.Temperature_ObsResultName, SOSConfig.Temperature_ObsResultUom, Double.toString (dwendu));
-            StructObservation _structObsHumidity = new StructObservation(SOSConfig.Humidity_ObsProperty, SOSConfig.Humidity_ObsResultName, SOSConfig.Humidity_ObsResultUom, Double.toString (dshidu));
-            StructObservation _structObspm = new StructObservation(SOSConfig.PM_ObsProperty, SOSConfig.PM_ObsResultName, SOSConfig.PM_ObsResultUom, Double.toString (dpm));
-            StructObservation _structObsRainFall = new StructObservation(SOSConfig.RainFall_ObsProperty, SOSConfig.RainFall_ObsResultName, SOSConfig.RainFall_ObsResultUom, Double.toString (dyuliang));
-            StructObservation _structObsWindSpeed = new StructObservation(SOSConfig.WindSpeed_ObsProperty, SOSConfig.WindSpeed_ObsResultName, SOSConfig.WindSpeed_ObsResultUom, Double.toString (dfengsu));
-            StructObservation _structObsWindDirection = new StructObservation(SOSConfig.WindDirection_ObsProperty, SOSConfig.WindDirection_ObsResultName, SOSConfig.WindDirection_ObsResultUom, Double.toString (dfengxiang));
-            StructObservation _structObsTVOC = new StructObservation(SOSConfig.TVOC_ObsProperty, SOSConfig.TVOC_ObsResultName, SOSConfig.TVOC_ObsResultUom, Double.toString (dtvoc));
+            StructObservation _structObsTemperature = new StructObservation(SOSConfig.Temperature_ObsProperty, SOSConfig.Temperature_ObsResultName, SOSConfig.Temperature_ObsResultUom, dwendu);
+            StructObservation _structObsHumidity = new StructObservation(SOSConfig.Humidity_ObsProperty, SOSConfig.Humidity_ObsResultName, SOSConfig.Humidity_ObsResultUom, dshidu);
+            StructObservation _structObspm = new StructObservation(SOSConfig.PM_ObsProperty, SOSConfig.PM_ObsResultName, SOSConfig.PM_ObsResultUom, dpm);
+            StructObservation _structObsRainFall = new StructObservation(SOSConfig.RainFall_ObsProperty, SOSConfig.RainFall_ObsResultName, SOSConfig.RainFall_ObsResultUom, dyuliang);
+            StructObservation _structObsWindSpeed = new StructObservation(SOSConfig.WindSpeed_ObsProperty, SOSConfig.WindSpeed_ObsResultName, SOSConfig.WindSpeed_ObsResultUom, dfengsu);
+            StructObservation _structObsWindDirection = new StructObservation(SOSConfig.WindDirection_ObsProperty, SOSConfig.WindDirection_ObsResultName, SOSConfig.WindDirection_ObsResultUom, dfengxiang);
+            StructObservation _structObsTVOC = new StructObservation(SOSConfig.TVOC_ObsProperty, SOSConfig.TVOC_ObsResultName, SOSConfig.TVOC_ObsResultUom, dtvoc);
             lstStructObs01 = new ArrayList<StructObservation> ();
             //将各个观测值结构体加入观测值信息结构体列表中
             lstStructObs01.add(_structObsTemperature);

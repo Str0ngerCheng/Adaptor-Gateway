@@ -9,20 +9,20 @@ spring:
     username: root
     password: swe123,./
     dbcp2:
-      validation-query: SELECT 1
+      validation-query: 1
       time-between-eviction-runs-millis: 18800
     hikari:
-      connection-timeout: 20000
-      minimum-idle: 5
-      maximum-pool-size: 12
-      idle-timeout: 300000
-      max-lifetime: 1200000
-      auto-commit: true
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 30000
+      connection-test-query: SELECT 1
   devtools:
     restart:
       enabled: true  #设置开启热部署
       additional-paths: src/main/java #重启目录
       exclude: WEB-INF/**
+  main:
+    allow-bean-definition-overriding: true
 
 mybatis-plus:
   mapper-locations: classpath:/com/swe/gateway/dao/*.xml

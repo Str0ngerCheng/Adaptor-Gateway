@@ -17,13 +17,41 @@
     <sql id="Base_Column_List">
         sensor_id, sensor_name, is_insitu, location, status, protocol, decription
     </sql>
+
     <select id="getSensorByName" resultMap="BaseResultMap">
-         select * from `sensor` where sensor_name=#{name}
+         select * from `sensor` where sensor_name=#{sensorName}
     </select>
+
     <select id="getSensorsByType" resultMap="BaseResultMap">
          select * from `sensor` where sensor_id in
          (select distinct sensor_id from `sensor_obs_prop` where obs_prop_id=#{typeId})
          and protocol=#{protocol}
     </select>
+
+    <insert id="addSensor" parameterType="com.swe.gateway.model.Sensor" useGeneratedKeys="true" keyProperty="sensor_id">
+         insert into sensor(sensor_name,is_insitu,location,status,protocol,decription)
+         values(#{sensorName},#{isInsitu},#{location},#{status},#{protocol},#{decription})
+    </insert>
+
+    <delete id="deleteSensor" parameterType="String">
+        delete from sensor where sensor_name=#{sensorName} and protocol=#{protocol}
+    </delete>
+
+    <update id="updateSensor" parameterType="com.swe.gateway.model.Sensor">
+        update sensor set location=#{location},status=#{status},decription=#{decription} where sensor_name=#{sensorName}
+    </update>
+
+    <select id="getAllSensor" resultMap="BaseResultMap">
+        select * from sensor
+    </select>
+
+    <select id="getSensorById" resultMap="BaseResultMap">
+        select * from sensor where sensor_id =#{sensorId};
+    </select>
+
+    <select id="getSensorsByProtocol" resultMap="BaseResultMap">
+        select * from sensor where protocol=#{protocol}
+    </select>
+
 
 </mapper>

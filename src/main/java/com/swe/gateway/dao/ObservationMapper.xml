@@ -18,8 +18,17 @@
         observation_id, sensor_id, obs_prop_id, day, hour, obs_value, timestamp
     </sql>
 
+
     <select id="getHistoryData" resultMap="BaseResultMap">
          select * from `observation` where sensor_id=#{sensorId} and obs_prop_id=#{typeId} and day between #{start} and #{end}
+    </select>
+
+    <delete id="deleteObservation">
+        delete from observation where sensor_id=#{sensorId} and obs_prop_id=#{obsPropId}
+    </delete>
+
+    <select id="getObservationByIds" resultMap="BaseResultMap">
+        select * from observation where sensor_id=#{sensorId} and obs_prop_id=#{obsPropId} order by day desc, hour desc limit 1
     </select>
 
 </mapper>
