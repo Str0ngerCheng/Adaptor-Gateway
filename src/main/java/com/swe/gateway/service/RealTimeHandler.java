@@ -44,7 +44,7 @@ public class RealTimeHandler implements WebSocketHandler {
 
         String sessionid = session.getId();
 
-//        模拟
+//        模拟数据，仅供测试
         REALTIME_DATA.put("NBIOT-001_土壤温度", new Observation(1, 1, 2, 3, "11.5", Date.from(Instant.now())));
         REALTIME_DATA.put("NBIOT-001_土壤湿度", new Observation(1, 2, 2, 3, "22.5", Date.from(Instant.now())));
         REALTIME_DATA.put("NBIOT-002_土壤湿度", new Observation(2, 1, 2, 3, "33.5", Date.from(Instant.now())));
@@ -71,9 +71,9 @@ public class RealTimeHandler implements WebSocketHandler {
                         SESSION_SIGNAL.put(sessionid, 1);
                         new Thread(() -> {while (SESSION_SIGNAL.get(sessionid)!=null&&SESSION_SIGNAL.get(sessionid) == 1) {
                             Observation latestObs = REALTIME_DATA.get(sensorName_obsPropName);
-                            //模拟实时数据,仅供测试
-//                            Double value=Math.random()*100000%30;
-//                            latestObs=new Observation(2, 1, 2, 3, new DecimalFormat("0.00").format(value), Date.from(Instant.now()));
+                            //模拟实时数据,仅供前端测试
+                            Double value=Math.random()*100000%30;
+                            latestObs=new Observation(2, 1, 2, 3, new DecimalFormat("0.00").format(value), Date.from(Instant.now()));
 
                             if (latestObs != null) {
                                 logger.info("服务端向客户端[" + sessionid + "]发送实时数据: " + latestObs.toString());
