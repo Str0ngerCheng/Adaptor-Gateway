@@ -37,7 +37,10 @@ public class RealTimeHandler implements WebSocketHandler {
     //这个变量去判断是否继续向当前session持续发送消息
     //不用interrupt()是因为在调用isinterrupted()判断之后标志位又会被置为true，另外这样可以控制向多个客户端的发送情况
     private static final ConcurrentHashMap<String, Integer> SESSION_SIGNAL = new ConcurrentHashMap<>();
+    //这个map用于记录当前Session的send线程，否则会出现两个线程同时发送的情况
+    private static final ConcurrentHashMap<String, SendThread> SESSION_THREAD = new ConcurrentHashMap<>();
     private static final Logger logger = LogManager.getLogger(RealTimeHandler.class.getName());
+
 
     @Override
     public Mono<Void> handle(WebSocketSession session) {
@@ -67,31 +70,16 @@ public class RealTimeHandler implements WebSocketHandler {
                     if (signal <= 0) {
                         SESSION_SIGNAL.put(sessionid, 0);
                         logger.info("停止向客户端[" + sessionid + "]发送数据");
+                        //清除发送线程
+                        if(SESSION_THREAD.get(sessionid)!=null){
+                            logger.info("停止发送线程"+SESSION_THREAD.get(sessionid).toString());
+                            SESSION_THREAD.get(sessionid).flag=false;
+                        }
                     } else {
                         SESSION_SIGNAL.put(sessionid, 1);
-                        new Thread(() -> {while (SESSION_SIGNAL.get(sessionid)!=null&&SESSION_SIGNAL.get(sessionid) == 1) {
-                            Observation latestObs = REALTIME_DATA.get(sensorName_obsPropName);
-                            //模拟实时数据,仅供前端测试
-                            Double value=Math.random()*100000%30;
-                            latestObs=new Observation(2, 1, 2, 3, new DecimalFormat("0.00").format(value), Date.from(Instant.now()));
-
-                            if (latestObs != null) {
-                                logger.info("服务端向客户端[" + sessionid + "]发送实时数据: " + latestObs.toString());
-                                //通过senderMap获取到当前session的sendsink发送数据
-                                senderMap.get(sessionid).sendData(JSONObject.toJSON(latestObs).toString());
-                            } else {
-                                logger.info("没有可用的实时数据 传感器_观测能力ID:" + sensorName_obsPropName);
-                                SESSION_SIGNAL.put(sessionid, 0);
-                                break;
-                            }
-                            try {
-                                Thread.sleep(signal * 1000);
-                            } catch (InterruptedException e) {
-                                logger.error(e.getMessage());
-                                e.printStackTrace();
-                            }
-                        }}).start();
-
+                        SendThread sendThread=new SendThread(sessionid,sensorName_obsPropName,signal);
+                        sendThread.start();
+                        SESSION_THREAD.put(sessionid,sendThread);
                     }
                     return message;
                 }).then();
@@ -102,20 +90,60 @@ public class RealTimeHandler implements WebSocketHandler {
          */
 
         return Mono.zip(output, input)
-                .doOnSubscribe(s->logger.info("客户端[" + sessionid + "]建立连接"))
-                .doOnError(s->{
-                    logger.info("客户端[" + sessionid + "]发生错误"+s.getMessage());
+                .doOnSubscribe(s -> logger.info("客户端[" + sessionid + "]建立连接"))
+                .doOnError(s -> {
+                    logger.info("客户端[" + sessionid + "]发生错误" + s.getLocalizedMessage());
                     SESSION_SIGNAL.remove(sessionid);
                     senderMap.remove(sessionid);
                     session.close();
                 })
-                .doOnSuccess(s->{
+                .doOnSuccess(s -> {
                     SESSION_SIGNAL.remove(sessionid);
                     senderMap.remove(sessionid);
                     session.close();
                     logger.info("客户端[" + sessionid + "]关闭连接");
                 }).then();
 
+    }
+
+    class SendThread extends Thread{
+        public volatile boolean flag=true;
+
+        public SendThread(String sessionid, String sensorName_obsPropName, int signal) {
+            this.sessionid = sessionid;
+            this.sensorName_obsPropName = sensorName_obsPropName;
+            this.signal = signal;
+        }
+
+        private String sessionid;
+        private String sensorName_obsPropName;
+        private int signal;
+
+        @Override
+        public void run(){
+            while (flag&&SESSION_SIGNAL.get(sessionid) != null && SESSION_SIGNAL.get(sessionid) == 1) {
+                Observation latestObs = REALTIME_DATA.get(sensorName_obsPropName);
+                //模拟实时数据,仅供前端测试
+                Double value = Math.random() * 100000 % 30;
+                latestObs = new Observation(2, 1, 2, 3, new DecimalFormat("0.00").format(value), Date.from(Instant.now()));
+
+                if (latestObs != null) {
+                    logger.info("服务端向客户端[" + sessionid + "]发送实时数据: " + latestObs.toString());
+                    //通过senderMap获取到当前session的sendsink发送数据
+                    senderMap.get(sessionid).sendData(JSONObject.toJSON(latestObs).toString());
+                } else {
+                    logger.info("没有可用的实时数据 传感器_观测能力ID:" + sensorName_obsPropName);
+                    SESSION_SIGNAL.put(sessionid, 0);
+                    return;
+                }
+                try {
+                    Thread.sleep(signal * 1000);
+                } catch (InterruptedException e) {
+                    logger.error(e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }
