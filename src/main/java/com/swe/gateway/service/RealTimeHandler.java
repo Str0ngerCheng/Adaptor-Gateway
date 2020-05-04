@@ -33,7 +33,7 @@ public class RealTimeHandler implements WebSocketHandler {
     //key为sensorName+'_'+obsPropName组成的字符串
     //前端点击发送一个传感器的设备id和一个观测属性id，然后去获取传感器的最新一条数据
     //可以用http://coolaf.com/tool/chattest测试ws的接口
-    private static final ConcurrentHashMap<String, Observation> REALTIME_DATA = new ConcurrentHashMap<>();
+    public static final ConcurrentHashMap<String, Observation> REALTIME_DATA = new ConcurrentHashMap<>();
     //这个变量去判断是否继续向当前session持续发送消息
     //不用interrupt()是因为在调用isinterrupted()判断之后标志位又会被置为true，另外这样可以控制向多个客户端的发送情况
     private static final ConcurrentHashMap<String, Integer> SESSION_SIGNAL = new ConcurrentHashMap<>();
@@ -106,7 +106,7 @@ public class RealTimeHandler implements WebSocketHandler {
 
     }
 
-    class SendThread extends Thread{
+    private class SendThread extends Thread{
         public volatile boolean flag=true;
 
         public SendThread(String sessionid, String sensorName_obsPropName, int signal) {
