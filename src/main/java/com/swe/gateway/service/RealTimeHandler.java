@@ -45,9 +45,9 @@ public class RealTimeHandler implements WebSocketHandler {
         String sessionid = session.getId();
 
 //        模拟数据，仅供测试
-        REALTIME_DATA.put("NBIOT-001_土壤温度", new Observation(1, 1, 2, 3, "11.5", Date.from(Instant.now())));
-        REALTIME_DATA.put("NBIOT-001_土壤湿度", new Observation(1, 2, 2, 3, "22.5", Date.from(Instant.now())));
-        REALTIME_DATA.put("NBIOT-002_土壤湿度", new Observation(2, 1, 2, 3, "33.5", Date.from(Instant.now())));
+//        REALTIME_DATA.put("NBIOT-001_土壤温度", new Observation(1, 1, 2, 3, "11.5", Date.from(Instant.now())));
+//        REALTIME_DATA.put("NBIOT-001_土壤湿度", new Observation(1, 2, 2, 3, "22.5", Date.from(Instant.now())));
+//        REALTIME_DATA.put("NBIOT-002_土壤湿度", new Observation(2, 1, 2, 3, "33.5", Date.from(Instant.now())));
 
         //获取到当前session的send函数的fluxsink对象并保存到senderMap里面
         Mono<Void> output = session.
