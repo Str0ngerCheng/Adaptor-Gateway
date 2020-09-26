@@ -118,6 +118,14 @@
             <version>1.7</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3 -->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
+
         <!-- swagger ui -->
         <dependency>
             <groupId>io.springfox</groupId>

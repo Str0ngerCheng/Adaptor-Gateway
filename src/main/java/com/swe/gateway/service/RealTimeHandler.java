@@ -1,29 +1,22 @@
 package com.swe.gateway.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.core.io.JsonStringEncoder;
 import com.swe.gateway.model.Observation;
 import com.swe.gateway.util.WebSocketSender;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
-import org.springframework.web.reactive.socket.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.socket.WebSocketHandler;
+import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import reactor.core.publisher.MonoSink;
 
 import java.sql.Date;
 import java.text.DecimalFormat;
-import java.time.Duration;
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Predicate;
 
 @Component
 public class RealTimeHandler implements WebSocketHandler {
@@ -46,7 +39,6 @@ public class RealTimeHandler implements WebSocketHandler {
     public Mono<Void> handle(WebSocketSession session) {
 
         String sessionid = session.getId();
-
 //        模拟数据，仅供测试
 //        REALTIME_DATA.put("NBIOT-001_土壤温度", new Observation(1, 1, 2, 3, "11.5", Date.from(Instant.now())));
 //        REALTIME_DATA.put("NBIOT-001_土壤湿度", new Observation(1, 2, 2, 3, "22.5", Date.from(Instant.now())));

@@ -14,7 +14,7 @@ spring:
     hikari:
       minimum-idle: 3
       maximum-pool-size: 10
-      max-lifetime: 30000
+      max-lifetime: 500000
       connection-test-query: SELECT 1
   devtools:
     restart:

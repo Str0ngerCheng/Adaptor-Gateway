@@ -57,6 +57,11 @@ public class SensorRouter {
                 .and(accept(MediaType.ALL)),handler::list);
     }
 
+    @Bean
+    public RouterFunction<ServerResponse> sensorRoute7(SensorHandler handler) {
+        return RouterFunctions.route(RequestPredicates.GET("/sensor/allList")
+                .and(accept(MediaType.ALL)),handler::allList);
+    }
 
 
 }

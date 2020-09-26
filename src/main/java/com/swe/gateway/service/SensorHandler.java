@@ -190,31 +190,37 @@ public class SensorHandler {
 
 
    //根据协议展示传感器，前提：传感器表，传感器-类型，类型表中有相应的值
-    public Mono<ServerResponse> list(ServerRequest request) {
-        String protocol=request.queryParams().getFirst("protocol");
+   public Mono<ServerResponse> list(ServerRequest request) {
+       String protocol=request.queryParams().getFirst("protocol");
        // List<Sensor> sensors=sensorMapper.getSensorsByProtocol(protocol);
-        //ObservationProperty observationProperty=observationPropertyMapper.getObsPropByType(type);
-        List<SensorObsProp> sensorObsProps=sensorObsPropMapper.getSenObsProByProtocol(protocol);
-        List<SensorDTO> sensorDTOS=new ArrayList<>();
-        for(int i=0;i<sensorObsProps.size();i++){
-            SensorObsProp sensorObsProp=sensorObsProps.get(i);
-            Integer sensorId=sensorObsProp.getSensorId();
-            Integer obsPropId=sensorObsProp.getObsPropId();
-            Sensor sensor=sensorMapper.getSensorById(sensorId);
-            /* Observation observation=observationMapper.getObservationByIds(sensorId,obsPropId); */
-            ObservationProperty observationProperty=observationPropertyMapper.getObsPropById(obsPropId);
+       //ObservationProperty observationProperty=observationPropertyMapper.getObsPropByType(type);
+       List<SensorObsProp> sensorObsProps=sensorObsPropMapper.getSenObsProByProtocol(protocol);
+       List<SensorDTO> sensorDTOS=new ArrayList<>();
+       for(int i=0;i<sensorObsProps.size();i++){
+           SensorObsProp sensorObsProp=sensorObsProps.get(i);
+           Integer sensorId=sensorObsProp.getSensorId();
+           Integer obsPropId=sensorObsProp.getObsPropId();
+           Sensor sensor=sensorMapper.getSensorById(sensorId);
+           /* Observation observation=observationMapper.getObservationByIds(sensorId,obsPropId); */
+           ObservationProperty observationProperty=observationPropertyMapper.getObsPropById(obsPropId);
 
-            SensorDTO sensorObservation=new SensorDTO(sensor,observationProperty.getObsPropName());
-            sensorDTOS.add(sensorObservation);
-        }
-        Collections.sort(sensorDTOS);
-        Flux<SensorDTO> sensorFlux = Flux.fromIterable(sensorDTOS);
+           SensorDTO sensorObservation=new SensorDTO(sensor,observationProperty.getObsPropName());
+           sensorDTOS.add(sensorObservation);
+       }
+       Collections.sort(sensorDTOS);
+       Flux<SensorDTO> sensorFlux = Flux.fromIterable(sensorDTOS);
 
+       return ServerResponse.ok().contentType(APPLICATION_JSON)
+               .header("Content-Type", "application/json; charset=utf-8")
+               .body(sensorFlux, SensorDTO.class);
+   }
+
+    public Mono<ServerResponse> allList(ServerRequest request) {
+        List<Sensor> sensors = sensorMapper.getAllSensor ();
+        Flux<Sensor> sensorFlux = Flux.fromIterable(sensors);
         return ServerResponse.ok().contentType(APPLICATION_JSON)
                 .header("Content-Type", "application/json; charset=utf-8")
-                .body(sensorFlux, SensorDTO.class);
+                .body(sensorFlux, Sensor.class);
     }
-
-
 }
 
