@@ -22,10 +22,9 @@ public class NBIOTHandler {
     NBIOTRepository nbiotRepository;
 
     public Mono<ServerResponse> insertNBIOTHandler(ServerRequest request) {
-        String deviceID = request.pathVariable("deviceID");
         JSONObject jsonObject = JSONObject.parseObject(request.queryParams().toString());
-        double temperature;
-        double humidity;
+        Long temperature=0L;
+        Long humidity=0L;
         int timestamp = 0;
         //最外一层
         //获取得是success,字符型;
@@ -34,21 +33,11 @@ public class NBIOTHandler {
         jsonObject.getString("code");
         //第二层是数组
         JSONArray dataList = jsonObject.getJSONArray("data");
-        double data[] = new double[100];
-        for (int j = 0; j < dataList.size(); j++) {
-            JSONObject list_obj = dataList.getJSONObject(j);
-            if (list_obj != null) {
-                String item = list_obj.getString("item");
-                String dtime = list_obj.getString("dtime");
-                timestamp = Integer.parseInt(dtime);
-                data[j] = Double.parseDouble(list_obj.getString("data"));
-            }
-
-        }
         temperature = data[0];
         humidity = data[1];
         NBIOT nbiot = new NBIOT(deviceID, temperature, humidity, timestamp);
         nbiotRepository.insertNBIOT(nbiot);
+
         return ServerResponse.ok().body(Mono.empty(), String.class);
 
     }

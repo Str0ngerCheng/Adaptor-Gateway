@@ -16,7 +16,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class NBIOTRouter {
     @Bean
     public RouterFunction<ServerResponse> NBIOTRoute(NBIOTHandler handler) {
-        return RouterFunctions.route(RequestPredicates.POST("/nbiot/insert/{deviceID}")
+        return RouterFunctions.route(RequestPredicates.POST("/nbiot/insert")
                 .and(accept(MediaType.ALL)),handler::insertNBIOTHandler);
     }
 }
