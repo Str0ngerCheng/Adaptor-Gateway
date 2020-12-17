@@ -1,6 +1,7 @@
 package com.swe.gateway.config;
 
 import com.sun.media.sound.RealTimeSequencerProvider;
+import com.swe.gateway.service.RFIDHandler;
 import com.swe.gateway.service.RealTimeHandler;
 import com.swe.gateway.service.RobotHandler;
 import com.swe.gateway.util.WebSocketSender;
@@ -22,10 +23,10 @@ public class WebSocketConfiguration {
 
     @Autowired
     @Bean
-    public HandlerMapping webSocketMapping(final RealTimeHandler realTimeHandler,final RobotHandler robotHandler) {
+    public HandlerMapping webSocketMapping(final RealTimeHandler realTimeHandler,final RFIDHandler rfidHandler) {
         final Map<String, WebSocketHandler> map = new HashMap<>();
         map.put("/websocket", realTimeHandler);
-        map.put("/robot", robotHandler);
+        map.put("/rfid", rfidHandler);
         final SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
         mapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
         mapping.setUrlMap(map);

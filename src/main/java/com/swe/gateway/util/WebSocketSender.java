@@ -1,6 +1,5 @@
 package com.swe.gateway.util;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.FluxSink;

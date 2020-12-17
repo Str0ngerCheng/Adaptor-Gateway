@@ -1,4 +1,4 @@
-package com.swe.gateway.Test;
+package com.swe.gateway.test;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;

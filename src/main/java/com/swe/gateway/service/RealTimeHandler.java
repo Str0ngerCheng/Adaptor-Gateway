@@ -115,9 +115,9 @@ public class RealTimeHandler implements WebSocketHandler {
         public void run(){
             while (flag&&SESSION_SIGNAL.get(sessionid) != null && SESSION_SIGNAL.get(sessionid) == 1) {
                 Observation latestObs = REALTIME_DATA.get(sensorName_obsPropName);
-                //模拟实时数据,仅供前端测试
+               /* //模拟实时数据,仅供前端测试
                 Double value = Math.random() * 100000 % 30;
-                latestObs = new Observation(2, 1, 2, 3, new DecimalFormat("0.00").format(value), Date.from(Instant.now()));
+                latestObs = new Observation(2, 1, 2, 3, new DecimalFormat("0.00").format(value), Date.from(Instant.now()));*/
 
                 if (latestObs != null) {
                     logger.info("服务端向客户端[" + sessionid + "]发送实时数据: " + latestObs.toString());
