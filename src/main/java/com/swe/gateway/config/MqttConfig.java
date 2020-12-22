@@ -14,6 +14,7 @@ public class MqttConfig {
     private static String passWord = "swe123,./";
     private static String locationTopic = "/localization/pose";
     private static String pictureTopic = "/pic";
+    private static String nbiotTopic="NBIOT";
     private static MqttClient client = null;
     private static MqttClient rfidClient = null;
     private static MqttClient nbiotClient = null;
@@ -78,7 +79,7 @@ public class MqttConfig {
                         options.setPassword (passWord.toCharArray ());
                         nbiotClient.connect (options);
                         //订阅
-                        nbiotClient.subscribe ("NBIOT",2);
+                        nbiotClient.subscribe (nbiotTopic,0);
                     } catch (MqttException e) {
                         e.printStackTrace ( );
                     }

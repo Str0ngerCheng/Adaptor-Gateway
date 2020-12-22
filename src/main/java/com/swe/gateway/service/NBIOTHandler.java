@@ -2,20 +2,29 @@ package com.swe.gateway.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.swe.gateway.config.MqttConfig;
 import com.swe.gateway.dao.*;
 import com.swe.gateway.model.Observation;
 import com.swe.gateway.model.ObservationProperty;
 import com.swe.gateway.model.Sensor;
+import com.swe.gateway.model.SensorObsProp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.reactive.socket.WebSocketHandler;
+import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.Mono;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
@@ -23,31 +32,53 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
  * @author lx
  */
 @Component
-public class NBIOTHandler {
+public class NBIOTHandler implements WebSocketHandler {
 
     private static final Logger logger = LogManager.getLogger(NBIOTHandler.class.getName());
-    @Autowired
-    NBIOTRepository nbiotRepository;
-    @Autowired
-    SensorMapper sensorMapper;
-    @Autowired
-    ObservationMapper observationMapper;
-    @Autowired
-    SensorObsPropMapper sensorObsPropMapper;
-    @Autowired
-    ObservationPropertyMapper observationPropertyMapper;
 
-    public Mono<ServerResponse> insertNBIOTHandler(ServerRequest request) {
-        Mono<String> str = request.bodyToMono(String.class);
-        return str.flatMap(s -> {
 
-            praseAndSaveNBIOTData(s);
+    private SensorMapper sensorMapper;
 
-            return ServerResponse.ok().contentType(APPLICATION_JSON)
-                    .header("Content-Type", "application/json; charset=utf-8")
-                    .body(Mono.just("insert nbiot observation"), String.class);
+    private ObservationMapper observationMapper;
+
+    private SensorObsPropMapper sensorObsPropMapper;
+
+    private ObservationPropertyMapper observationPropertyMapper;
+
+
+    @Autowired
+    public NBIOTHandler(SensorMapper sensorMapper,ObservationMapper observationMapper,SensorObsPropMapper sensorObsPropMapper,ObservationPropertyMapper observationPropertyMapper) {
+        this.sensorMapper=sensorMapper;
+        this.observationMapper=observationMapper;
+        this.observationPropertyMapper=observationPropertyMapper;
+        this.sensorObsPropMapper=sensorObsPropMapper;
+
+        MqttClient client = MqttConfig.getNBIOTClient ();
+        client.setCallback (new MqttCallback() {
+            @Override
+            public void messageArrived(String topicName, MqttMessage mqttMessage) throws Exception {
+                //subscribe后得到的消息会执行到这里面
+                System.out.println ("messageArrived: "+topicName + "---" + mqttMessage.toString ( ));
+                String msg = mqttMessage.toString ( );
+                if ("NBIOT".equals (topicName) && !"close".equals (msg)) {
+                    praseAndSaveNBIOTData(msg);
+                }
+
+
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
+                //publish后会执行到这里
+                System.out.println ("deliveryComplete---------"
+                        + iMqttDeliveryToken.isComplete ( ));
+            }
+
+            public void connectionLost(Throwable cause) {
+                // //连接丢失后，一般在这里面进行重连
+                System.out.println ("connectionLost----------");
+            }
         });
-
     }
 
     private void praseAndSaveNBIOTData(String s) {
@@ -66,7 +97,7 @@ public class NBIOTHandler {
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
             Date date = new Date();
             Integer day = Integer.valueOf(df.format(date));
-
+            System.out.println("NBIOT-" + cpuId);
             Sensor sensor = sensorMapper.getSensorByName("NBIOT-" + cpuId);
 
             Observation obs_TMP = new Observation();
@@ -93,7 +124,12 @@ public class NBIOTHandler {
             RealTimeHandler.REALTIME_DATA.put(sensor.getSensorName()+"_土壤湿度",obs_HR);
         } catch (Exception e) {
             logger.error("praseAndSaveNBIOTData error: "+e);
+            e.printStackTrace();
         }
     }
 
+    @Override
+    public Mono<Void> handle(WebSocketSession webSocketSession) {
+        return null;
+    }
 }
