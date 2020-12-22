@@ -40,7 +40,7 @@ public class TCPConfig {
                         .addHandler ("handler", zigbeeHandler.new TcpHandler ( ))
                 ) //实例只写了如何添加handler,可添加delimiter，tcp生命周期，decoder，encoder等handler
                 .port (502)
-                .bindNow ( );
+                .bindNow ();
     }
 
 }

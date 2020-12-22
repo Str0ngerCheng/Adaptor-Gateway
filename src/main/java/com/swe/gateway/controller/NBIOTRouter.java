@@ -1,5 +1,6 @@
 package com.swe.gateway.controller;
 
+import com.swe.gateway.model.NBIOT;
 import com.swe.gateway.service.NBIOTHandler;
 import com.swe.gateway.service.ObservationHandler;
 import org.springframework.context.annotation.Bean;
