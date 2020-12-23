@@ -1,4 +1,4 @@
-package com.swe.gateway.Test;
+package com.swe.gateway.test;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
@@ -13,9 +13,9 @@ import java.util.Date;
  * @author cbw
  */
 public class ApolloServer {
-    private static String host = "tcp://127.0.0.1:61613";
-    private static String userName = "admin";
-    private static String passWord = "password";
+    private static String host = "tcp://139.198.16.79:1883";
+    private static String userName = "swe";
+    private static String passWord = "swe123,./";
     private static String[] topics = {"/localization/pose","/pic"};
     public static void  mqttPublisher() throws MqttException, IOException {
         // host为主机名，test为clientid即连接MQTT的客户端ID，一般以客户端唯一标识符表示，

@@ -1,9 +1,9 @@
 package com.swe.gateway.config;
 
-//import com.sun.media.sound.RealTimeSequencerProvider;
+import com.sun.media.sound.RealTimeSequencerProvider;
+import com.swe.gateway.service.RFIDHandler;
 import com.swe.gateway.service.RealTimeHandler;
 import com.swe.gateway.service.RobotHandler;
-import com.swe.gateway.service.UavHandler;
 import com.swe.gateway.util.WebSocketSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,11 +23,10 @@ public class WebSocketConfiguration {
 
     @Autowired
     @Bean
-    public HandlerMapping webSocketMapping(final RealTimeHandler realTimeHandler,final RobotHandler robotHandler,final UavHandler uavHandler) {
+    public HandlerMapping webSocketMapping(final RealTimeHandler realTimeHandler,final RFIDHandler rfidHandler) {
         final Map<String, WebSocketHandler> map = new HashMap<>();
         map.put("/websocket", realTimeHandler);
-        map.put("/robot", robotHandler);
-        map.put("/uav", uavHandler);
+        map.put("/rfid", rfidHandler);
         final SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
         mapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
         mapping.setUrlMap(map);

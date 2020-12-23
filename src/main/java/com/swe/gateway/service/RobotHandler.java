@@ -17,7 +17,6 @@ import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -36,8 +35,8 @@ public class RobotHandler implements WebSocketHandler {
     private Boolean isSocketOn = false;
 
     public RobotHandler() {
-        MqttClient client = MqttConfig.getMqttClient ( );
-        client.setCallback (new MqttCallback( ){
+        MqttClient client = MqttConfig.getMqttClient ();
+        client.setCallback (new MqttCallback ( ) {
             @Override
             public void messageArrived(String topicName, MqttMessage mqttMessage) throws Exception {
                 //subscribe后得到的消息会执行到这里面
@@ -46,7 +45,7 @@ public class RobotHandler implements WebSocketHandler {
                 if ("localization/pose".equals (topicName)) {
                     locationQueue.put (mqttMessage.toString ( ));
                 } else if ("pic".equals (topicName)) {
-                    pictureQueue.put(mqttMessage.toString ( ));
+                    pictureQueue.put (mqttMessage.toString ( ));
                     /*FileOutputStream fos = new FileOutputStream ("D:\\test1.jpg");
                     fos.write (mqttMessage.getPayload ( ));
                     fos.close ( );*/
