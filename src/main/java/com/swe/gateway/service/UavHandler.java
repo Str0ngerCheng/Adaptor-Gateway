@@ -125,6 +125,7 @@ public class UavHandler implements WebSocketHandler {
             while (flag&&SESSION_SIGNAL.get(sessionid) != null && SESSION_SIGNAL.get(sessionid) == 1) {
 
                 if(IsListening==false){
+                    System.out.println("MThread.start();");
                     MThread.start();
                     IsListening=true;
                 }
@@ -135,17 +136,17 @@ public class UavHandler implements WebSocketHandler {
                 uavGps=uavGpsMapper.getLatestUavGps(uavId);
                 uavVfrHud=uavGpsMapper.getLatestUavVfrHud(uavId);
                 uavBatteryStatus=uavGpsMapper.getLatestUavBatteryStatus(uavId);
-                //模拟实时数据,仅供前端测试
-                Double value1 = 30+Math.random()*0.1;
-                Double value2 = 110+Math.random()*0.1;
-                float gv=(float)Math.random()*50;
-                float av=(float)Math.random()*50;
-                double remain_d=Math.random()*100;
-                int remain=(int)remain_d;
-                uavGps = new UavGps( (long) 13, "DX-1", value1, value2 ,value1, Date.from(Instant.now()));
-                uavVfrHud.setGroundspeed(gv);
-                uavVfrHud.setAirspeed(av);
-                uavBatteryStatus.setBatteryRemaining(remain);
+//                //模拟实时数据,仅供前端测试
+//                Double value1 = 30+Math.random()*0.1;
+//                Double value2 = 110+Math.random()*0.1;
+//                float gv=(float)Math.random()*50;
+//                float av=(float)Math.random()*50;
+//                double remain_d=Math.random()*100;
+//                int remain=(int)remain_d;
+//                uavGps = new UavGps( (long) 13, "DX-1", value1, value2 ,value1, Date.from(Instant.now()));
+//                uavVfrHud.setGroundspeed(gv);
+//                uavVfrHud.setAirspeed(av);
+//                uavBatteryStatus.setBatteryRemaining(remain);
 
                 if (uavGps != null) {
                     logger.info("服务端向客户端[" + sessionid + "]发送实时数据: " + uavGps.toString());

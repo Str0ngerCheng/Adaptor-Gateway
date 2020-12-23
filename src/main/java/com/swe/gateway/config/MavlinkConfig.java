@@ -76,9 +76,9 @@ public class MavlinkConfig extends Thread{
     static ExecutorService service;
     public void run() {
         try {
-            /*System.out.println("Config:");
+            System.out.println("Config:");
             System.out.println(uavId);
-            System.out.println(uavGpsMapper);*/
+            System.out.println(uavGpsMapper);
             getgps();
         } catch (IOException e) {
             e.printStackTrace();
@@ -217,6 +217,7 @@ public class MavlinkConfig extends Thread{
         uavGpsMapper.addUavGps(latestUavGps);*/
 
         boolean GetInSecond=false;
+
 
 
 
