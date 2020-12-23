@@ -70,13 +70,13 @@ public class NBIOTHandler implements WebSocketHandler {
             @Override
             public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
                 //publish后会执行到这里
-                System.out.println ("deliveryComplete---------"
+                System.out.println ("NBIOT MQTT deliveryComplete---------"
                         + iMqttDeliveryToken.isComplete ( ));
             }
 
             public void connectionLost(Throwable cause) {
                 // //连接丢失后，一般在这里面进行重连
-                System.out.println ("connectionLost----------");
+                System.out.println ("NBIOT MQTT connectionLost----------");
             }
         });
     }
