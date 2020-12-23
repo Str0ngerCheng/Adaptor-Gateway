@@ -32,7 +32,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
  * @author lx
  */
 @Component
-public class NBIOTHandler implements WebSocketHandler {
+public class NBIOTHandler{
 
     private static final Logger logger = LogManager.getLogger(NBIOTHandler.class.getName());
 
@@ -126,10 +126,5 @@ public class NBIOTHandler implements WebSocketHandler {
             logger.error("praseAndSaveNBIOTData error: "+e);
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public Mono<Void> handle(WebSocketSession webSocketSession) {
-        return null;
     }
 }
