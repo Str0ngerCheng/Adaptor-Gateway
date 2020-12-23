@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swe.gateway.dao.UavGpsMapper">
+
+    <!-- Gps查询映射结果 -->
+    <resultMap id="GpsResultMap" type="com.swe.gateway.model.UavGps">
+        <id column="id" property="id" />
+        <result column="uav_id" property="uavId" />
+        <result column="lat" property="lat" />
+        <result column="lon" property="lon" />
+        <result column="alt" property="alt" />
+        <result column="receiving_time" property="receivingTime" />
+    </resultMap>
+
+    <!-- Gps查询结果列 -->
+    <sql id="Gps_Column_List">
+        id, uav_id, lat, lon, alt, receiving_time
+    </sql>
+
+    <!--Gps Function-->
+    <select id="getUavGpsByUavId" resultMap="GpsResultMap">
+         select * from `uav_gps` where uav_id=#{UavId}
+    </select>
+
+    <select id="getLatestUavGps" resultMap="GpsResultMap">
+         select * from `uav_gps` where uav_id=#{UavId} order by receiving_time desc limit 1
+    </select>
+
+    <select id="getUavGpsByUavIdAndDate" resultMap="GpsResultMap">
+         select * from `uav_gps` where uav_id=#{UavId} and receiving_time=#{receivingTime}
+    </select>
+
+    <insert id="addUavGps" parameterType="com.swe.gateway.model.UavGps" useGeneratedKeys="true" keyProperty="id">
+         insert into uav_gps(uav_id,lat,lon,alt,receiving_time)
+         values(#{uavId},#{lat},#{lon},#{alt},#{receivingTime})
+    </insert>
+
+    <!-- VfrHud查询映射结果 -->
+    <resultMap id="VfrHudResultMap" type="com.swe.gateway.model.UavVfrHud">
+        <id column="id" property="id" />
+        <result column="uav_id" property="uavId" />
+        <result column="airspeed" property="airspeed" />
+        <result column="groundspeed" property="groundspeed" />
+        <result column="heading" property="heading" />
+        <result column="throttle" property="throttle" />
+        <result column="altitude" property="altitude" />
+        <result column="climb" property="climb" />
+        <result column="receiving_time" property="receivingTime" />
+    </resultMap>
+
+    <!-- VfrHud查询结果列 -->
+    <sql id="VfrHud_Column_List">
+        id,uav_id,airspeed,groundspeed,heading,throttle,altitude,climb,receiving_time
+    </sql>
+
+    <!--VfrHud Function-->
+    <select id="getUavVfrHudByUavId" resultMap="VfrHudResultMap">
+         select * from `uav_vfrHud` where uav_id=#{UavId}
+    </select>
+
+    <select id="getLatestUavVfrHud" resultMap="VfrHudResultMap">
+         select * from `uav_vfrHud` where uav_id=#{UavId} order by receiving_time desc limit 1
+    </select>
+
+    <select id="getUavVfrHudByUavIdAndDate" resultMap="VfrHudResultMap">
+         select * from `uav_vfrHud` where uav_id=#{UavId} and receiving_time=#{receivingTime}
+    </select>
+
+    <insert id="addUavVfrHud" parameterType="com.swe.gateway.model.UavVfrHud" useGeneratedKeys="true" keyProperty="id">
+         insert into uav_vfrHud(uav_id,airspeed,groundspeed,heading,throttle,altitude,climb,receiving_time)
+         values(#{uavId},#{airspeed},#{groundspeed},#{heading},#{throttle},#{altitude},#{climb},#{receivingTime})
+    </insert>
+
+    <!-- BatteryStatus查询映射结果 -->
+    <resultMap id="BatteryStatusResultMap" type="com.swe.gateway.model.UavBatteryStatus">
+        <id column="id" property="id" />
+        <result column="uav_id" property="uavId" />
+        <result column="batteryId" property="batteryId" />
+        <result column="batteryFunction" property="batteryFunction" />
+        <result column="batteryType" property="batteryType" />
+        <result column="temperature" property="temperature" />
+        <result column="voltages" property="voltages" />
+        <result column="currentBattery" property="currentBattery" />
+        <result column="currentCconsumed" property="currentCconsumed" />
+        <result column="energyCconsumed" property="energyCconsumed" />
+        <result column="batteryRemaining" property="batteryRemaining" />
+        <result column="receiving_time" property="receivingTime" />
+    </resultMap>
+
+    <!-- BatteryStatus查询结果列 -->
+    <sql id="BatteryStatus_Column_List">
+        id,uav_id,batteryId,batteryFunction,batteryType,temperature,voltages,currentBattery,currentCconsumed,energyCconsumed ,batteryRemaining,receiving_time
+    </sql>
+
+    <!--VfrHud Function-->
+    <select id="getUavBatteryStatusByUavId" resultMap="BatteryStatusResultMap">
+         select * from `uav_batteryStatus` where uav_id=#{UavId}
+    </select>
+
+    <select id="getLatestUavBatteryStatus" resultMap="BatteryStatusResultMap">
+         select * from `uav_batteryStatus` where uav_id=#{UavId} order by receiving_time desc limit 1
+    </select>
+
+    <select id="getUavBatteryStatusByUavIdAndDate" resultMap="BatteryStatusResultMap">
+         select * from `uav_batteryStatus` where uav_id=#{UavId} and receiving_time=#{receivingTime}
+    </select>
+
+    <insert id="addUavBatteryStatus" parameterType="com.swe.gateway.model.UavBatteryStatus" useGeneratedKeys="true" keyProperty="id">
+         insert into uav_batteryStatus(uav_id,batteryId,batteryFunction,batteryType,temperature,voltages,currentBattery,currentCconsumed,energyCconsumed ,batteryRemaining,receiving_time)
+         values(#{uavId},#{batteryId},#{batteryFunction},#{batteryType},#{temperature},#{voltages},#{currentBattery},#{currentCconsumed},#{energyCconsumed},#{batteryRemaining},#{receivingTime})
+    </insert>
+
+</mapper>
