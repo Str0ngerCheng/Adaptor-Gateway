@@ -5,6 +5,7 @@ import com.swe.gateway.model.Observation;
 import com.swe.gateway.util.WebSocketSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.socket.WebSocketHandler;
@@ -33,6 +34,7 @@ public class RealTimeHandler implements WebSocketHandler {
     //这个map用于记录当前Session的send线程，否则会出现两个线程同时发送的情况
     private static final ConcurrentHashMap<String, SendThread> SESSION_THREAD = new ConcurrentHashMap<>();
     private static final Logger logger = LogManager.getLogger(RealTimeHandler.class.getName());
+
 
 
     @Override
