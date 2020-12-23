@@ -4,6 +4,13 @@ package com.swe.gateway.service;
 import com.alibaba.fastjson.JSONObject;
 import com.swe.gateway.config.SOSConfig;
 import com.swe.gateway.config.ZigbeeConfig;
+import com.swe.gateway.dao.ObservationMapper;
+import com.swe.gateway.dao.ObservationPropertyMapper;
+import com.swe.gateway.dao.SensorMapper;
+import com.swe.gateway.dao.SensorObsPropMapper;
+import com.swe.gateway.model.Observation;
+import com.swe.gateway.model.ObservationProperty;
+import com.swe.gateway.model.Sensor;
 import com.swe.gateway.model.StructObservation;
 import com.swe.gateway.util.CRCUtil;
 import com.swe.gateway.util.ConvertUtil;
@@ -16,12 +23,15 @@ import io.netty.handler.codec.MessageToMessageEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -38,10 +48,22 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
  */
 
 @Service
-public class ZigbeeHandler {
+public class ZigbeeHandler  {
 
     private static Logger logger = LogManager.getLogger (ZigbeeHandler.class.getName ( ));
     private static Map<String, Boolean> channels = new ConcurrentHashMap<> ( );
+    private static ConcurrentHashMap<Integer,Double> zigbeeData=new ConcurrentHashMap<>();
+    private Map<String, Observation> zigbeeDataMap = RealTimeHandler.REALTIME_DATA;
+
+    @Autowired
+    SensorMapper sensorMapper;
+    @Autowired
+    ObservationMapper observationMapper;
+    @Autowired
+    SensorObsPropMapper sensorObsPropMapper;
+    @Autowired
+    ObservationPropertyMapper observationPropertyMapper;
+
 
     public class DecoderHandler extends MessageToMessageDecoder<ByteBuf> {
         @Override
@@ -100,7 +122,6 @@ public class ZigbeeHandler {
                     data = createIndication (false);
                     channels.put (key, false);
                 } else {
-
                     data = createIndication (true);
                     channels.put (key, true);
                 }
@@ -153,8 +174,8 @@ public class ZigbeeHandler {
 
         //获取气象要素数据
         //region 风速
-        double dwendu = ConvertUtil.getShort (r_buffer, 19) * 0.1;//温度，精度为0.1℃
-        double dshidu = ConvertUtil.getShort (r_buffer, 21) * 0.1;//湿度，精度为0.1% RH
+        double dwendu = ConvertUtil.getShort (r_buffer, 19) * 0.1;//环境温度，精度为0.1℃
+        double dshidu = ConvertUtil.getShort (r_buffer, 21) * 0.1;//环境湿度，精度为0.1% RH
         double dyuliang = ConvertUtil.getShort (r_buffer, 23) * 0.1;//雨量，精度为1mm/24h
         double dfengsu = ConvertUtil.getShort (r_buffer, 25) * 0.1;//风速，精度为0.1m/s
         double dfengxiang = ConvertUtil.getShort (r_buffer, 27);//风向，精度为1°
@@ -163,6 +184,35 @@ public class ZigbeeHandler {
         double dzhouqi = ConvertUtil.getShort (r_buffer, 33);//周期以秒为单位
         double dpm = ConvertUtil.getShort (r_buffer, 7);          //pm2.5，单位是毫克每立方米
         double dtvoc = ConvertUtil.getShort (r_buffer, 13) * 0.01;   // 总挥发性有机物，单位ppm 百万分比浓度
+
+        zigbeeData.put(6,dwendu);
+        zigbeeData.put(7,dshidu);
+        zigbeeData.put(8,dyuliang);
+        zigbeeData.put(9,dfengsu);
+        zigbeeData.put(10,dfengxiang);
+        zigbeeData.put(11,ddianya);
+        zigbeeData.put(12,dzhouqi);
+        zigbeeData.put(5,dpm);
+        zigbeeData.put(13,dtvoc);
+
+        Sensor sensor=sensorMapper.getSensorByName ("ZigBee-" + "001");
+        SimpleDateFormat df = new SimpleDateFormat ("yyyyMMdd");
+        Date date = new Date ( );
+        Integer day = Integer.valueOf (df.format (date));
+        for(int i=0;i<9;i++) {
+            Observation obs1 = new Observation();
+            obs1.setSensorId(sensor.getSensorId());
+            obs1.setObsPropId(5 + i);
+            obs1.setDay(day);
+            obs1.setHour(date.getHours());
+            obs1.setTimestamp(date);
+            obs1.setObsValue(Double.toString(zigbeeData.get(5 + i)));
+            observationMapper.insert(obs1);
+            ObservationProperty observationProperty=observationPropertyMapper.getObsPropById(5+i);
+            zigbeeDataMap.put(sensor.getSensorName()+"_"+observationProperty.getObsPropName(),obs1);
+            logger.info(obs1);
+        }
+
         logText += "温度：" + dwendu + "℃，湿度：" + dshidu + "%RH，pm2.5：" + dpm + "mg/m3,雨量：" + dyuliang + "mm/24h,风速：" + dfengsu + "m/s,风向：" + dfengxiang + "°，TVOC总挥发性有机物：" + dtvoc + "ppm,电压：" + ddianya + "V,周期：" + dzhouqi + "s";
         logger.info (logText);
 
