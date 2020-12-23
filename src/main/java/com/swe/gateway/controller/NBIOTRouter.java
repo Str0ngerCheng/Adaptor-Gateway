@@ -1,5 +1,6 @@
 package com.swe.gateway.controller;
 
+import com.swe.gateway.model.NBIOT;
 import com.swe.gateway.service.NBIOTHandler;
 import com.swe.gateway.service.ObservationHandler;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +15,5 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 @Configuration
 public class NBIOTRouter {
-    @Bean
-    public RouterFunction<ServerResponse> NBIOTRoute(NBIOTHandler handler) {
-        return RouterFunctions.route(RequestPredicates.POST("/nbiot/insert/{deviceID}")
-                .and(accept(MediaType.ALL)),handler::insertNBIOTHandler);
-    }
+
 }
