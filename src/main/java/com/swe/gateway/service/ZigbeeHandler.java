@@ -117,7 +117,7 @@ public class ZigbeeHandler  {
 
                 }
             } else {
-                if (preHandlerAfferentMsg[0] == 118) { // 表示建立连接的是Lora网关
+                if (preHandlerAfferentMsg[0] == 17) { // 表示建立连接的是Lora网关
                     //getLoraData ();
                     data = createIndication (false);
                     channels.put (key, false);
