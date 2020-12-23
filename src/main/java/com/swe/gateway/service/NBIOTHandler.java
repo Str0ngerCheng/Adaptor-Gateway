@@ -10,10 +10,7 @@ import com.swe.gateway.model.Sensor;
 import com.swe.gateway.model.SensorObsProp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -58,13 +55,12 @@ public class NBIOTHandler{
             @Override
             public void messageArrived(String topicName, MqttMessage mqttMessage) throws Exception {
                 //subscribe后得到的消息会执行到这里面
+                String msg = new String(mqttMessage.getPayload());
                 System.out.println ("messageArrived: "+topicName + "---" + mqttMessage.toString ( ));
-                String msg = mqttMessage.toString ( );
+
                 if ("NBIOT".equals (topicName) && !"close".equals (msg)) {
                     praseAndSaveNBIOTData(msg);
                 }
-
-
             }
 
             @Override
@@ -76,7 +72,25 @@ public class NBIOTHandler{
 
             public void connectionLost(Throwable cause) {
                 // //连接丢失后，一般在这里面进行重连
-                System.out.println ("NBIOT MQTT connectionLost----------");
+                System.out.println("NBIOT MQTT connectionLost----------");
+                while (true) {
+                    if (!client.isConnected()) {
+                        try {
+                            client.reconnect();
+                            Thread.sleep(1000);
+                            System.out.println("NBIOT MQTT try to reconnect----------" + client.isConnected());
+                        } catch (MqttException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if (client.isConnected()) {
+                            System.out.println("NBIOT MQTT reconnect success----------");
+                            break;
+                        }
+                    }
+
+                }
             }
         });
     }
@@ -94,10 +108,12 @@ public class NBIOTHandler{
             Double HR = (double) (hrArray.getInteger(0) / 100);
             Double TMP = (double) (tmpArray.getInteger(0) / 100);
 
+            Long timestamp=jsonObject.getLong("timestamp");
+
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
-            Date date = new Date();
+            Date date = new Date(timestamp);
             Integer day = Integer.valueOf(df.format(date));
-            System.out.println("NBIOT-" + cpuId);
+            System.out.println("NBIOT-" + cpuId+", timestamp is"+timestamp);
             Sensor sensor = sensorMapper.getSensorByName("NBIOT-" + cpuId);
 
             Observation obs_TMP = new Observation();
