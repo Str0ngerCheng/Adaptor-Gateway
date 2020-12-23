@@ -26,7 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MavlinkConfig extends Thread{
+public class VehicleConfig extends Thread{
 
     static byte[] mySecretKey = new byte[1024];
     private static BigInteger timeUsec=null;
@@ -52,22 +52,22 @@ public class MavlinkConfig extends Thread{
     private static final Logger logger = LogManager.getLogger(MavlinkConfig.class.getName());
     private String uavId="DX-1";
     UavGpsMapper uavGpsMapper;
-    public MavlinkConfig(String uavId,UavGpsMapper uavGpsMapper){
+    public VehicleConfig(String uavId,UavGpsMapper uavGpsMapper){
         //this.uavId=uavId;
         this.uavGpsMapper=uavGpsMapper;
     }
 
 
     // 监听地址（本机VPN地址）
-    //static SocketAddress localAddress = new InetSocketAddress("172.16.3.69", 14550);
+    static SocketAddress localAddress = new InetSocketAddress("172.16.3.69", 14550);
 
-    static SocketAddress localAddress = new InetSocketAddress("172.16.3.69", 14600);
+    //static SocketAddress localAddress = new InetSocketAddress("172.16.3.69", 14600);
     //uri=udp://172.26.144.206:5600  or 115200？ 14550
 
 
     //目标地址（无人机）
-    static SocketAddress remoteAddress = new InetSocketAddress("172.16.2.88", 14600);
-    //static SocketAddress remoteAddress = new InetSocketAddress("172.16.2.102", 14550);
+    //static SocketAddress remoteAddress = new InetSocketAddress("172.16.2.88", 14600);
+    static SocketAddress remoteAddress = new InetSocketAddress("172.16.2.102", 14550);
 
     static int bufferSize = 65535;
 
