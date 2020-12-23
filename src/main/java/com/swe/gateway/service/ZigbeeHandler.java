@@ -53,7 +53,8 @@ public class ZigbeeHandler  {
     private static Logger logger = LogManager.getLogger (ZigbeeHandler.class.getName ( ));
     private static Map<String, Boolean> channels = new ConcurrentHashMap<> ( );
     private static ConcurrentHashMap<Integer,Double> zigbeeData=new ConcurrentHashMap<>();
-    private Map<String, Observation> zigbeeDataMap = RealTimeHandler.REALTIME_DATA;
+
+
 
     @Autowired
     SensorMapper sensorMapper;
@@ -209,7 +210,7 @@ public class ZigbeeHandler  {
             obs1.setObsValue(Double.toString(zigbeeData.get(5 + i)));
             observationMapper.insert(obs1);
             ObservationProperty observationProperty=observationPropertyMapper.getObsPropById(5+i);
-            zigbeeDataMap.put(sensor.getSensorName()+"_"+observationProperty.getObsPropName(),obs1);
+            RealTimeHandler.REALTIME_DATA.put(sensor.getSensorName()+"_"+observationProperty.getObsPropName(),obs1);
             logger.info(obs1);
         }
 

@@ -111,7 +111,7 @@ public class NBIOTHandler{
             Long timestamp=jsonObject.getLong("timestamp");
 
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
-            Date date = new Date(timestamp);
+            Date date = new Date(timestamp*1000);
             Integer day = Integer.valueOf(df.format(date));
             System.out.println("NBIOT-" + cpuId+", timestamp is"+timestamp);
             Sensor sensor = sensorMapper.getSensorByName("NBIOT-" + cpuId);
