@@ -1,6 +1,6 @@
 package com.swe.gateway.config;
 
-import com.sun.media.sound.RealTimeSequencerProvider;
+//import com.sun.media.sound.RealTimeSequencerProvider;
 import com.swe.gateway.dao.UavGpsMapper;
 import com.swe.gateway.service.RFIDHandler;
 import com.swe.gateway.service.RealTimeHandler;
