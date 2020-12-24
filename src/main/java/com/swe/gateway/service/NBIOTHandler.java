@@ -29,10 +29,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
  * @author lx
  */
 @Component
-public class NBIOTHandler{
+public class NBIOTHandler {
 
     private static final Logger logger = LogManager.getLogger(NBIOTHandler.class.getName());
-
 
     private SensorMapper sensorMapper;
 
@@ -44,21 +43,35 @@ public class NBIOTHandler{
 
 
     @Autowired
-    public NBIOTHandler(SensorMapper sensorMapper,ObservationMapper observationMapper,SensorObsPropMapper sensorObsPropMapper,ObservationPropertyMapper observationPropertyMapper) {
-        this.sensorMapper=sensorMapper;
-        this.observationMapper=observationMapper;
-        this.observationPropertyMapper=observationPropertyMapper;
-        this.sensorObsPropMapper=sensorObsPropMapper;
+    public NBIOTHandler(SensorMapper sensorMapper, ObservationMapper observationMapper, SensorObsPropMapper sensorObsPropMapper, ObservationPropertyMapper observationPropertyMapper) {
+        this.sensorMapper = sensorMapper;
+        this.observationMapper = observationMapper;
+        this.observationPropertyMapper = observationPropertyMapper;
+        this.sensorObsPropMapper = sensorObsPropMapper;
 
-        MqttClient client = MqttConfig.getNBIOTClient ();
-        client.setCallback (new MqttCallback() {
+        //给实时数据一个初始值
+        List<Sensor> nbiotSensorList = sensorMapper.getSensorsByProtocol("NBIOT");
+        for (Sensor s : nbiotSensorList) {
+            List<SensorObsProp> sensorObsPropList = sensorObsPropMapper.getBySensorId(s.getSensorId());
+            for (SensorObsProp sobp : sensorObsPropList) {
+                Observation latestObs = observationMapper.getObservationByIds(s.getSensorId(), sobp.getObsPropId());
+                ObservationProperty obsp = observationPropertyMapper.getObsPropById(sobp.getObsPropId());
+                //ws 实时数据的默认值
+                System.out.println("NB ws 默认值："+s.getSensorName() +"_"+obsp.getObsPropName()+": "+latestObs.getObsValue());
+                RealTimeHandler.REALTIME_DATA.put(s.getSensorName() +"_"+obsp.getObsPropName(),latestObs);
+            }
+        }
+
+
+        MqttClient client = MqttConfig.getNBIOTClient();
+        client.setCallback(new MqttCallback() {
             @Override
             public void messageArrived(String topicName, MqttMessage mqttMessage) throws Exception {
                 //subscribe后得到的消息会执行到这里面
                 String msg = new String(mqttMessage.getPayload());
-                System.out.println ("messageArrived: "+topicName + "---" + mqttMessage.toString ( ));
+                System.out.println("messageArrived: " + topicName + "---" + mqttMessage.toString());
 
-                if ("NBIOT".equals (topicName) && !"close".equals (msg)) {
+                if ("NBIOT".equals(topicName) && !"close".equals(msg)) {
                     praseAndSaveNBIOTData(msg);
                 }
             }
@@ -66,8 +79,8 @@ public class NBIOTHandler{
             @Override
             public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
                 //publish后会执行到这里
-                System.out.println ("NBIOT MQTT deliveryComplete---------"
-                        + iMqttDeliveryToken.isComplete ( ));
+                System.out.println("NBIOT MQTT deliveryComplete---------"
+                        + iMqttDeliveryToken.isComplete());
             }
 
             public void connectionLost(Throwable cause) {
@@ -108,12 +121,14 @@ public class NBIOTHandler{
             Double HR = (double) (hrArray.getInteger(0) / 100);
             Double TMP = (double) (tmpArray.getInteger(0) / 100);
 
-            Long timestamp=jsonObject.getLong("timestamp");
+            Long timestamp = jsonObject.getLong("timestamp");
 
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
-            Date date = new Date(timestamp*1000);
+
+            Date date = new Date(timestamp * 1000);
+
             Integer day = Integer.valueOf(df.format(date));
-            System.out.println("NBIOT-" + cpuId+", timestamp is"+timestamp);
+            System.out.println("NBIOT-" + cpuId + ", timestamp is" + timestamp);
             Sensor sensor = sensorMapper.getSensorByName("NBIOT-" + cpuId);
 
             Observation obs_TMP = new Observation();
@@ -136,10 +151,10 @@ public class NBIOTHandler{
             logger.info("insert nb_TMP data cpuId :" + cpuId + ",row:" + observationMapper.insert(obs_TMP));
 
             //ws 实时数据
-            RealTimeHandler.REALTIME_DATA.put(sensor.getSensorName()+"_土壤温度",obs_TMP);
-            RealTimeHandler.REALTIME_DATA.put(sensor.getSensorName()+"_土壤湿度",obs_HR);
+            RealTimeHandler.REALTIME_DATA.put(sensor.getSensorName() + "_土壤温度", obs_TMP);
+            RealTimeHandler.REALTIME_DATA.put(sensor.getSensorName() + "_土壤湿度", obs_HR);
         } catch (Exception e) {
-            logger.error("praseAndSaveNBIOTData error: "+e);
+            logger.error("praseAndSaveNBIOTData error: " + e);
             e.printStackTrace();
         }
     }
