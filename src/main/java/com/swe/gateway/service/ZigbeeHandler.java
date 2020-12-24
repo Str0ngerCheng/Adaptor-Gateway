@@ -41,10 +41,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 @Service
 public class ZigbeeHandler {
 
-    private static Logger logger = LogManager.getLogger (ZigbeeHandler.class.getName ( ));
-    private static Map<String, Boolean> channels = new ConcurrentHashMap<> ( );
-    private static ArrayList<ZigBeeData> zigbeeDataSensor1=new ArrayList<>();
-    private static ArrayList<ZigBeeData> zigbeeDataSensor2=new ArrayList<>();
+    private static Logger logger = LogManager.getLogger(ZigbeeHandler.class.getName());
+    private static Map<String, Boolean> channels = new ConcurrentHashMap<>();
 
 
     @Autowired
@@ -60,14 +58,14 @@ public class ZigbeeHandler {
     public class DecoderHandler extends MessageToMessageDecoder<ByteBuf> {
         @Override
         protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf buf, List list) throws Exception {
-            byte[] bytes = new byte[buf.readableBytes ( )];
-            buf.readBytes (bytes);
+            byte[] bytes = new byte[buf.readableBytes()];
+            buf.readBytes(bytes);
             String str = "";
             for (int i = 0; i < bytes.length; i++) {
                 str += bytes[i] + " ";
             }
-            logger.info ("收到消息：" + str);
-            list.add (bytes);
+            logger.info("收到消息：" + str);
+            list.add(bytes);
             Thread.sleep(5000);
         }
     }
@@ -76,15 +74,15 @@ public class ZigbeeHandler {
 
         @Override
         protected void encode(ChannelHandlerContext ctx, byte[] o, List list) throws Exception {
-            list.add (o);
-            ByteBuf buf = ctx.alloc ( ).buffer (o.length);
-            buf.writeBytes (o);
-            list.add (buf);
+            list.add(o);
+            ByteBuf buf = ctx.alloc().buffer(o.length);
+            buf.writeBytes(o);
+            list.add(buf);
             String str = "";
             for (int i = 0; i < o.length; i++) {
                 str += o[i] + " ";
             }
-            logger.info ("发送消息：" + str);
+            logger.info("发送消息：" + str);
         }
 
     }
@@ -99,107 +97,109 @@ public class ZigbeeHandler {
                 str += preHandlerAfferentMsg[i] + " ";
             }
             byte[] data = null;
-            String key = ctx.channel ( ).id ( ).asLongText ( );
-            if (channels.containsKey (key)) {
-                if (channels.get (key)) {
+            String key = ctx.channel().id().asLongText();
+            if (channels.containsKey(key)) {
+                if (channels.get(key)) {
                     getZigBeeData(preHandlerAfferentMsg);
-                    data = createIndication (true);
+                    data = createIndication(true);
                 } else {
-                    getLoraData (preHandlerAfferentMsg);
-                    data = createIndication (false);
+                    getLoraData(preHandlerAfferentMsg);
+                    data = createIndication(false);
 
                 }
             } else {
                 if (preHandlerAfferentMsg[0] == 119) { // 表示建立连接的是Lora网关
                     //getLoraData ();
-                    data = createIndication (false);
-                    channels.put (key, false);
-                } else  if (preHandlerAfferentMsg[0] == 17)  {
+                    data = createIndication(false);
+                    channels.put(key, false);
+                } else if (preHandlerAfferentMsg[0] == 17) {
 
-                    data = createIndication (true);
-                    channels.put (key, true);
+                    data = createIndication(true);
+                    channels.put(key, true);
                 }
             }
-            if(data!=null) {
+            if (data != null) {
                 ctx.writeAndFlush(data); //返回数据给tcP Client
             }
-            logger.info ("channelRead");
+            logger.info("channelRead");
         }
 
         @Override
         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
                 throws Exception {
-            logger.info ("exceptionCaught");
-            ctx.fireExceptionCaught (cause);
+            logger.info("exceptionCaught");
+            ctx.fireExceptionCaught(cause);
         }
     }
 
 
     //测试数据：{"id":1,"provinceId":2,"cityName":"111","description":{text:"test"}}
     public Mono<ServerResponse> parseAndSendZigbeeData(ServerRequest request) {
-        Mono<String> str = request.bodyToMono (String.class);
-        return str.flatMap (s -> {
-            logger.info (s);
-            JSONObject json = JSONObject.parseObject (s);//能够解析整个json串
-            String[] datas = json.getString ("data").split (" ");
+        Mono<String> str = request.bodyToMono(String.class);
+        return str.flatMap(s -> {
+            logger.info(s);
+            JSONObject json = JSONObject.parseObject(s);//能够解析整个json串
+            String[] datas = json.getString("data").split(" ");
             byte[] r_buffer = new byte[datas.length];
             for (int i = 0; i < datas.length; i++)
-                r_buffer[i] = Byte.parseByte (datas[i]);
+                r_buffer[i] = Byte.parseByte(datas[i]);
             getZigBeeData(r_buffer);
-            return ServerResponse.ok ( ).contentType (APPLICATION_JSON).body (Mono.just (s), String.class);
+            return ServerResponse.ok().contentType(APPLICATION_JSON).body(Mono.just(s), String.class);
         });
     }
 
     public void getZigBeeData(byte[] r_buffer) {
-        if(r_buffer.length<34)
-            return ;
-        List<SOSWrapper> sosWrappers = new ArrayList<SOSWrapper> ( );//传感器SOS封装类对象列表
+        if (r_buffer.length < 34)
+            return;
+        List<SOSWrapper> sosWrappers = new ArrayList<SOSWrapper>();//传感器SOS封装类对象列表
         List<StructObservation> lstStructObs01;//传感器观测信息结构体列表
         List<StructObservation> lstStructObs02;//传感器观测信息结构体列表
         List<StructObservation> lstStructObs03;//传感器观测信息结构体列表
         List<StructObservation> lstStructObs04;//传感器观测信息结构体列表
-        String _slaveAddress = Byte.toString (r_buffer[0]);//从机地址
-        String _command = Byte.toString (r_buffer[1]);//操作码
-        String _numBytes = Byte.toString (r_buffer[2]);//字节数
+        String _slaveAddress = Byte.toString(r_buffer[0]);//从机地址
+        String _command = Byte.toString(r_buffer[1]);//操作码
+        String _numBytes = Byte.toString(r_buffer[2]);//字节数
         String logText = "接收数据通过CRC检校，数据正确！" +
                 " 从机地址:" + _slaveAddress +
                 " 功能码:" + _command +
                 " 数据字节数:" + _numBytes;
         //写日志
-        logger.info (logText);
+        logger.info(logText);
 
         logText = "实时数据：";
 
         //获取气象要素数据
         //region 风速
-        double dwendu = ConvertUtil.getShort (r_buffer, 19) * 0.1;//温度，精度为0.1℃
-        double dshidu = ConvertUtil.getShort (r_buffer, 21) * 0.1;//湿度，精度为0.1% RH
-        double dyuliang = ConvertUtil.getShort (r_buffer, 23) * 0.1;//雨量，精度为1mm/24h
-        double dfengsu = ConvertUtil.getShort (r_buffer, 25) * 0.1;//风速，精度为0.1m/s
-        double dfengxiang = ConvertUtil.getShort (r_buffer, 27);//风向，精度为1°
+        double dwendu = ConvertUtil.getShort(r_buffer, 19) * 0.1;//温度，精度为0.1℃
+        double dshidu = ConvertUtil.getShort(r_buffer, 21) * 0.1;//湿度，精度为0.1% RH
+        double dyuliang = ConvertUtil.getShort(r_buffer, 23) * 0.1;//雨量，精度为1mm/24h
+        double dfengsu = ConvertUtil.getShort(r_buffer, 25) * 0.1;//风速，精度为0.1m/s
+        double dfengxiang = ConvertUtil.getShort(r_buffer, 27);//风向，精度为1°
         //double dbeiyong = ConvertUtil.getShort(r_buffer, 3) * 0.1;//精度为？，备用
-        double ddianya = ConvertUtil.getShort (r_buffer, 31) * 0.1;//电压，精度为0.1V
-        double dzhouqi = ConvertUtil.getShort (r_buffer, 33);//周期以秒为单位
-        double dpm = ConvertUtil.getShort (r_buffer, 7);          //pm2.5，单位是毫克每立方米
-        double dtvoc = ConvertUtil.getShort (r_buffer, 13) * 0.01;   // 总挥发性有机物，单位ppm 百万分比浓度
+        double ddianya = ConvertUtil.getShort(r_buffer, 31) * 0.1;//电压，精度为0.1V
+        double dzhouqi = ConvertUtil.getShort(r_buffer, 33);//周期以秒为单位
+        double dpm = ConvertUtil.getShort(r_buffer, 7);          //pm2.5，单位是毫克每立方米
+        double dtvoc = ConvertUtil.getShort(r_buffer, 13) * 0.01;   // 总挥发性有机物，单位ppm 百万分比浓度
 
-        zigbeeDataSensor1.add(0,new ZigBeeData(5,dpm,"PM2.5"));
-        zigbeeDataSensor1.add(1,new ZigBeeData(6,dwendu,"环境温度"));
-        zigbeeDataSensor1.add(2,new ZigBeeData(7,dshidu,"环境湿度"));
-        zigbeeDataSensor1.add(3,new ZigBeeData(13,dtvoc,"总挥发性有机物"));
+        ArrayList<ZigBeeData> zigbeeDataSensor1 = new ArrayList<>();
+        ArrayList<ZigBeeData> zigbeeDataSensor2 = new ArrayList<>();
+        zigbeeDataSensor1.add(0, new ZigBeeData(5, dpm, "PM2.5"));
+        zigbeeDataSensor1.add(1, new ZigBeeData(6, dwendu, "环境温度"));
+        zigbeeDataSensor1.add(2, new ZigBeeData(7, dshidu, "环境湿度"));
+        zigbeeDataSensor1.add(3, new ZigBeeData(13, dtvoc, "总挥发性有机物"));
 
-        zigbeeDataSensor2.add(0,new ZigBeeData(8,dyuliang,"雨量"));
-        zigbeeDataSensor2.add(1,new ZigBeeData(9,dfengsu,"风速"));
-        zigbeeDataSensor2.add(2,new ZigBeeData(10,dfengxiang,"风向"));
+        zigbeeDataSensor2.add(0, new ZigBeeData(8, dyuliang, "雨量"));
+        zigbeeDataSensor2.add(1, new ZigBeeData(9, dfengsu, "风速"));
+        zigbeeDataSensor2.add(2, new ZigBeeData(10, dfengxiang, "风向"));
 
-        Sensor sensor1=sensorMapper.getSensorByName ("ZigBee-" + "001");
-        Sensor sensor2=sensorMapper.getSensorByName("ZigBee-"+"002");
-        SimpleDateFormat df = new SimpleDateFormat ("yyyyMMdd");
-        Date date = new Date ( );
-        Integer day = Integer.valueOf (df.format (date));
-        for(int i=0;i<zigbeeDataSensor1.size();i++){
+        Sensor sensor1 = sensorMapper.getSensorByName("ZigBee-" + "001");
+        Sensor sensor2 = sensorMapper.getSensorByName("ZigBee-" + "002");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date();
+        Integer day = Integer.valueOf(df.format(date));
+        for (int i = 0; i < zigbeeDataSensor1.size(); i++) {
             Observation obs1 = new Observation();
-            ZigBeeData zigBeeData=zigbeeDataSensor1.get(i);
+            ZigBeeData zigBeeData = zigbeeDataSensor1.get(i);
             obs1.setSensorId(sensor1.getSensorId());
             obs1.setObsPropId(zigBeeData.getObsId());
             obs1.setDay(day);
@@ -207,35 +207,39 @@ public class ZigbeeHandler {
             obs1.setTimestamp(date);
             obs1.setObsValue(Double.toString(zigBeeData.getObs()));
             observationMapper.insert(obs1);
-            RealTimeHandler.REALTIME_DATA.put(sensor1.getSensorName()+"_"+zigBeeData.getObsName(),obs1);
+            RealTimeHandler.REALTIME_DATA.put(sensor1.getSensorName() + "_" + zigBeeData.getObsName(), obs1);
             logger.info(obs1);
         }
-        for(int i=0;i<zigbeeDataSensor2.size();i++) {
+        for (int i = 0; i < zigbeeDataSensor2.size(); i++) {
             Observation obs1 = new Observation();
-            ZigBeeData zigBeeData=zigbeeDataSensor2.get(i);
-            obs1.setSensorId(sensor1.getSensorId());
+            ZigBeeData zigBeeData = zigbeeDataSensor2.get(i);
+            obs1.setSensorId(sensor2.getSensorId());
             obs1.setObsPropId(zigBeeData.getObsId());
             obs1.setDay(day);
             obs1.setHour(date.getHours());
             obs1.setTimestamp(date);
             obs1.setObsValue(Double.toString(zigBeeData.getObs()));
             observationMapper.insert(obs1);
-            RealTimeHandler.REALTIME_DATA.put(sensor2.getSensorName()+"_"+zigBeeData.getObsName(),obs1);
+            RealTimeHandler.REALTIME_DATA.put(sensor2.getSensorName() + "_" + zigBeeData.getObsName(), obs1);
             logger.info(obs1);
         }
 
         logText += "温度：" + dwendu + "℃，湿度：" + dshidu + "%RH，pm2.5：" + dpm + "mg/m3,雨量：" + dyuliang + "mm/24h,风速：" + dfengsu + "m/s,风向：" + dfengxiang + "°，TVOC总挥发性有机物：" + dtvoc + "ppm,电压：" + ddianya + "V,周期：" + dzhouqi + "s";
-        logger.info (logText);
+        logger.info(logText);
     }
 
-    public void getLoraData(byte[] r_buffer){};
+    public void getLoraData(byte[] r_buffer) {
+    }
+
+    ;
+
     private byte[] createIndication(Boolean isZigbee) {
         byte[] sendData = null;
         if (isZigbee) {
             sendData = new byte[]{0x01, 0x03, 0x00, 0x00, 0x00, 0x10, (byte) 0x00, (byte) 0x00};
         } else
             sendData = new byte[]{0x01, 0x03, 0x00, 0x00, 0x00, 0x08, (byte) 0x00, (byte) 0x00};
-        return CRCUtil.CRCCalc (sendData);//计算CRC（循环冗余检测）代码
+        return CRCUtil.CRCCalc(sendData);//计算CRC（循环冗余检测）代码
     }
 }
 
