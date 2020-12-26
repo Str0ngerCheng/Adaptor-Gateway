@@ -149,6 +149,12 @@ public class ZigbeeHandler {
     }
 
     public void getZigBeeData(byte[] r_buffer) {
+
+        //把zigbee的Modbus数据发送给前端
+        Observation obsModbus = new Observation();
+        obsModbus.setObsValue(new String(r_buffer));
+        RealTimeHandler.REALTIME_DATA.put("Modbus-001_网关数据", obsModbus);
+
         if (r_buffer.length < 34)
             return;
         List<SOSWrapper> sosWrappers = new ArrayList<SOSWrapper>();//传感器SOS封装类对象列表
@@ -229,6 +235,12 @@ public class ZigbeeHandler {
     }
 
     public void getLoraData(byte[] r_buffer) {
+
+        //把Lora的Modbus数据发送给前端
+        Observation obsModbus = new Observation();
+        obsModbus.setObsValue(new String(r_buffer));
+        RealTimeHandler.REALTIME_DATA.put("Modbus-002_网关数据", obsModbus);
+
         double ph = ConvertUtil.getShort(r_buffer, 11) * 0.2;//ph
         double v1 = ConvertUtil.getShort(r_buffer, 15) * 0.1;//电压
         double v2 = ConvertUtil.getShort(r_buffer, 17);//周期
