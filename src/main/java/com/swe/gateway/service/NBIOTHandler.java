@@ -57,8 +57,11 @@ public class NBIOTHandler {
                 Observation latestObs = observationMapper.getObservationByIds(s.getSensorId(), sobp.getObsPropId());
                 ObservationProperty obsp = observationPropertyMapper.getObsPropById(sobp.getObsPropId());
                 //ws 实时数据的默认值
-                System.out.println("NB ws 默认值："+s.getSensorName() +"_"+obsp.getObsPropName()+": "+latestObs.getObsValue());
-                RealTimeHandler.REALTIME_DATA.put(s.getSensorName() +"_"+obsp.getObsPropName(),latestObs);
+                if (latestObs == null || obsp == null) {
+                    break;
+                }
+                System.out.println("NB ws 默认值：" + s.getSensorName() + "_" + obsp.getObsPropName() + ": " + latestObs.getObsValue());
+                RealTimeHandler.REALTIME_DATA.put(s.getSensorName() + "_" + obsp.getObsPropName(), latestObs);
             }
         }
 
@@ -88,19 +91,24 @@ public class NBIOTHandler {
                 System.out.println("NBIOT MQTT connectionLost----------");
                 while (true) {
                     if (!client.isConnected()) {
-                        try {
-                            client.reconnect();
-                            Thread.sleep(1000);
-                            System.out.println("NBIOT MQTT try to reconnect----------" + client.isConnected());
-                        } catch (MqttException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        synchronized (client) {
+                            if (!client.isConnected()) {
+                                try {
+                                    client.disconnect();
+                                    client.reconnect();
+                                    Thread.sleep(1000);
+                                    System.out.println("NBIOT MQTT try to reconnect----------" + client.isConnected());
+                                } catch (MqttException e) {
+                                    e.printStackTrace();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
-                        if (client.isConnected()) {
-                            System.out.println("NBIOT MQTT reconnect success----------");
-                            break;
-                        }
+                    }
+                    else {
+                        System.out.println("NBIOT MQTT reconnect success----------");
+                        break;
                     }
 
                 }

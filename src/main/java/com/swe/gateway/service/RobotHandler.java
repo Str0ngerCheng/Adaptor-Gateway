@@ -26,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author cbw
  */
-@Component
+/*@Component*/
 public class RobotHandler implements WebSocketHandler {
     private static final Logger logger = LogManager.getLogger (RobotHandler.class.getName ( ));
     private static final BlockingQueue<String> locationQueue = new ArrayBlockingQueue<> (1024); //缓冲区允许放1024个数据

@@ -15,10 +15,7 @@ import com.swe.gateway.model.SensorObsProp;
 import com.swe.gateway.util.WebSocketSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.socket.WebSocketHandler;
@@ -68,6 +65,7 @@ public class RFIDHandler implements WebSocketHandler {
                 System.out.println (topicName + "---" + mqttMessage.toString ( ));*/
                 String msg = mqttMessage.toString ( );
                 if ("rptall".equals (topicName) && !"close".equals (msg)) {
+                    logger.info(mqttMessage.toString());
                     obsQueue.put (mqttMessage.toString ( ));
 
                     JSONArray sensors = JSONObject.parseObject (mqttMessage.toString ( )).getJSONArray ("list");
@@ -132,7 +130,7 @@ public class RFIDHandler implements WebSocketHandler {
 
             public void connectionLost(Throwable cause) {
                 // //连接丢失后，一般在这里面进行重连
-                System.out.println ("connectionLost----------");
+                System.out.println("RFID connectionLost----------");
             }
         });
     }

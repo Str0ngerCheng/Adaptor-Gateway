@@ -79,7 +79,7 @@ public class MqttConfig {
                         options.setPassword (passWord.toCharArray ());
                         nbiotClient.connect (options);
                         //订阅
-                        nbiotClient.subscribe (nbiotTopic,2);
+                        nbiotClient.subscribe (nbiotTopic,1);
                     } catch (MqttException e) {
                         e.printStackTrace ();
                     }
@@ -91,7 +91,7 @@ public class MqttConfig {
     }
 
 
-    private static MqttConnectOptions getOptions(){
+    public static MqttConnectOptions getOptions(){
         //设置是否清空session,这里如果设置为false表示服务器会保留客户端的连接记录，
         //这里设置为true表示每次连接到服务器都以新的身份连接
         MqttConnectOptions options = new MqttConnectOptions ( );

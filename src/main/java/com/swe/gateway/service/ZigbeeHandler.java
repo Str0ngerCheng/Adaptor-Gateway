@@ -229,6 +229,11 @@ public class ZigbeeHandler {
     }
 
     public void getLoraData(byte[] r_buffer) {
+        double ph = ConvertUtil.getShort(r_buffer, 11) * 0.2;//ph
+        double v1 = ConvertUtil.getShort(r_buffer, 15) * 0.1;//电压
+        double v2 = ConvertUtil.getShort(r_buffer, 17);//周期
+        double v3 = ConvertUtil.getShort(r_buffer, 19);//ph
+        logger.info("lora PH：" + ph + " v1: " + v1 + " v2: " + v2 + " v3: " + v3);
     }
 
     ;

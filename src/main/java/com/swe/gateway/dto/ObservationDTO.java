@@ -13,20 +13,21 @@ public class ObservationDTO implements Serializable {
     private String sensorName;
     private String sensorType;
     private String uom;
-    private List<SingleObservation> observations=new ArrayList<>();
-    public  ObservationDTO(String sensorName,String sensorType,String uom,List<Observation> obss){
-        this.sensorName=sensorName;
-        this.sensorType=sensorType;
-        this.uom=uom;
-        for(int i=0;i<obss.size();i++){
-            SingleObservation singleObservation=new SingleObservation(obss.get(i));
+    private List<SingleObservation> observations = new ArrayList<>();
+
+    public ObservationDTO(String sensorName, String sensorType, String uom, List<Observation> obss) {
+        this.sensorName = sensorName;
+        this.sensorType = sensorType;
+        this.uom = uom;
+        for (int i = 0; i < obss.size(); i++) {
+            SingleObservation singleObservation = new SingleObservation(obss.get(i));
             this.observations.add(singleObservation);
         }
         Collections.sort(this.observations);
 
     }
 
-    public String getSensorName()  {
+    public String getSensorName() {
         return sensorName;
     }
 
@@ -58,15 +59,17 @@ public class ObservationDTO implements Serializable {
         this.observations = observations;
     }
 
-    class SingleObservation implements Serializable, Comparable<SingleObservation>{
+    class SingleObservation implements Serializable, Comparable<SingleObservation> {
         private Integer day;
         private Integer hour;
         private String obsValue;
-        public SingleObservation(Observation obs){
-            this.day=obs.getDay();
-            this.hour=obs.getHour();
-            this.obsValue=obs.getObsValue();
+
+        public SingleObservation(Observation obs) {
+            this.day = obs.getDay();
+            this.hour = obs.getHour();
+            this.obsValue = obs.getObsValue();
         }
+
         public Integer getDay() {
             return day;
         }
@@ -90,13 +93,13 @@ public class ObservationDTO implements Serializable {
         public void setObsValue(String obsValue) {
             this.obsValue = obsValue;
         }
+
         @Override
         public int compareTo(SingleObservation o) {
-            if(this.day>o.day) return 1;
-            else if(this.day<o.day) return -1;
-            else
-            if(this.hour>o.hour) return 1;
-            else  if(this.hour<o.hour) return  -1;
+            if (this.day > o.day) return 1;
+            else if (this.day < o.day) return -1;
+            else if (this.hour > o.hour) return 1;
+            else if (this.hour < o.hour) return -1;
             else return 0;
         }
     }
