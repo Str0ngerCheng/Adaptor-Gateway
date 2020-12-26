@@ -1,21 +1,35 @@
 package com.swe.gateway.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.swe.gateway.dao.ObservationMapper;
 import com.swe.gateway.dao.ObservationPropertyMapper;
 import com.swe.gateway.dao.SensorMapper;
+import com.swe.gateway.model.BleData;
 import com.swe.gateway.model.Observation;
+import com.swe.gateway.util.WebSocketSender;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.socket.WebSocketHandler;
+import org.springframework.web.reactive.socket.WebSocketMessage;
+import org.springframework.web.reactive.socket.WebSocketSession;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-public class BleHandler  implements CommandLineRunner {
+public class BleHandler implements CommandLineRunner, WebSocketHandler {
+
+    private static final Logger logger = LogManager.getLogger (BleHandler.class.getName ( ));
 
     @Autowired
     SensorMapper sensorMapper;
@@ -25,10 +39,12 @@ public class BleHandler  implements CommandLineRunner {
     ObservationPropertyMapper observationPropertyMapper;
 
     private Map<String, Observation> bleDataMap = RealTimeHandler.REALTIME_DATA;
-
+    private ConcurrentHashMap<String, WebSocketSender> senderMap = new ConcurrentHashMap<> ( );
+    private Boolean isSocketOn = false;
     private String[] A = {"A1", "A2", "A3", "A4"};
     private String[] B = {"B1", "B2", "B3", "B4"};
     private Map<String, Integer> sensorIds = new HashMap<>();
+    private Map<String, BleData> realTimeDataMap = new ConcurrentHashMap();
 
     public BleHandler() {
         sensorIds.put("A", 4);
@@ -36,13 +52,17 @@ public class BleHandler  implements CommandLineRunner {
     }
 
     private void getBleData(String[] str) {
+        //文件io流
+        File file = null;
+        // 初始化字符输入流
+        Reader fileReader = null;
         while (true) {
-            File file = null;
-            // 初始化字符输入流
-            Reader fileReader = null;
+            //观测时间
             Date date = new Date();
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
             Integer day = Integer.valueOf(df.format(date));
+            //实时数据
+            BleData bleData =new BleData();
             for (int i = 0; i < str.length; i++) {
                 try {
                     file = new File("C:\\Users\\SWE\\Desktop\\Bluetooth demo\\" + str[i] + ".txt");
@@ -54,7 +74,20 @@ public class BleHandler  implements CommandLineRunner {
                     for (char cha : charArray) {
                         value += cha;
                     }
+                    value = value.replace("\r\n","").replace("\u0000","");
+                    if(str[i].contains("1")) {
+                        bleData.setAmp(value);
+                    }else if(str[i].contains("2")){
+                        bleData.setPow(value);
+                    }else if(str[i].contains("3")){
+                        bleData.setAvg(value);
+                    }else{
+                        bleData.setMas(value);
+                        if(str[i].contains("A")){
+                            realTimeDataMap.put("A",bleData);
+                        }else realTimeDataMap.put("B",bleData);
 
+                    }
                     Integer sensorId;
                     if (str[i].contains("A")) {
                         sensorId = 4;
@@ -69,10 +102,10 @@ public class BleHandler  implements CommandLineRunner {
                     obs.setTimestamp(date);
                     obs.setObsValue(value);
                     observationMapper.insert(obs);
+                    String sensorName = sensorMapper.getSensorById(sensorId).getSensorName();
+                    String obsPropName = observationPropertyMapper.getObsPropById(i + 14).getObsPropName();
+                    bleDataMap.put(sensorName + "_" + obsPropName, obs);
 
-                    String sensorName=sensorMapper.getSensorById(sensorId).getSensorName();
-                    String obsPropName= observationPropertyMapper.getObsPropById(i+14).getObsPropName();
-                    bleDataMap.put (sensorName + "_" + obsPropName, obs);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -98,6 +131,7 @@ public class BleHandler  implements CommandLineRunner {
 
         }
     }
+
     @Override
     public void run(String... args) throws Exception {
         new Thread(new Runnable() {
@@ -112,5 +146,48 @@ public class BleHandler  implements CommandLineRunner {
                 getBleData(B);
             }
         }).start();
+    }
+
+    @Override
+    public Mono<Void> handle(WebSocketSession session) {
+        String sessionid = session.getId();
+        Mono<Void> output = session.
+                send(Flux.create(sink ->
+                        senderMap.put(sessionid, new WebSocketSender(session, sink))));
+        Mono<Void> input = session.receive()
+                .map(WebSocketMessage::getPayloadAsText)
+                .map(message -> {
+                    isSocketOn = true;
+                    String info = "接收到客户端[" + sessionid + "]发送的数据：" + message;
+                    logger.info(info);
+                    new Thread(() -> {
+                        while (isSocketOn) {
+                            try {
+                                Thread.sleep(5000);//一秒传输一次
+                                    WebSocketSender socketSender = senderMap.get(sessionid);
+                                    if (socketSender != null) {
+                                        socketSender.sendData(JSONObject.toJSONString(realTimeDataMap, SerializerFeature.WriteMapNullValue));
+                                    }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                    return message;
+                }).then();
+        return Mono.zip(output, input)
+                .doOnSubscribe(s -> logger.info("客户端[" + sessionid + "]建立连接"))
+                .doOnError(s -> {
+                    logger.info("客户端[" + sessionid + "]发生错误" + s.getLocalizedMessage());
+                    isSocketOn = false;
+                    senderMap.remove(sessionid);
+                    session.close();
+                })
+                .doOnSuccess(s -> {
+                    isSocketOn = false;
+                    senderMap.remove(sessionid);
+                    session.close();
+                    logger.info("客户端[" + sessionid + "]关闭连接");
+                }).then();
     }
 }

@@ -38,12 +38,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 2020/12/11 18:40
  */
 @Component
-public class RFIDHandler implements WebSocketHandler {
+public class RFIDHandler{
     private static final Logger logger = LogManager.getLogger (RFIDHandler.class.getName ( ));
-    private static final BlockingQueue<String> obsQueue = new ArrayBlockingQueue<> (1024); //缓冲区允许放1024个数据
-    private ConcurrentHashMap<String, WebSocketSender> senderMap = new ConcurrentHashMap<> ( );
-    private Boolean isSocketOn = false;
-
     private Map<String, Observation> rfidDataMap = RealTimeHandler.REALTIME_DATA;
 
     @Autowired
@@ -66,8 +62,6 @@ public class RFIDHandler implements WebSocketHandler {
                 String msg = mqttMessage.toString ( );
                 if ("rptall".equals (topicName) && !"close".equals (msg)) {
                     logger.info(mqttMessage.toString());
-                    obsQueue.put (mqttMessage.toString ( ));
-
                     JSONArray sensors = JSONObject.parseObject (mqttMessage.toString ( )).getJSONArray ("list");
                     SimpleDateFormat df = new SimpleDateFormat ("yyyyMMdd");
                     Date date = new Date ( );
@@ -135,52 +129,5 @@ public class RFIDHandler implements WebSocketHandler {
         });
     }
 
-    @Override
-    public Mono<Void> handle(WebSocketSession session) {
-        String sessionid = session.getId ( );
-        Mono<Void> output = session.
-                send (Flux.create (sink ->
-                        senderMap.put (sessionid, new WebSocketSender (session, sink))));
-        Mono<Void> input = session.receive ( )
-                .map (WebSocketMessage::getPayloadAsText)
-                .map (message -> {
-                    isSocketOn = true;
-                    String info = "接收到客户端[" + sessionid + "]发送的数据：" + message;
-                    logger.info (info);
-                    new Thread (() -> {
-                        while (isSocketOn) {
-                            try {
-                                Thread.sleep (1000);//一秒传输一次
-                                String obs = obsQueue.poll ( );
-                                if (obs != null) {
-                                    WebSocketSender socketSender = senderMap.get (sessionid);
-                                    if (socketSender != null) {
-                                        Map<String, Object> jsonMap = new HashMap ( );
-                                        jsonMap.put ("obs", obs);
-                                        socketSender.sendData (JSONObject.toJSONString (jsonMap, SerializerFeature.WriteMapNullValue));
-                                    }
-                                }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace ( );
-                            }
-                        }
-                    }).start ( );
-                    return message;
-                }).then ( );
-        return Mono.zip (output, input)
-                .doOnSubscribe (s -> logger.info ("客户端[" + sessionid + "]建立连接"))
-                .doOnError (s -> {
-                    logger.info ("客户端[" + sessionid + "]发生错误" + s.getLocalizedMessage ( ));
-                    isSocketOn = false;
-                    senderMap.remove (sessionid);
-                    session.close ( );
-                })
-                .doOnSuccess (s -> {
-                    isSocketOn = false;
-                    senderMap.remove (sessionid);
-                    session.close ( );
-                    logger.info ("客户端[" + sessionid + "]关闭连接");
-                }).then ( );
-    }
 }
 

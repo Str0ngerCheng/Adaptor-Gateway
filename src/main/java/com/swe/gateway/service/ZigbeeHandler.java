@@ -6,7 +6,10 @@ import com.swe.gateway.dao.ObservationMapper;
 import com.swe.gateway.dao.ObservationPropertyMapper;
 import com.swe.gateway.dao.SensorMapper;
 import com.swe.gateway.dao.SensorObsPropMapper;
-import com.swe.gateway.model.*;
+import com.swe.gateway.model.Observation;
+import com.swe.gateway.model.Sensor;
+import com.swe.gateway.model.StructObservation;
+import com.swe.gateway.model.ZigBeeData;
 import com.swe.gateway.util.CRCUtil;
 import com.swe.gateway.util.ConvertUtil;
 import com.swe.gateway.util.SOSWrapper;
@@ -21,10 +24,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.Mono;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -53,7 +60,6 @@ public class ZigbeeHandler {
     SensorObsPropMapper sensorObsPropMapper;
     @Autowired
     ObservationPropertyMapper observationPropertyMapper;
-
 
     public class DecoderHandler extends MessageToMessageDecoder<ByteBuf> {
         @Override
