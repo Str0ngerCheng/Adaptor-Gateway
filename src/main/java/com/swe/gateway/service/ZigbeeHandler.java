@@ -54,6 +54,7 @@ public class ZigbeeHandler {
             }
             logger.info ("收到消息：" + str);
             list.add (bytes);
+            Thread.sleep(5000);
         }
     }
 
@@ -95,17 +96,19 @@ public class ZigbeeHandler {
 
                 }
             } else {
-                if (preHandlerAfferentMsg[0] == 118) { // 表示建立连接的是Lora网关
+                if (preHandlerAfferentMsg[0] == 119) { // 表示建立连接的是Lora网关
                     //getLoraData ();
                     data = createIndication (false);
                     channels.put (key, false);
-                } else {
+                } else  if (preHandlerAfferentMsg[0] == 17)  {
 
                     data = createIndication (true);
                     channels.put (key, true);
                 }
             }
-            ctx.writeAndFlush (data); //返回数据给tcP Client
+            if(data!=null) {
+                ctx.writeAndFlush(data); //返回数据给tcP Client
+            }
             logger.info ("channelRead");
         }
 
@@ -134,6 +137,8 @@ public class ZigbeeHandler {
     }
 
     public void getZigBeeData(byte[] r_buffer) {
+        if(r_buffer.length<34)
+            return ;
         List<SOSWrapper> sosWrappers = new ArrayList<SOSWrapper> ( );//传感器SOS封装类对象列表
         List<StructObservation> lstStructObs01;//传感器观测信息结构体列表
         List<StructObservation> lstStructObs02;//传感器观测信息结构体列表
@@ -165,47 +170,6 @@ public class ZigbeeHandler {
         double dtvoc = ConvertUtil.getShort (r_buffer, 13) * 0.01;   // 总挥发性有机物，单位ppm 百万分比浓度
         logText += "温度：" + dwendu + "℃，湿度：" + dshidu + "%RH，pm2.5：" + dpm + "mg/m3,雨量：" + dyuliang + "mm/24h,风速：" + dfengsu + "m/s,风向：" + dfengxiang + "°，TVOC总挥发性有机物：" + dtvoc + "ppm,电压：" + ddianya + "V,周期：" + dzhouqi + "s";
         logger.info (logText);
-
-
-        //从上到下依次为各个观测值的结构体
-        StructObservation _structObsTemperature = new StructObservation (SOSConfig.Temperature_ObsProperty, SOSConfig.Temperature_ObsResultName, SOSConfig.Temperature_ObsResultUom, dwendu);
-        StructObservation _structObsHumidity = new StructObservation (SOSConfig.Humidity_ObsProperty, SOSConfig.Humidity_ObsResultName, SOSConfig.Humidity_ObsResultUom, dshidu);
-        StructObservation _structObspm = new StructObservation (SOSConfig.PM_ObsProperty, SOSConfig.PM_ObsResultName, SOSConfig.PM_ObsResultUom, dpm);
-        StructObservation _structObsRainFall = new StructObservation (SOSConfig.RainFall_ObsProperty, SOSConfig.RainFall_ObsResultName, SOSConfig.RainFall_ObsResultUom, dyuliang);
-        StructObservation _structObsWindSpeed = new StructObservation (SOSConfig.WindSpeed_ObsProperty, SOSConfig.WindSpeed_ObsResultName, SOSConfig.WindSpeed_ObsResultUom, dfengsu);
-        StructObservation _structObsWindDirection = new StructObservation (SOSConfig.WindDirection_ObsProperty, SOSConfig.WindDirection_ObsResultName, SOSConfig.WindDirection_ObsResultUom, dfengxiang);
-        StructObservation _structObsTVOC = new StructObservation (SOSConfig.TVOC_ObsProperty, SOSConfig.TVOC_ObsResultName, SOSConfig.TVOC_ObsResultUom, dtvoc);
-        lstStructObs01 = new ArrayList<> ( );
-        //将各个观测值结构体加入观测值信息结构体列表中
-        lstStructObs01.add (_structObsTemperature);
-        lstStructObs01.add (_structObsHumidity);
-        lstStructObs01.add (_structObspm);
-        lstStructObs01.add (_structObsTVOC);
-        lstStructObs02 = new ArrayList<> ( );
-        lstStructObs02.add (_structObsRainFall);
-        lstStructObs03 = new ArrayList<> ( );
-        lstStructObs03.add (_structObsWindSpeed);
-
-        lstStructObs04 = new ArrayList<> ( );
-        lstStructObs04.add (_structObsWindDirection);
-        String samplingTime = new DateTime ( ).toString ( );//观测时间
-
-        SOSWrapper modbus01_SOSWrapper = new SOSWrapper (ZigbeeConfig.SensorID_Node001_Modbus_01, samplingTime, ZigbeeConfig.Longitude, ZigbeeConfig.Latitude, lstStructObs01, SOSConfig.SOS_Url);
-        SOSWrapper modbus02_SOSWrapper = new SOSWrapper (ZigbeeConfig.SensorID_Node001_Modbus_02, samplingTime, ZigbeeConfig.Longitude, ZigbeeConfig.Latitude, lstStructObs02, SOSConfig.SOS_Url);
-        SOSWrapper modbus03_SOSWrapper = new SOSWrapper (ZigbeeConfig.SensorID_Node001_Modbus_03, samplingTime, ZigbeeConfig.Longitude, ZigbeeConfig.Latitude, lstStructObs03, SOSConfig.SOS_Url);
-        SOSWrapper modbus04_SOSWrapper = new SOSWrapper (ZigbeeConfig.SensorID_Node001_Modbus_04, samplingTime, ZigbeeConfig.Longitude, ZigbeeConfig.Latitude, lstStructObs04, SOSConfig.SOS_Url);
-        sosWrappers.add (modbus01_SOSWrapper);
-        sosWrappers.add (modbus02_SOSWrapper);
-        sosWrappers.add (modbus03_SOSWrapper);
-        sosWrappers.add (modbus04_SOSWrapper);
-        //#endregion
-        if (sosWrappers != null) {
-            for (SOSWrapper sosWrapper : sosWrappers) {
-                if (sosWrapper != null) {
-                    sosWrapper.insertSOS ( );
-                }
-            }
-        }
     }
 
     public void getLoraData(byte[] r_buffer){};
