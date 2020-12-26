@@ -1,5 +1,6 @@
 package com.swe.gateway.dao;
 
+import com.swe.gateway.model.MavLinkRawData;
 import com.swe.gateway.model.UavGps;
 import com.swe.gateway.model.UavVfrHud;
 import com.swe.gateway.model.UavBatteryStatus;
@@ -19,6 +20,15 @@ import java.util.List;
  */
 @Repository
 public interface UavGpsMapper {
+
+    List<MavLinkRawData> getMavlinkRawDateByUavId(@Param("UavId") String UavId);
+
+    MavLinkRawData getLatestMavLinkRawData(@Param("UavId") String UavId);
+
+    MavLinkRawData getMavLinkRawDataByUavIdAndDate(@Param("UavId") String UavId, @Param("receivingTime") Date receivingTime);
+
+    int addMavLinkRawData(MavLinkRawData mavLinkRawData);
+
     List<UavGps> getUavGpsByUavId(@Param("UavId") String UavId);
 
     UavGps getLatestUavGps(@Param("UavId") String UavId);

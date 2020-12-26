@@ -2,6 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.swe.gateway.dao.UavGpsMapper">
 
+    <!-- MavLinkRawData查询映射结果 -->
+    <resultMap id="MavLinkRawDataResultMap" type="com.swe.gateway.model.MavLinkRawData">
+        <id column="id" property="id" />
+        <result column="uav_id" property="uavId" />
+        <result column="rawdata" property="rawdata" />
+        <result column="receiving_time" property="receivingTime" />
+    </resultMap>
+
+    <!-- Gps查询结果列 -->
+    <sql id="MavLinkRawData_Column_List">
+        id, uav_id, rawdata, receiving_time
+    </sql>
+
+    <!--Gps Function-->
+    <select id="getMavLinkRawDataByUavId" resultMap="MavLinkRawDataResultMap">
+         select * from `MavlinkRawData` where uav_id=#{UavId}
+    </select>
+
+    <select id="getLatestMavLinkRawData" resultMap="MavLinkRawDataResultMap">
+         select * from `MavlinkRawData` where uav_id=#{UavId} order by receiving_time desc limit 1
+    </select>
+
+    <select id="getMavLinkRawDataByUavIdAndDate" resultMap="MavLinkRawDataResultMap">
+         select * from `MavlinkRawData` where uav_id=#{UavId} and receiving_time=#{receivingTime}
+    </select>
+
+    <insert id="addMavLinkRawData" parameterType="com.swe.gateway.model.MavLinkRawData" useGeneratedKeys="true" keyProperty="id">
+         insert into MavlinkRawData(uav_id,rawdata,receiving_time)
+         values(#{uavId},#{rawdata},#{receivingTime})
+    </insert>
+
     <!-- Gps查询映射结果 -->
     <resultMap id="GpsResultMap" type="com.swe.gateway.model.UavGps">
         <id column="id" property="id" />

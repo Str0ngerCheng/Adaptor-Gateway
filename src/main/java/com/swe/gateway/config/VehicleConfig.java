@@ -50,7 +50,7 @@ public class VehicleConfig extends Thread{
     private static int batteryRemaining = 0;
 
     private static final Logger logger = LogManager.getLogger(MavlinkConfig.class.getName());
-    private String uavId="DX-1";
+    private String uavId="DX-2";
     UavGpsMapper uavGpsMapper;
     public VehicleConfig(String uavId,UavGpsMapper uavGpsMapper){
         //this.uavId=uavId;
@@ -254,7 +254,7 @@ public class VehicleConfig extends Thread{
                 // This is a heartbeat message
                 MavlinkMessage<VfrHud> fp = (MavlinkMessage<VfrHud>) message;
                 String data = fp.toString();
-                System.out.println(data);
+                //System.out.println(data);
                 //System.out.println("received the VfrHud packet.");
                 airspeed = fp.getPayload().airspeed();
                 groundspeed = fp.getPayload().groundspeed();
@@ -271,12 +271,12 @@ public class VehicleConfig extends Thread{
                 UavVfrHud latestUavVfrHud;
                 latestUavVfrHud=new UavVfrHud((long)13, uavId, airspeed, groundspeed, heading, throttle, altitude, climb,Date.from(Instant.now()));
                 uavGpsMapper.addUavVfrHud(latestUavVfrHud);
-                System.out.println("insert a new VfrHud packet.");
+                System.out.println("Vehicle insert a new VfrHud packet.");
             }
             if(message.getPayload() instanceof GpsRawInt) {
                 MavlinkMessage<GpsRawInt> gps = (MavlinkMessage<GpsRawInt>) message;
                 String data = gps.toString();
-                System.out.println(data);
+               // System.out.println(data);
                 //System.out.println("received the gps packet.");
                 if (timeUsec==null || timeUsec!= gps.getPayload().timeUsec()) {
                     timeUsec = gps.getPayload().timeUsec();
@@ -289,14 +289,14 @@ public class VehicleConfig extends Thread{
                     UavGps latestUavGps;
                     latestUavGps = new UavGps((long) 13, uavId, lat, lon, alt, Date.from(Instant.now()));
                     uavGpsMapper.addUavGps(latestUavGps);
-                    System.out.println("insert a new gps packet.");
+                    System.out.println("Vehicle insert a new gps packet.");
                     GetInSecond=true;
                 }
             }
             if(message.getPayload() instanceof BatteryStatus) {
                 MavlinkMessage<BatteryStatus> battery = (MavlinkMessage<BatteryStatus>) message;
                 String data = battery.toString();
-                System.out.println(data);
+                //System.out.println(data);
                 //System.out.println("received the Battery Status packet.");
                 if (GetInSecond) {
                     //timeUsec = battery.getPayload().timeUsec();
@@ -316,12 +316,12 @@ public class VehicleConfig extends Thread{
                     UavBatteryStatus uavBatteryStatus;
                     uavBatteryStatus=new UavBatteryStatus((long)13,uavId,batteryId,batteryFunction.value(),type.value(),temperature,/*voltages.get(0)*/0,currentBattery,currentCconsumed,energyCconsumed,batteryRemaining, java.util.Date.from(Instant.now()));
                     uavGpsMapper.addUavBatteryStatus(uavBatteryStatus);
-                    System.out.println("insert a new battery packet.");
+                    System.out.println("Vehicle insert a new battery packet.");
                     GetInSecond=false;
                 }
             }
         }
-        System.out.println("Connection lost.");
+        System.out.println("V Connection lost.");
 
     }
 }

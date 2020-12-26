@@ -1,4 +1,5 @@
 package com.swe.gateway.config;
+import com.swe.gateway.model.MavLinkRawData;
 import com.swe.gateway.service.UavHandler;
 import io.dronefleet.mavlink.Mavlink2Message;
 import io.dronefleet.mavlink.MavlinkConnection;
@@ -254,7 +255,9 @@ public class MavlinkConfig extends Thread{
                 // This is a heartbeat message
                 MavlinkMessage<VfrHud> fp = (MavlinkMessage<VfrHud>) message;
                 String data = fp.toString();
-                System.out.println(data);
+                MavLinkRawData mavLinkRawData=new MavLinkRawData(uavId,data,Date.from(Instant.now()));
+                uavGpsMapper.addMavLinkRawData(mavLinkRawData);
+                //System.out.println(data);
                 //System.out.println("received the VfrHud packet.");
                 airspeed = fp.getPayload().airspeed();
                 groundspeed = fp.getPayload().groundspeed();
@@ -271,15 +274,17 @@ public class MavlinkConfig extends Thread{
                 UavVfrHud latestUavVfrHud;
                 latestUavVfrHud=new UavVfrHud((long)13, uavId, airspeed, groundspeed, heading, throttle, altitude, climb,Date.from(Instant.now()));
                 uavGpsMapper.addUavVfrHud(latestUavVfrHud);
-                System.out.println("insert a new VfrHud packet.");
+                System.out.println("Uav insert a new VfrHud packet.");
             }
             if(message.getPayload() instanceof GpsRawInt) {
                 MavlinkMessage<GpsRawInt> gps = (MavlinkMessage<GpsRawInt>) message;
                 String data = gps.toString();
-                System.out.println(data);
+                //System.out.println(data);
                 //System.out.println("received the gps packet.");
                 if (timeUsec==null || timeUsec!= gps.getPayload().timeUsec()) {
                     timeUsec = gps.getPayload().timeUsec();
+                    MavLinkRawData mavLinkRawData=new MavLinkRawData(uavId,data,Date.from(Instant.now()));
+                    uavGpsMapper.addMavLinkRawData(mavLinkRawData);
                     lon = gps.getPayload().lon();
                     lat = gps.getPayload().lat();
                     alt = gps.getPayload().alt();
@@ -289,7 +294,7 @@ public class MavlinkConfig extends Thread{
                     UavGps latestUavGps;
                     latestUavGps = new UavGps((long) 13, uavId, lat, lon, alt, Date.from(Instant.now()));
                     uavGpsMapper.addUavGps(latestUavGps);
-                    System.out.println("insert a new gps packet.");
+                    System.out.println("Uav insert a new gps packet.");
                     GetInSecond=true;
                 }
             }
@@ -300,6 +305,8 @@ public class MavlinkConfig extends Thread{
                 //System.out.println("received the Battery Status packet.");
                 if (GetInSecond) {
                     //timeUsec = battery.getPayload().timeUsec();
+                    MavLinkRawData mavLinkRawData=new MavLinkRawData(uavId,data,Date.from(Instant.now()));
+                    uavGpsMapper.addMavLinkRawData(mavLinkRawData);
                     batteryId = battery.getPayload().id();
                     batteryFunction = battery.getPayload().batteryFunction();
                     type = battery.getPayload().type();
@@ -316,12 +323,12 @@ public class MavlinkConfig extends Thread{
                     UavBatteryStatus uavBatteryStatus;
                     uavBatteryStatus=new UavBatteryStatus((long)13,uavId,batteryId,batteryFunction.value(),type.value(),temperature,/*voltages.get(0)*/0,currentBattery,currentCconsumed,energyCconsumed,batteryRemaining, java.util.Date.from(Instant.now()));
                     uavGpsMapper.addUavBatteryStatus(uavBatteryStatus);
-                    System.out.println("insert a new battery packet.");
+                    System.out.println("Uav insert a new battery packet.");
                     GetInSecond=false;
                 }
             }
         }
-        System.out.println("Connection lost.");
+        System.out.println("U Connection lost.");
 
     }
 }

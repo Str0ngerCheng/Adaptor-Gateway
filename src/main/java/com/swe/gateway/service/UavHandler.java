@@ -1,6 +1,7 @@
 package com.swe.gateway.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.swe.gateway.config.VehicleConfig;
 import com.swe.gateway.model.UavBatteryStatus;
 import com.swe.gateway.model.UavGps;
 import com.swe.gateway.dao.UavGpsMapper;
@@ -8,6 +9,7 @@ import com.swe.gateway.model.UavVfrHud;
 import com.swe.gateway.util.WebSocketSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+//import org.graalvm.compiler.phases.common.VerifyHeapAtReturnPhase;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import com.swe.gateway.config.MavlinkConfig;
+import com.swe.gateway.config.VehicleConfig;
+
 
 import java.io.IOException;
 import java.sql.Date;
@@ -116,18 +120,28 @@ public class UavHandler implements WebSocketHandler {
         private String sessionid;
         private String uavId;
         private int signal;
-        MavlinkConfig MThread=new MavlinkConfig(uavId,uavGpsMapper);
+
         boolean IsListening=false;
+        boolean IsListening2=false;
+        MavlinkConfig MThread=new MavlinkConfig(uavId,uavGpsMapper);
+        VehicleConfig MThread2=new VehicleConfig(uavId,uavGpsMapper);
 
         @Override
         public void run(){
             System.out.println(uavId);
             while (flag&&SESSION_SIGNAL.get(sessionid) != null && SESSION_SIGNAL.get(sessionid) == 1) {
 
-                if(IsListening==false){
-                    MThread.start();
-                    IsListening=true;
-                }
+
+                    if(uavId=="DX-1"&&IsListening==false){
+
+                        MThread.start();
+                        IsListening=true;
+                    }
+                    if(uavId=="DX-2"&&IsListening2==false){
+
+                        MThread2.start();
+                        IsListening2=true;
+                    }
                 UavGps uavGps = REALTIME_DATA.get(uavId);
                 UavVfrHud uavVfrHud;
                 UavBatteryStatus uavBatteryStatus;
@@ -136,19 +150,19 @@ public class UavHandler implements WebSocketHandler {
                 uavVfrHud=uavGpsMapper.getLatestUavVfrHud(uavId);
                 uavBatteryStatus=uavGpsMapper.getLatestUavBatteryStatus(uavId);
                 //模拟实时数据,仅供前端测试
-                Double value1 = 30+Math.random()*0.1;
-                Double value2 = 110+Math.random()*0.1;
-                float gv=(float)Math.random()*50;
-                float av=(float)Math.random()*50;
-                double remain_d=Math.random()*100;
-                int remain=(int)remain_d;
-                uavGps = new UavGps( (long) 13, "DX-1", value1, value2 ,value1, Date.from(Instant.now()));
-                uavVfrHud.setGroundspeed(gv);
-                uavVfrHud.setAirspeed(av);
-                uavBatteryStatus.setBatteryRemaining(remain);
+//                Double value1 = 30+Math.random()*0.1;
+//                Double value2 = 110+Math.random()*0.1;
+//                float gv=(float)Math.random()*50;
+//                float av=(float)Math.random()*50;
+//                double remain_d=Math.random()*100;
+//                int remain=(int)remain_d;
+//                uavGps = new UavGps( (long) 13, "DX-1", value1, value2 ,value1, Date.from(Instant.now()));
+//                uavVfrHud.setGroundspeed(gv);
+//                uavVfrHud.setAirspeed(av);
+//                uavBatteryStatus.setBatteryRemaining(remain);
 
                 if (uavGps != null) {
-                    logger.info("服务端向客户端[" + sessionid + "]发送实时数据: " + uavGps.toString());
+                    logger.info("服务端向客户端[" + sessionid + "]发送实时数据: "/* + uavGps.toString()*/);
                     //通过senderMap获取到当前session的sendsink发送数据
                     senderMap.get(sessionid).sendData(JSONObject.toJSON(uavGps).toString());
                 } else {
