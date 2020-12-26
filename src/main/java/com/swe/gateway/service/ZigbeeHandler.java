@@ -2,6 +2,7 @@ package com.swe.gateway.service;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import com.swe.gateway.dao.ObservationMapper;
 import com.swe.gateway.dao.ObservationPropertyMapper;
 import com.swe.gateway.dao.SensorMapper;
@@ -155,11 +156,14 @@ public class ZigbeeHandler {
     }
 
     public void getZigBeeData(byte[] r_buffer) {
-
+        String originData = "";
+        for (int i = 0; i < r_buffer.length; i++) {
+            originData += r_buffer[i]+" ";
+        }
         //把zigbee的Modbus数据发送给前端
         Observation obsModbus = new Observation();
-        obsModbus.setObsValue(new String(r_buffer));
-        RealTimeHandler.REALTIME_DATA.put("Modbus-001_网关数据", obsModbus);
+        obsModbus.setObsValue(originData);
+        RealTimeHandler.REALTIME_DATA.put("ModBus-001_网关数据", obsModbus);
 
         if (r_buffer.length < 34)
             return;
@@ -241,6 +245,14 @@ public class ZigbeeHandler {
     }
 
     public void getLoraData(byte[] r_buffer) {
+        String originData = "";
+        for (int i = 0; i < r_buffer.length; i++) {
+            originData += r_buffer[i]+" ";
+        }
+        //把Lora的Modbus数据发送给前端
+        Observation obsModbus = new Observation();
+        obsModbus.setObsValue(originData);
+        RealTimeHandler.REALTIME_DATA.put("ModBus-002_网关数据", obsModbus);
         if (r_buffer.length < 16)
             return;
         List<SOSWrapper> sosWrappers = new ArrayList<SOSWrapper>();//传感器SOS封装类对象列表

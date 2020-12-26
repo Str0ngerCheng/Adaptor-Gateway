@@ -154,29 +154,25 @@ public class BleHandler implements CommandLineRunner, WebSocketHandler {
         Mono<Void> output = session.
                 send(Flux.create(sink ->
                         senderMap.put(sessionid, new WebSocketSender(session, sink))));
-        Mono<Void> input = session.receive()
-                .map(WebSocketMessage::getPayloadAsText)
-                .map(message -> {
+        return output.doOnSubscribe(s ->
+                {
+                    logger.info("客户端[" + sessionid + "]建立连接");
                     isSocketOn = true;
-                    String info = "接收到客户端[" + sessionid + "]发送的数据：" + message;
-                    logger.info(info);
                     new Thread(() -> {
                         while (isSocketOn) {
                             try {
-                                Thread.sleep(5000);//一秒传输一次
-                                    WebSocketSender socketSender = senderMap.get(sessionid);
-                                    if (socketSender != null) {
-                                        socketSender.sendData(JSONObject.toJSONString(realTimeDataMap, SerializerFeature.WriteMapNullValue));
-                                    }
+                                WebSocketSender socketSender = senderMap.get(sessionid);
+                                if (socketSender != null) {
+                                    socketSender.sendData(JSONObject.toJSONString(realTimeDataMap, SerializerFeature.WriteMapNullValue));
+                                }
+                                Thread.sleep(5000);//五秒传输一次
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
+
                         }
                     }).start();
-                    return message;
-                }).then();
-        return Mono.zip(output, input)
-                .doOnSubscribe(s -> logger.info("客户端[" + sessionid + "]建立连接"))
+                })
                 .doOnError(s -> {
                     logger.info("客户端[" + sessionid + "]发生错误" + s.getLocalizedMessage());
                     isSocketOn = false;
