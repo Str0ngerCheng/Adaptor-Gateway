@@ -1,5 +1,6 @@
 server:
   port: 8081
+  connection-timeout: 60
 logging:
   config: classpath:log4j2.xml
 spring:
