@@ -241,11 +241,49 @@ public class ZigbeeHandler {
         obsModbus.setObsValue(new String(r_buffer));
         RealTimeHandler.REALTIME_DATA.put("Modbus-002_网关数据", obsModbus);
 
+        if (r_buffer.length < 16)
+            return;
+        List<SOSWrapper> sosWrappers = new ArrayList<SOSWrapper>();//传感器SOS封装类对象列表
+        List<StructObservation> lstStructObs01;//传感器观测信息结构体列表
+        List<StructObservation> lstStructObs02;//传感器观测信息结构体列表
+        List<StructObservation> lstStructObs03;//传感器观测信息结构体列表
+        List<StructObservation> lstStructObs04;//传感器观测信息结构体列表
+        String _slaveAddress = Byte.toString(r_buffer[0]);//从机地址
+        String _command = Byte.toString(r_buffer[1]);//操作码
+        String _numBytes = Byte.toString(r_buffer[2]);//字节数
+        String logText = "接收数据通过CRC检校，数据正确！" +
+                " 从机地址:" + _slaveAddress +
+                " 功能码:" + _command +
+                " 数据字节数:" + _numBytes;
+        //写日志
+        logger.info(logText);
+
+        logText = "实时数据：";
+
         double ph = ConvertUtil.getShort(r_buffer, 11) * 0.2;//ph
         double v1 = ConvertUtil.getShort(r_buffer, 15) * 0.1;//电压
         double v2 = ConvertUtil.getShort(r_buffer, 17);//周期
         double v3 = ConvertUtil.getShort(r_buffer, 19);//ph
-        logger.info("lora PH：" + ph + " v1: " + v1 + " v2: " + v2 + " v3: " + v3);
+
+        ArrayList<ZigBeeData> loraDataSensor = new ArrayList<>();
+        loraDataSensor.add(0, new ZigBeeData(18, ph, "土壤PH"));
+        Sensor sensor = sensorMapper.getSensorByName("Lora-" + "001");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date();
+        Integer day = Integer.valueOf(df.format(date));
+        for (int i = 0; i < loraDataSensor.size(); i++) {
+            Observation obs1 = new Observation();
+            obs1.setSensorId(sensor.getSensorId());
+            ZigBeeData loraData = loraDataSensor.get(i);
+            obs1.setObsPropId(loraData.getObsId());
+            obs1.setDay(day);
+            obs1.setHour(date.getHours());
+            obs1.setTimestamp(date);
+            obs1.setObsValue(Double.toString(loraData.getObs()));
+            observationMapper.insert(obs1);
+            RealTimeHandler.REALTIME_DATA.put(sensor.getSensorName() + "_" + loraData.getObsName(), obs1);
+            logger.info(obs1);
+        }
     }
 
     ;
