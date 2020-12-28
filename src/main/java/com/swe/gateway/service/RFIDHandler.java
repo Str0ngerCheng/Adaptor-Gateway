@@ -125,6 +125,28 @@ public class RFIDHandler{
             public void connectionLost(Throwable cause) {
                 // //连接丢失后，一般在这里面进行重连
                 System.out.println("RFID connectionLost----------");
+                while (true) {
+                    if (!client.isConnected()) {
+                        synchronized (client) {
+                            if (!client.isConnected()) {
+                                try {
+                                    client.reconnect();
+                                    Thread.sleep(1000);
+                                    System.out.println("RFID MQTT try to reconnect----------" + client.isConnected());
+                                } catch (MqttException e) {
+                                   /* e.printStackTrace();*/
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        System.out.println("RFID MQTT reconnect success----------");
+                        break;
+                    }
+
+                }
             }
         });
     }

@@ -50,7 +50,7 @@ public class VehicleConfig extends Thread{
     private static int batteryRemaining = 0;
 
     private static final Logger logger = LogManager.getLogger(MavlinkConfig.class.getName());
-    private String uavId="DX-1";
+    private String uavId="DX-2";
     UavGpsMapper uavGpsMapper;
     public VehicleConfig(String uavId,UavGpsMapper uavGpsMapper){
         //this.uavId=uavId;
@@ -59,9 +59,9 @@ public class VehicleConfig extends Thread{
 
 
     // 监听地址（本机VPN地址）
-    static SocketAddress localAddress = new InetSocketAddress("172.16.3.69", 14550);
+    //static SocketAddress localAddress = new InetSocketAddress("172.16.3.69", 14550);
 
-    //static SocketAddress localAddress = new InetSocketAddress("172.16.3.69", 14600);
+    static SocketAddress localAddress = new InetSocketAddress("172.16.3.69", 14600);
     //uri=udp://172.26.144.206:5600  or 115200？ 14550
 
 
@@ -76,9 +76,9 @@ public class VehicleConfig extends Thread{
     static ExecutorService service;
     public void run() {
         try {
-            /*System.out.println("Config:");
+            System.out.println("Config:");
             System.out.println(uavId);
-            System.out.println(uavGpsMapper);*/
+            System.out.println(uavGpsMapper);
             getgps();
         } catch (IOException e) {
             e.printStackTrace();
@@ -217,6 +217,7 @@ public class VehicleConfig extends Thread{
         uavGpsMapper.addUavGps(latestUavGps);*/
 
         boolean GetInSecond=false;
+
 
 
 

@@ -94,12 +94,11 @@ public class NBIOTHandler {
                         synchronized (client) {
                             if (!client.isConnected()) {
                                 try {
-                                    client.disconnect();
                                     client.reconnect();
                                     Thread.sleep(1000);
                                     System.out.println("NBIOT MQTT try to reconnect----------" + client.isConnected());
                                 } catch (MqttException e) {
-                                    e.printStackTrace();
+                                   /* e.printStackTrace();*/
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
